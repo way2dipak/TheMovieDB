@@ -1,0 +1,16 @@
+PODS:
+  - netfox (1.19.0)
+
+DEPENDENCIES:
+  - netfox
+
+SPEC REPOS:
+  trunk:
+    - netfox
+
+SPEC CHECKSUMS:
+  netfox: efeec1d23406df6cd605212f09a40957bb5654eb
+
+PODFILE CHECKSUM: 2585719a6f9ce982c0a5711d304c1b8f5dd225d1
+
+COCOAPODS: 1.10.1
