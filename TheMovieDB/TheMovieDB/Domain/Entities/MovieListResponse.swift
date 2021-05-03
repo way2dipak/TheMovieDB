@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - MovieListModel
-struct MovieListModel: Codable {
+struct MovieListResponse: Codable {
     let page: Int?
     let results: [MovieResultList]?
     let totalPages, totalResults: Int?
