@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="MovieTrailersCell" customModule="TheMovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="285" height="213"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="285" height="213"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="posterPlaceholder" translatesAutoresizingMaskIntoConstraints="NO" id="VKI-S5-uYU">
+                        <rect key="frame" x="0.0" y="0.0" width="285" height="213"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="213" id="KK2-ca-ysU"/>
+                            <constraint firstAttribute="width" secondItem="VKI-S5-uYU" secondAttribute="height" multiplier="285:213" id="OxI-CH-4Cw"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zjf-9V-rR1">
+                        <rect key="frame" x="0.0" y="0.0" width="285" height="213"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playBtn" translatesAutoresizingMaskIntoConstraints="NO" id="aoH-db-58V">
+                                <rect key="frame" x="120.5" y="84.5" width="44" height="44"/>
+                                <color key="tintColor" systemColor="systemYellowColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="7L5-mN-KPH"/>
+                                    <constraint firstAttribute="width" constant="44" id="dq8-D7-hGH"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5038442043279181" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="aoH-db-58V" firstAttribute="centerX" secondItem="zjf-9V-rR1" secondAttribute="centerX" id="7QY-jL-ovp"/>
+                            <constraint firstItem="aoH-db-58V" firstAttribute="centerY" secondItem="zjf-9V-rR1" secondAttribute="centerY" id="o3B-Lk-eVj"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="VKI-S5-uYU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="29M-gy-Ef1"/>
+                <constraint firstItem="zjf-9V-rR1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="B9X-Qm-NNC"/>
+                <constraint firstAttribute="bottom" secondItem="zjf-9V-rR1" secondAttribute="bottom" id="MOo-qQ-Khv"/>
+                <constraint firstAttribute="bottom" secondItem="VKI-S5-uYU" secondAttribute="bottom" id="O2k-l4-mhW"/>
+                <constraint firstItem="zjf-9V-rR1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="VGs-PS-wF9"/>
+                <constraint firstItem="VKI-S5-uYU" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Vhn-A7-LdX"/>
+                <constraint firstAttribute="trailing" secondItem="zjf-9V-rR1" secondAttribute="trailing" id="gu4-cO-AdT"/>
+                <constraint firstAttribute="trailing" secondItem="VKI-S5-uYU" secondAttribute="trailing" id="xHw-a6-mL9"/>
+            </constraints>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="imgVw" destination="VKI-S5-uYU" id="PV4-Ah-SPP"/>
+            </connections>
+            <point key="canvasLocation" x="33" y="92"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="playBtn" width="21.333333969116211" height="21.333333969116211"/>
+        <image name="posterPlaceholder" width="189" height="272"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

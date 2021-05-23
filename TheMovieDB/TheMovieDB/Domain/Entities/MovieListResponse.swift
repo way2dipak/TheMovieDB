@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - MovieListModel
-struct MovieListModel: Codable {
+struct MovieListResponse: Codable {
     let page: Int?
     let results: [MovieResultList]?
     let totalPages, totalResults: Int?
@@ -32,6 +32,9 @@ struct MovieResultList: Codable {
     let video: Bool?
     let voteAverage: Double?
     let voteCount: Int?
+    let name: String?
+    let originalName: String?
+    let mediaType: MediaType?
 
     enum CodingKeys: String, CodingKey {
         case adult
@@ -46,6 +49,23 @@ struct MovieResultList: Codable {
         case title, video
         case voteAverage = "vote_average"
         case voteCount = "vote_count"
+        case name
+        case originalName = "original_name"
+        case mediaType = "media_type"
+    }
+    
+    func getMovieName() -> String {
+        return title ?? originalTitle ?? name ?? originalName ?? ""
     }
 }
 
+enum MediaType: String {
+    case movie = "movie"
+    case tv = "tv"
+}
+
+extension MediaType: Codable {
+    public init(from decoder: Decoder) throws {
+        self = try MediaType(rawValue: decoder.singleValueContainer().decode(RawValue.self)) ?? .movie
+    }
+}

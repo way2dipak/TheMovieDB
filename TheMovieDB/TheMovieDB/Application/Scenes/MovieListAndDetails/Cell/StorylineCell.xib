@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="StorylineCell" customModule="TheMovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="242"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="242"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvJ-QM-PZX">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="242"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eie-x0-KTm">
+                                <rect key="frame" x="20" y="0.0" width="280" height="22"/>
+                                <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="18"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zp8-HJ-gdE">
+                                <rect key="frame" x="20" y="30" width="280" height="158.5"/>
+                                <string key="text">Cars fly, trees fight back, and a mysterious house-elf comes to warn Harry Potter at the start of his second year at Hogwarts. Adventure and danger await when bloody writing on a wall announces: The Chamber Of Secrets Has Been Opened. To save Hogwarts will require all of Harry, Ron and Hermione’s magical abilities and courage.</string>
+                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="15"/>
+                                <color key="textColor" red="0.83741801979999997" green="0.83743780850000005" blue="0.83742713930000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="zp8-HJ-gdE" firstAttribute="top" secondItem="Eie-x0-KTm" secondAttribute="bottom" constant="8" id="4Kf-vk-8Qe"/>
+                            <constraint firstAttribute="trailing" secondItem="zp8-HJ-gdE" secondAttribute="trailing" constant="20" id="AIm-8w-VUO"/>
+                            <constraint firstAttribute="trailing" secondItem="Eie-x0-KTm" secondAttribute="trailing" constant="20" id="LFu-hO-iDB"/>
+                            <constraint firstItem="Eie-x0-KTm" firstAttribute="top" secondItem="zvJ-QM-PZX" secondAttribute="top" id="XHQ-kl-h2i"/>
+                            <constraint firstItem="zp8-HJ-gdE" firstAttribute="leading" secondItem="zvJ-QM-PZX" secondAttribute="leading" constant="20" id="ciL-6T-aD2"/>
+                            <constraint firstItem="Eie-x0-KTm" firstAttribute="leading" secondItem="zvJ-QM-PZX" secondAttribute="leading" constant="20" id="geo-dE-hL6"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zp8-HJ-gdE" secondAttribute="bottom" id="qTk-8t-a7x"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="zvJ-QM-PZX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="R3p-kP-hqB"/>
+                    <constraint firstAttribute="bottom" secondItem="zvJ-QM-PZX" secondAttribute="bottom" id="ovM-Ah-Hj0"/>
+                    <constraint firstAttribute="trailing" secondItem="zvJ-QM-PZX" secondAttribute="trailing" id="rPn-sy-ozW"/>
+                    <constraint firstItem="zvJ-QM-PZX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="wO2-5R-bfr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="lblStoryLine" destination="zp8-HJ-gdE" id="ut7-w6-Wyy"/>
+            </connections>
+            <point key="canvasLocation" x="47.826086956521742" y="117.1875"/>
+        </tableViewCell>
+    </objects>
+</document>

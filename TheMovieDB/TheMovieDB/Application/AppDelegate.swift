@@ -85,3 +85,35 @@ extension AppDelegate {
         SDImageCache.shared.calculateSize(completionBlock: nil)
     }
 }
+
+extension AppDelegate {
+    static var shared: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    
+    var rootViewController: UIViewController? {
+        return AppDelegate.shared.window?.rootViewController
+    }
+    
+    var rootNavigationController: UINavigationController? {
+        return rootViewController as? UINavigationController
+    }
+    
+    var firstViewController: UIViewController? {
+        return rootNavigationController?.viewControllers.first
+    }
+    
+    func push(to vc: UIViewController, animated: Bool = true) {
+        var navigationController: UINavigationController?
+        
+        if let navControllerVC = rootNavigationController {
+            navigationController = navControllerVC
+        } else {
+            navigationController = rootViewController?.navigationController
+        }
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.pushViewController(vc, animated: animated)
+    }
+    
+}
