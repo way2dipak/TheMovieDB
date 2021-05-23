@@ -14,9 +14,9 @@ class LaunchRootVwModel {
     
     func fetchGenresList(onResponse: @escaping () -> Void) {
         firstly {
-            self.service.fetchGenresList()
-        }.done ({ response in
-            if let result = response.result, let genresList = result.genres, genresList.count != 0 {
+            service.fetchMovieGenresList()
+        }.done ({ movie in
+            if let result = movie.result, let genresList = result.genres, genresList.count != 0 {
                 SessionManager.shared.geners = result
                 onResponse()
             } else {
@@ -25,6 +25,10 @@ class LaunchRootVwModel {
         }).catch({ error in
             onResponse()
         })
+    }
+    
+    private func removeDublicates(_ list: [GenresList]) -> [GenresList] {
+        return list.sorted(by: { n1, n2 in return (n1.name ?? "").lowercased() != (n2.name ?? "").lowercased() } )
     }
     
 }

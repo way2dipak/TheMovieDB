@@ -12,14 +12,17 @@ import Alamofire
 
 
 enum FetchGenresRequest: BaseRequest {
-    case fetchGenresList
+    case fetchMovieGenresList
+    case fetchTVGenreList
 }
 
 extension FetchGenresRequest {
     var route: (method: HTTPMethod, path: String) {
         switch self {
-        case .fetchGenresList:
-            return (.get, "genre/movie/list?api_key=\(APIKEY)&language=en-US")
+        case .fetchMovieGenresList:
+            return URLRepository.movieGenresList.getURLRequest()
+        case .fetchTVGenreList:
+            return URLRepository.tvGenresList.getURLRequest()
         }
     }
 }

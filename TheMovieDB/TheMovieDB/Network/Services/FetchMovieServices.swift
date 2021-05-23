@@ -33,8 +33,44 @@ class FetchMovieServices: BaseService, MovieListUseCase {
         data(FetchMovieRequest.fetchUpComingMovieList(pageNo))
     }
     
-    func fetchMovieDetails(by movieId: Int) -> Promise<ResponseModel<MovieResultList>> {
-        data(FetchMovieRequest.fetchMovieDetailsByID(movieId))
+    func fetchMovieDetails(by movieId: Int, type: MediaType) -> Promise<ResponseModel<MovieDetailsResponse>> {
+        data(FetchMovieRequest.fetchMovieDetailsByID(movieId, type.rawValue))
+    }
+    
+    func fetchKidSpecialMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchKidSpecialMovieList(pageNo))
+    }
+    
+    func fetchPopularInActionMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchActionMovieList(pageNo))
+    }
+    
+    func fetchPopularInThrillerMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchThrillerMovieList(pageNo))
+    }
+    
+    func fetchBestOfHorrorMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchHorrorMovieList(pageNo))
+    }
+    
+    func fetchCastAndCrewList(by movieId: Int) -> Promise<ResponseModel<CaseAndCrewResponseModel>> {
+        data(FetchMovieRequest.fetchCastAndCrewList(movieId))
+    }
+    
+    func fetchTrailerAndVideoList(by movieId: Int) -> Promise<ResponseModel<TrailersAndVideoResponseModel>> {
+        data(FetchMovieRequest.fetchTrailersList(movieId))
+    }
+    
+    func fetchRecommendedMovieList(by movieId: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchRecommendationMovieList(movieId))
+    }
+    
+    func fetchSimilarMovieList(by movieId: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchSimilarMovieList(movieId))
+    }
+    
+    func fetchNowPlayingMovieList(by pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchNowPlayingMovieList(pageNo))
     }
     
 }

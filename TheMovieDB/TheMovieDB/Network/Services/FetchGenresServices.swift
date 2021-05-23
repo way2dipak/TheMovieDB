@@ -10,7 +10,11 @@ import PromiseKit
 import TheMovieDBNetwork
 
 class FetchGenresServices: BaseService, GenresListUserCase {
-    func fetchGenresList() -> Promise<ResponseModel<GenresModel>> {
-        data(FetchGenresRequest.fetchGenresList)
+    func fetchMovieGenresList() -> Promise<ResponseModel<GenresModel>> {
+        data(FetchGenresRequest.fetchMovieGenresList)
+    }
+    
+    func fetchTVGenresList() -> Promise<ResponseModel<GenresModel>> {
+        data(FetchGenresRequest.fetchTVGenreList)
     }
 }

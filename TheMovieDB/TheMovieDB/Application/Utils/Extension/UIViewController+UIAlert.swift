@@ -37,5 +37,30 @@ extension UIViewController {
             self.present(alertVC, animated: true, completion: nil)
         }
     }
+    
+    func dismissVC() {
+        navigationController?.popViewController(animated: true)
+    }
 
+}
+
+extension NSObject {
+   
+    static var identifier: String {
+       return String(describing: self)
+    }
+    
+    static var nib: UINib {
+        return UINib(nibName: self.identifier, bundle: nil)
+    }
+   
+}
+
+extension String {
+    func setColor(_ color: UIColor, ofSubstring substring: String) -> NSMutableAttributedString {
+        let range = (self as NSString).range(of: substring)
+        let attributedString = NSMutableAttributedString(string: self)
+        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+        return attributedString
+    }
 }

@@ -14,14 +14,14 @@ struct GenresModel: Codable {
         case genres
     }
     
-    func getlistOfName(ids: [String]) -> [GenresList] {
+    func getlistOfName(ids: [Int]) -> String {
         var genresList = [GenresList]()
         for item in genres ?? [] {
-            if ids.contains("\(item.id ?? 0)") {
+            if ids.contains(item.id ?? 0) {
                 genresList.append(item)
             }
         }
-        return genresList
+        return genresList.map({ $0.name ?? "" }).joined(separator: " • ")
     }
 }
 

@@ -25,6 +25,7 @@ class LaunchRootScreenVC: UIViewController {
             guard let self = self else { return }
             DispatchQueue.main.async {
                 self.spinner.stopAnimating()
+                BaseNavigator().showTabBarVC()
             }
         })
     }

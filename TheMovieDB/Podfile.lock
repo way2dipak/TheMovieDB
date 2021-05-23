@@ -1,16 +1,20 @@
 PODS:
   - netfox (1.19.0)
+  - youtube-ios-player-helper-swift (1.1)
 
 DEPENDENCIES:
   - netfox
+  - youtube-ios-player-helper-swift
 
 SPEC REPOS:
   trunk:
     - netfox
+    - youtube-ios-player-helper-swift
 
 SPEC CHECKSUMS:
   netfox: efeec1d23406df6cd605212f09a40957bb5654eb
+  youtube-ios-player-helper-swift: 51a3c5325317c8271d0c7985c1bbe5a252ffb2fd
 
-PODFILE CHECKSUM: 2585719a6f9ce982c0a5711d304c1b8f5dd225d1
+PODFILE CHECKSUM: dc8e749a21779a5df7bab200a8ccc60c876c04c9
 
 COCOAPODS: 1.10.1

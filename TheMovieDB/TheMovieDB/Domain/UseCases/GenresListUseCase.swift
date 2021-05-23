@@ -10,5 +10,6 @@ import PromiseKit
 import TheMovieDBNetwork
 
 protocol GenresListUserCase {
-    func fetchGenresList() -> Promise<ResponseModel<GenresModel>>
+    func fetchMovieGenresList() -> Promise<ResponseModel<GenresModel>>
+    func fetchTVGenresList() -> Promise<ResponseModel<GenresModel>>
 }

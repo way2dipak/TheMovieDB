@@ -10,6 +10,7 @@ target 'TheMovieDB' do
   use_frameworks!
   common_pods
   # Pods for TheMovieDB
+  pod 'youtube-ios-player-helper-swift'
 
 end
 
