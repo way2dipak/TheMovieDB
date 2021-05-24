@@ -54,8 +54,8 @@
 		9D8E9F4A263E8CA5002A6C11 /* TheMovieDBNetwork.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E9F48263E8CA5002A6C11 /* TheMovieDBNetwork.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9D8E9F4D263E8CAB002A6C11 /* TheMovieDBPersistence.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E9F4C263E8CAB002A6C11 /* TheMovieDBPersistence.framework */; };
 		9D8E9F4E263E8CAB002A6C11 /* TheMovieDBPersistence.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9D8E9F4C263E8CAB002A6C11 /* TheMovieDBPersistence.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		9D8E9F83263ECE5E002A6C11 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 9D8E9F82263ECE5E002A6C11 /* SDWebImage */; };
-		9D8E9F9C263ED5FB002A6C11 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 9D8E9F9B263ED5FB002A6C11 /* IQKeyboardManagerSwift */; };
+		9D8E9F83263ECE5E002A6C11 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9D8E9F82263ECE5E002A6C11 /* SwiftPackageProductDependency */; };
+		9D8E9F9C263ED5FB002A6C11 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 9D8E9F9B263ED5FB002A6C11 /* SwiftPackageProductDependency */; };
 		9D8E9FB6263EDA65002A6C11 /* MovieListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E9FB5263EDA65002A6C11 /* MovieListUseCase.swift */; };
 		9D8E9FB8263EDB6F002A6C11 /* FetchMovieRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E9FB7263EDB6F002A6C11 /* FetchMovieRequest.swift */; };
 		9D8E9FBB263EE005002A6C11 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8E9FBA263EE005002A6C11 /* Config.swift */; };
@@ -192,10 +192,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D8E9F9C263ED5FB002A6C11 /* IQKeyboardManagerSwift in Frameworks */,
+				9D8E9F9C263ED5FB002A6C11 /* BuildFile in Frameworks */,
 				9D8E9F4D263E8CAB002A6C11 /* TheMovieDBPersistence.framework in Frameworks */,
 				9D8E9F49263E8CA5002A6C11 /* TheMovieDBNetwork.framework in Frameworks */,
-				9D8E9F83263ECE5E002A6C11 /* SDWebImage in Frameworks */,
+				9D8E9F83263ECE5E002A6C11 /* BuildFile in Frameworks */,
 				368F44F3FE45486A04632256 /* Pods_TheMovieDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -597,8 +597,8 @@
 			);
 			name = TheMovieDB;
 			packageProductDependencies = (
-				9D8E9F82263ECE5E002A6C11 /* SDWebImage */,
-				9D8E9F9B263ED5FB002A6C11 /* IQKeyboardManagerSwift */,
+				9D8E9F82263ECE5E002A6C11 /* SwiftPackageProductDependency */,
+				9D8E9F9B263ED5FB002A6C11 /* SwiftPackageProductDependency */,
 			);
 			productName = TheMovieDB;
 			productReference = 9D8E9EA0263E74C7002A6C11 /* TheMovieDB.app */;
@@ -628,8 +628,8 @@
 			);
 			mainGroup = 9D8E9E97263E74C7002A6C11;
 			packageReferences = (
-				9D8E9F81263ECE5E002A6C11 /* XCRemoteSwiftPackageReference "SDWebImage" */,
-				9D8E9F9A263ED5FB002A6C11 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				9D8E9F81263ECE5E002A6C11 /* RemoteSwiftPackageReference */,
+				9D8E9F9A263ED5FB002A6C11 /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 9D8E9EA1263E74C7002A6C11 /* Products */;
 			projectDirPath = "";
@@ -975,7 +975,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		9D8E9F81263ECE5E002A6C11 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+		9D8E9F81263ECE5E002A6C11 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
 			requirement = {
@@ -983,7 +983,7 @@
 				minimumVersion = 5.11.1;
 			};
 		};
-		9D8E9F9A263ED5FB002A6C11 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		9D8E9F9A263ED5FB002A6C11 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
 			requirement = {
@@ -994,14 +994,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		9D8E9F82263ECE5E002A6C11 /* SDWebImage */ = {
+		9D8E9F82263ECE5E002A6C11 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9D8E9F81263ECE5E002A6C11 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			package = 9D8E9F81263ECE5E002A6C11 /* RemoteSwiftPackageReference */;
 			productName = SDWebImage;
 		};
-		9D8E9F9B263ED5FB002A6C11 /* IQKeyboardManagerSwift */ = {
+		9D8E9F9B263ED5FB002A6C11 /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 9D8E9F9A263ED5FB002A6C11 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = 9D8E9F9A263ED5FB002A6C11 /* RemoteSwiftPackageReference */;
 			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
