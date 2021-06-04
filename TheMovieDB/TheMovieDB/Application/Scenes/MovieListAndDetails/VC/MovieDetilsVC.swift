@@ -15,6 +15,8 @@ class MovieDetilsVC: BaseVC {
         }
     }
     
+    @IBOutlet weak var vwPlayer: UIView!
+    
     private var headerView: MovieDetailsHeaderView!
     
     lazy var headerHeight: CGFloat = {
@@ -125,6 +127,13 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
                 self.player = nil
                 MovieListNavigator().showMovieDetailsVC(with: movieId, type: type)
             }
+            
+            cell.trailerContentHandler = { [weak self] videoId in
+                guard let self = self else { return }
+                self.player = nil
+                MovieListNavigator().showVideoPlayerVC(with: self.vwModel.movieDetails, videoID: videoId, videoList: self.vwModel.movieList[indexPath.row].trailersContent)
+            }
+            
             return cell
         }
     }
@@ -155,7 +164,6 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension MovieDetilsVC: PlayerDelegate {
     func playerDidBecomeReady(playerType: VideoPlayer) {
-        //self.headerView.imgVwCover.isHidden = true
         self.headerView.imgVwCover.transform = CGAffineTransform(scaleX: 1.5, y: 2.2)
         player?.playVideo()
     }
@@ -176,6 +184,7 @@ extension MovieDetilsVC: PlayerDelegate {
             break
         case .ended :
             self.headerView.imgVwCover.transform = CGAffineTransform(scaleX: 1, y: 1)
+            //self.headerView.imgVwCover.isHidden = false
             switch playerType {
             case .youtube(let ytPlayer):
                 ytPlayer.removeFromSuperview()
