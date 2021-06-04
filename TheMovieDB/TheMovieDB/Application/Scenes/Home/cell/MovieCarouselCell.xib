@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" id="KGk-i7-Jjw" customClass="MovieCarouselCell" customModule="TheMovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="410" height="273"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="410" height="273"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Mf-KA-bf2">
+                        <rect key="frame" x="0.0" y="20" width="410" height="253"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's New" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6CX-SL-coa">
+                                <rect key="frame" x="20" y="0.0" width="103.5" height="20"/>
+                                <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="HEX-cK-H48">
+                                <rect key="frame" x="0.0" y="40" width="410" height="213"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="213" id="H8f-T1-jA1"/>
+                                </constraints>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="12" id="VSm-V4-YTp">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="20" minY="0.0" maxX="20" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <connections>
+                                    <outlet property="dataSource" destination="KGk-i7-Jjw" id="hC3-kS-6ih"/>
+                                    <outlet property="delegate" destination="KGk-i7-Jjw" id="jW9-Dh-JIS"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KUq-xi-weR">
+                                <rect key="frame" x="370" y="-5" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="dpl-BC-Koo"/>
+                                    <constraint firstAttribute="width" constant="30" id="vK4-iT-gfG"/>
+                                </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="imageEdgeInsets" minX="10" minY="10" maxX="10" maxY="10"/>
+                                <state key="normal" image="rightArrow"/>
+                                <connections>
+                                    <action selector="onTapArrowBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="wRh-pg-7Tf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="6CX-SL-coa" firstAttribute="leading" secondItem="5Mf-KA-bf2" secondAttribute="leading" constant="20" id="B6q-cU-JMe"/>
+                            <constraint firstItem="HEX-cK-H48" firstAttribute="top" secondItem="6CX-SL-coa" secondAttribute="bottom" constant="20" id="EwO-CQ-Bh3"/>
+                            <constraint firstAttribute="trailing" secondItem="HEX-cK-H48" secondAttribute="trailing" id="QBJ-0B-PTN"/>
+                            <constraint firstItem="HEX-cK-H48" firstAttribute="leading" secondItem="5Mf-KA-bf2" secondAttribute="leading" id="YS8-I5-P6m"/>
+                            <constraint firstAttribute="bottom" secondItem="HEX-cK-H48" secondAttribute="bottom" id="YiZ-od-SIj"/>
+                            <constraint firstItem="KUq-xi-weR" firstAttribute="centerY" secondItem="6CX-SL-coa" secondAttribute="centerY" id="dnf-y8-H8M"/>
+                            <constraint firstItem="6CX-SL-coa" firstAttribute="top" secondItem="5Mf-KA-bf2" secondAttribute="top" id="go5-yI-ycR"/>
+                            <constraint firstAttribute="trailing" secondItem="KUq-xi-weR" secondAttribute="trailing" constant="10" id="n3Z-PY-Tut"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="5Mf-KA-bf2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="G7o-0Y-jxl"/>
+                    <constraint firstAttribute="trailing" secondItem="5Mf-KA-bf2" secondAttribute="trailing" id="bua-DZ-cAP"/>
+                    <constraint firstAttribute="bottom" secondItem="5Mf-KA-bf2" secondAttribute="bottom" id="gz1-2y-3BV"/>
+                    <constraint firstItem="5Mf-KA-bf2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="20" id="rE2-fo-yNR"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="btnArrow" destination="KUq-xi-weR" id="FzQ-q3-GTB"/>
+                <outlet property="colVw" destination="HEX-cK-H48" id="C6K-gj-fcK"/>
+                <outlet property="lblTitle" destination="6CX-SL-coa" id="KOu-BO-m3l"/>
+            </connections>
+            <point key="canvasLocation" x="113.04347826086958" y="147.65625"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="rightArrow" width="42.666667938232422" height="42.666667938232422"/>
+    </resources>
+</document>
