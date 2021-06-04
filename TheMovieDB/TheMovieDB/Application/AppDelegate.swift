@@ -15,6 +15,7 @@ import netfox
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+    var myOrientation: UIInterfaceOrientationMask = .portrait
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
@@ -114,6 +115,23 @@ extension AppDelegate {
         
         navigationController?.setNavigationBarHidden(true, animated: false)
         navigationController?.pushViewController(vc, animated: animated)
+    }
+    
+    func present(to vc: UIViewController, animated: Bool = true) {
+        var navigationController: UINavigationController?
+        
+        if let navControllerVC = rootNavigationController {
+            navigationController = navControllerVC
+        } else {
+            navigationController = rootViewController?.navigationController
+        }
+        
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        navigationController?.present(vc, animated: true, completion: nil)
+    }
+    
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return myOrientation
     }
     
 }

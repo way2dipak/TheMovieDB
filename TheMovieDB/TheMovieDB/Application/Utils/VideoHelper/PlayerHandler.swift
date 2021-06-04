@@ -130,6 +130,35 @@ class PlayerHandler: NSObject {
         }
     }
     
+    func stopVideo() {
+        switch playerType {
+        case .youtube(let ytPlayer):
+            ytPlayer.stopVideo()
+        default:
+            break
+        }
+    }
+    
+    func seek(toSeconds: TimeInterval, allowSeekAhead: Bool) {
+        switch playerType {
+        case .youtube(let ytPlayer):
+            ytPlayer.seek(seekToSeconds: Float(toSeconds), allowSeekAhead: allowSeekAhead)
+        default:
+            break
+        }
+    }
+    
+    func getDuration() -> TimeInterval? {
+        switch playerType {
+        case .youtube(let ytPlayer):
+            //ytPlayer.duration(completionHandler)
+            return ytPlayer.duration
+        default:
+            return nil
+            break
+        }
+    }
+    
     deinit {
         print("Player Handler deinited")
     }
@@ -159,6 +188,7 @@ extension PlayerHandler: YTPlayerViewDelegate {
     
     func playerViewDidBecomeReady(_ playerView: YTPlayerView) {
         self.delegate?.playerDidBecomeReady(playerType: playerType)
+        self.delegate?.player(playerDuration: playerView.duration)
         playerStatus = .ready
         self.isPlayerReady = true
     }
@@ -175,6 +205,7 @@ extension PlayerHandler: YTPlayerViewDelegate {
             playerStatus = .playing
         case .paused:
             playerStatus = .paused
+            
         case .ended:
             playerStatus = .ended
         case .queued, .unknown:

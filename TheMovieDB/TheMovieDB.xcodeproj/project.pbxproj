@@ -18,6 +18,8 @@
 		9D4D56DB264FCC71003B73D4 /* MovieListVwModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4D56DA264FCC71003B73D4 /* MovieListVwModel.swift */; };
 		9D4D56DF264FD31E003B73D4 /* LoaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4D56DD264FD31E003B73D4 /* LoaderCell.swift */; };
 		9D4D56E0264FD31E003B73D4 /* LoaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9D4D56DE264FD31E003B73D4 /* LoaderCell.xib */; };
+		9D616B4A2666731F0054C6F5 /* VideoPlayer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9D616B492666731F0054C6F5 /* VideoPlayer.storyboard */; };
+		9D616B4C266673340054C6F5 /* VideoPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D616B4B266673340054C6F5 /* VideoPlayerVC.swift */; };
 		9D6789D726419B7600436134 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6789CB26419B7500436134 /* Roboto-Light.ttf */; };
 		9D6789D826419B7600436134 /* Roboto-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6789CC26419B7500436134 /* Roboto-BlackItalic.ttf */; };
 		9D6789D926419B7600436134 /* Roboto-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9D6789CD26419B7500436134 /* Roboto-LightItalic.ttf */; };
@@ -117,6 +119,8 @@
 		9D4D56DA264FCC71003B73D4 /* MovieListVwModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListVwModel.swift; sourceTree = "<group>"; };
 		9D4D56DD264FD31E003B73D4 /* LoaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCell.swift; sourceTree = "<group>"; };
 		9D4D56DE264FD31E003B73D4 /* LoaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoaderCell.xib; sourceTree = "<group>"; };
+		9D616B492666731F0054C6F5 /* VideoPlayer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = VideoPlayer.storyboard; sourceTree = "<group>"; };
+		9D616B4B266673340054C6F5 /* VideoPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoPlayerVC.swift; sourceTree = "<group>"; };
 		9D6789CB26419B7500436134 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		9D6789CC26419B7500436134 /* Roboto-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-BlackItalic.ttf"; sourceTree = "<group>"; };
 		9D6789CD26419B7500436134 /* Roboto-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-LightItalic.ttf"; sourceTree = "<group>"; };
@@ -268,6 +272,15 @@
 				9D8F96D52653DC660025D78E /* CastAndCrewCell.xib */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		9D616B482666730C0054C6F5 /* VideoPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				9D616B492666731F0054C6F5 /* VideoPlayer.storyboard */,
+				9D616B4B266673340054C6F5 /* VideoPlayerVC.swift */,
+			);
+			path = VideoPlayer;
 			sourceTree = "<group>";
 		};
 		9D6789CA26419A4900436134 /* TabBar */ = {
@@ -515,6 +528,7 @@
 		9D8E9FC6263EF02D002A6C11 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				9D616B482666730C0054C6F5 /* VideoPlayer */,
 				9DB92F7D2658CBEE0015102C /* VideoHelper */,
 				9D24376A265151C3005DD744 /* Ratings */,
 				9DB412602651061100B4F77F /* FlowLayout */,
@@ -670,6 +684,7 @@
 				9D9410B02655512700E8B9C8 /* MovieTrailersCell.xib in Resources */,
 				9D4D56E0264FD31E003B73D4 /* LoaderCell.xib in Resources */,
 				9D6789D726419B7600436134 /* Roboto-Light.ttf in Resources */,
+				9D616B4A2666731F0054C6F5 /* VideoPlayer.storyboard in Resources */,
 				9D6789DA26419B7600436134 /* Roboto-BoldItalic.ttf in Resources */,
 				9D8E9EAB263E74C7002A6C11 /* Main.storyboard in Resources */,
 			);
@@ -750,6 +765,7 @@
 				9D8F96D92653DE5D0025D78E /* CastAndCrewResponseModel.swift in Sources */,
 				9D6789E92642517E00436134 /* BaseNavigator.swift in Sources */,
 				9D8E9EA4263E74C7002A6C11 /* AppDelegate.swift in Sources */,
+				9D616B4C266673340054C6F5 /* VideoPlayerVC.swift in Sources */,
 				9D8E9FDC263FC005002A6C11 /* SessionManager.swift in Sources */,
 				9D8254FA264AD6D5009DC983 /* HomeVwModel.swift in Sources */,
 				9D6789E72642510E00436134 /* MainContainerVC.swift in Sources */,

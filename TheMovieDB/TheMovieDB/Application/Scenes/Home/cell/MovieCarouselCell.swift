@@ -17,6 +17,7 @@ class MovieCarouselCell: UITableViewCell {
     
     var arrowHandler: (() -> ())?
     var selectedContentHandler: ((Int, MediaType) -> ())?
+    var trailerContentHandler: ((String) -> ())?
     
     var details: HomeModel? {
         didSet {
@@ -75,8 +76,12 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let item = details, item.contentType == .castAndCrew || item.contentType == .trailers { return }
-        selectedContentHandler?(details?.content[indexPath.row].id ?? 0, details?.content[indexPath.row].mediaType ?? .movie)
+        if let item = details, item.contentType == .castAndCrew { return }
+        if let item = details, item.contentType == .trailers {
+            trailerContentHandler?(details?.trailersContent[indexPath.row].key ?? "")
+        } else {
+            selectedContentHandler?(details?.content[indexPath.row].id ?? 0, details?.content[indexPath.row].mediaType ?? .movie)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
