@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -35,7 +35,7 @@
                                 <rect key="frame" x="0.0" y="40" width="410" height="213"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="213" id="H8f-T1-jA1"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="213" id="H8f-T1-jA1"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="12" id="VSm-V4-YTp">
                                     <size key="itemSize" width="128" height="128"/>
@@ -87,6 +87,7 @@
             <connections>
                 <outlet property="btnArrow" destination="KUq-xi-weR" id="FzQ-q3-GTB"/>
                 <outlet property="colVw" destination="HEX-cK-H48" id="C6K-gj-fcK"/>
+                <outlet property="colVwHeightConstraint" destination="H8f-T1-jA1" id="GsR-8b-01x"/>
                 <outlet property="lblTitle" destination="6CX-SL-coa" id="KOu-BO-m3l"/>
             </connections>
             <point key="canvasLocation" x="113.04347826086958" y="147.65625"/>

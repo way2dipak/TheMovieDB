@@ -14,7 +14,8 @@ class MovieCarouselCell: UITableViewCell {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var colVw: UICollectionView!
     @IBOutlet weak var btnArrow: UIButton!
-    
+    @IBOutlet weak var colVwHeightConstraint: NSLayoutConstraint!
+        
     var arrowHandler: (() -> ())?
     var selectedContentHandler: ((Int, MediaType) -> ())?
     var trailerContentHandler: ((String) -> ())?
@@ -22,6 +23,8 @@ class MovieCarouselCell: UITableViewCell {
     var details: HomeModel? {
         didSet {
             lblTitle.text = details?.sectionName ?? ""
+            //colVwHeightConstraint.constant = 213 * 1.2
+            colVw.layoutIfNeeded()
             colVw.reloadData()
         }
     }
@@ -64,6 +67,7 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
             return cell
         } else if details!.contentType == .trailers {
             btnArrow.isHidden = true
+            self.colVwHeightConstraint.constant = 131
             let cell = colVw.dequeueReusableCell(withReuseIdentifier: MovieTrailersCell.identifier, for: indexPath) as! MovieTrailersCell
             cell.imgVw.loadImageWithUrl(with: details?.trailersContent[indexPath.row].key ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder") , type: .youtube, completed: nil)
             return cell
@@ -90,7 +94,7 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
             //return CGSize(width: 188, height: 188)
             return CGSize(width: 138, height: 213)
         } else if details!.contentType == .trailers {
-            return CGSize(width: 285, height: 213)
+            return CGSize(width: 232, height: 121)//378.5, 213
         } else {
             return CGSize(width: 138, height: 213)
         }

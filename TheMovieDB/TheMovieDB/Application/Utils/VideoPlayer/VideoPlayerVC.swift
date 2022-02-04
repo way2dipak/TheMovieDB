@@ -12,10 +12,16 @@ class VideoPlayerVC: BaseVC {
     @IBOutlet weak var vwPlayer: UIView!
     @IBOutlet weak var vwLayer: UIView!
     @IBOutlet weak var vwController: UIView!
+    @IBOutlet weak var vwError: UIView!
     @IBOutlet weak var btnBack: UIButton!
-    
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var vwControllerBtn: UIView!
     @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
+    @IBOutlet weak var lblDescription: UILabel! {
+        didSet {
+            lblDescription.setLineHeight(lineHeight: 4)
+        }
+    }
     
     @IBOutlet weak var slider: UISlider!
     @IBOutlet weak var btnRewind: UIButton!
@@ -38,7 +44,8 @@ class VideoPlayerVC: BaseVC {
             } else {
                 //lblDuration.text = zeroTime + "/" + duration
             }
-            slider.value = Float(Double(currentTime) / Double(playerHandler?.getDuration() ?? 0))
+            slider.setValue(Float(Double(currentTime) / Double(playerHandler?.getDuration() ?? 0)), animated: true)
+            //slider.value = Float(Double(currentTime) / Double(playerHandler?.getDuration() ?? 0))
            
         }
     }
@@ -50,6 +57,35 @@ class VideoPlayerVC: BaseVC {
     private var isControllerActive = true
     private var isPlaying = false
     private var playerHandler: PlayerHandler?
+    private var vwModel = MovieDetailsVwModel()
+    private var configuration: VideoPlayerConfiguration = .loading {
+        didSet {
+            switch configuration {
+            case .loading:
+                vwControllerBtn.alpha = 0
+                spinner.isHidden = false
+                spinner.startAnimating()
+            case .playing:
+                resetTimer()
+                spinner.stopAnimating()
+                spinner.isHidden = true
+                vwControllerBtn.alpha = 1
+            case .completed:
+                spinner.stopAnimating()
+                spinner.isHidden = true
+                vwControllerBtn.alpha = 1
+            case .failed(let error):
+                vwError.isHidden = false
+                spinner.stopAnimating()
+                spinner.isHidden = true
+                vwControllerBtn.alpha = 0
+                // display error
+            }
+        }
+    }
+    
+    var swipeUp = UISwipeGestureRecognizer()
+    var swipeDown = UISwipeGestureRecognizer()
 
     
     override func viewDidLoad() {
@@ -59,11 +95,22 @@ class VideoPlayerVC: BaseVC {
         addGesture()
         lblTitle.text = details?.originalTitle ?? ""
         lblDescription.text = details?.overview ?? ""
-        playerHandler = PlayerHandler(videoId: videoId, parentView: vwPlayer, playerDelegate: self, showContentFill: true)
-//        playerHandler?.getDuration({ [weak self] (duration, error) in
-//            guard let self = self else { return }
-//            self.slider.maximumValue = Float(duration)
-//        })
+        checkVideo(videoId: videoId)
+    }
+    
+    func checkVideo(videoId: String) {
+        configuration = .loading
+        vwModel.getStreamURL(for: videoId)
+        self.vwModel.playVideo = { [weak self] url in
+            guard let self = self else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.playerHandler = PlayerHandler(videoId: url, parentView: self.vwPlayer, playerDelegate: self, showContentFill: true)
+            }
+        }
+        self.vwModel.videoError = { [weak self] error in
+            guard let self = self else { return }
+            self.configuration = .failed(error)
+        }
     }
     
     private func seek(toSeconds: Double) {
@@ -73,6 +120,8 @@ class VideoPlayerVC: BaseVC {
     
     @IBAction func onTapBackBtn(_ sender: UIButton) {
         timer = nil
+        playerHandler?.stopVideo()
+        playerHandler = nil
         dismissVC()
     }
     
@@ -120,7 +169,8 @@ class VideoPlayerVC: BaseVC {
     }
     
     @objc func toggleControllerView() {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self = self else { return }
             self.vwController.alpha = self.isControllerActive ? 0 : 1
             self.isControllerActive.toggle()
         }
@@ -128,20 +178,21 @@ class VideoPlayerVC: BaseVC {
     }
     
     @objc func hideControllerVw() {
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self = self else { return }
             self.vwController.alpha = 0
             self.isControllerActive = false
         }
     }
     
-    func togglePlayList(toggle: Bool) {
-        if toggle {
-            colvwBottomConstraint.constant = 0
+    @objc func togglePlayList(toggle: UISwipeGestureRecognizer) {
+        if toggle.direction == .up {
+            colvwBottomConstraint.constant = 20
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
         } else {
-            colvwBottomConstraint.constant = -213
+            colvwBottomConstraint.constant = -150
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
@@ -149,7 +200,7 @@ class VideoPlayerVC: BaseVC {
     }
 }
 
-extension VideoPlayerVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension VideoPlayerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return movieList.count
     }
@@ -164,21 +215,16 @@ extension VideoPlayerVC: UICollectionViewDelegate, UICollectionViewDataSource {
         playerHandler?.stopVideo()
         playerHandler = nil
         playerHandler = PlayerHandler(videoId: movieList[indexPath.row].key ?? "", parentView: vwPlayer, playerDelegate: self, showContentFill: true)
+        playerHandler?.playVideo()
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: 165, height: 130)
+            return CGSize(width: 232, height: 121)
     }
 }
 
-extension VideoPlayerVC: PlayerDelegate {
+extension VideoPlayerVC: VideoPlayerDelegate {
     func playerDidBecomeReady(playerType: VideoPlayer) {
-        switch playerType {
-        case .youtube(let ytPlayer):
-            self.slider.maximumValue = Float(ytPlayer.duration)
-        default:
-            break
-        }
         playerHandler?.playVideo()
         isPlaying = true
     }
@@ -188,42 +234,46 @@ extension VideoPlayerVC: PlayerDelegate {
     }
     
     func player(playerType: VideoPlayer, didUpdateState state: VideoPlayerStatus) {
+        print("didUpdateState: \(state)")
         switch state {
         case .unknown:
-            print("Unknown")
+            btnPlayPause.isSelected = true
         case .playing :
-            //togglePlayList(toggle: false)
+            configuration = .playing
+            btnPlayPause.isSelected = false
+            togglePlayList(toggle: swipeDown)
             break
         case .paused :
-            //togglePlayList(toggle: true)
+            btnPlayPause.isSelected = true
+            togglePlayList(toggle: swipeUp)
             break
         case .buffering :
             break
         case .ended :
+            configuration = .completed
+            btnPlayPause.isSelected = true
             if currentTime < duration {
                 slider.value = 1
             }
-            //togglePlayList(toggle: true)
+            togglePlayList(toggle: swipeUp)
             isPlaying = false
             switch playerType {
             case .youtube(let ytPlayer):
                 ytPlayer.removeFromSuperview()
                 self.playerHandler = nil
+            case .custom(_):
+//                avPlayer.view.removeFromSuperview()
+//                player = nil
+                configuration = .completed
             default:
                 break
             }
         case .failed(_):
-            //togglePlayList(toggle: false)
+            configuration = .failed("Unknown error occurred")
+            btnPlayPause.isSelected = true
+            togglePlayList(toggle: swipeUp)
             isPlaying = false
             print("failed")
-        case .stoppped:
-            switch playerType {
-            case .youtube(let ytPlayer):
-                ytPlayer.removeFromSuperview()
-                self.playerHandler = nil
-            default:
-                break
-            }
         default :
             break
         }
@@ -248,7 +298,7 @@ extension VideoPlayerVC {
         }
 
         func rotateToLandScapeDevice() {
-            AppDelegate.shared.myOrientation = .landscape
+            AppDelegate.shared.myOrientation = .landscapeLeft
             UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
             UIView.setAnimationsEnabled(true)
         }
@@ -264,6 +314,16 @@ extension VideoPlayerVC {
         tapGesture.numberOfTouchesRequired = 1
         vwLayer.isUserInteractionEnabled = true
         vwLayer.addGestureRecognizer(tapGesture)
+        
+        swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(togglePlayList(toggle:)))
+        swipeUp.direction = .up
+        vwLayer.isUserInteractionEnabled = true
+        vwLayer.addGestureRecognizer(swipeUp)
+        
+        swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(togglePlayList(toggle:)))
+        swipeDown.direction = .down
+        vwLayer.isUserInteractionEnabled = true
+        vwLayer.addGestureRecognizer(swipeDown)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -271,4 +331,13 @@ extension VideoPlayerVC {
         hideControllerVw()
     }
     
+}
+
+extension VideoPlayerVC {
+    enum VideoPlayerConfiguration {
+        case loading
+        case playing
+        case completed
+        case failed(String)
+    }
 }

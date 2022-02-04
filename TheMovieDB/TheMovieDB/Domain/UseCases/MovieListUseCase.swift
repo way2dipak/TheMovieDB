@@ -28,6 +28,7 @@ protocol MovieListUseCase {
     func fetchDiscoverMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>>
     func fetchUpcomingMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>>
     func fetchNowPlayingMovieList(by pageNo: Int) -> Promise<ResponseModel<MovieListResponse>>
+    func fetchStreamURL(with params: [String: Any]) -> Promise<ResponseModel<VideoResponse>>
     
     
     

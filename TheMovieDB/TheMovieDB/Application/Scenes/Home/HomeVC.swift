@@ -28,10 +28,10 @@ class HomeVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNIB()
-        setupHeaderView()
+        //setupHeaderView()
         self.vwModel.loadMovieList()
         vwModel.refreshUI = { [weak self] in
-            self?.headerView.details = self?.vwModel.movieList.randomElement()?.content.randomElement()
+            //self?.headerView.details = self?.vwModel.movieList.randomElement()?.content.randomElement()
             self?.tableVw.reloadData()
             self?.tableVw.toggleDisplayWithAnimation(true)
         }
@@ -76,6 +76,7 @@ class HomeVC: BaseVC {
     }
     
     func registerNIB() {
+        tableVw.register(MovieHeaderCell.nib, forCellReuseIdentifier: MovieHeaderCell.identifier)
         tableVw.register(MovieCarouselCell.nib, forCellReuseIdentifier: MovieCarouselCell.identifier)
     }
     
@@ -83,29 +84,44 @@ class HomeVC: BaseVC {
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vwModel.movieList.count
+        return vwModel.movieList.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
-        cell.details = vwModel.movieList[indexPath.row]
-        cell.arrowHandler = { [weak self] in
-            guard let self = self else { return }
-            MovieListNavigator().showMovieListVC(with: self.vwModel.movieList[indexPath.row].content, type: self.vwModel.movieList[indexPath.row].contentType)
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: MovieHeaderCell.identifier) as! MovieHeaderCell
+            cell.details = vwModel.movieList.randomElement()?.content.randomElement()
+            cell.infoHandler = { [weak self] (movieID, type)in
+                guard let _ = self else { return }
+                MovieListNavigator().showMovieDetailsVC(with: movieID, type: type)
+            }
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
+            cell.details = vwModel.movieList[indexPath.row - 1]
+            cell.arrowHandler = { [weak self] in
+                guard let self = self else { return }
+                MovieListNavigator().showMovieListVC(with: self.vwModel.movieList[indexPath.row - 1].content, type: self.vwModel.movieList[indexPath.row - 1].contentType)
+            }
+            cell.selectedContentHandler = { [weak self] movieId, type in
+                guard let _ = self else { return }
+                MovieListNavigator().showMovieDetailsVC(with: movieId, type: type)
+            }
+            return cell
         }
-        cell.selectedContentHandler = { [weak self] movieId, type in
-            guard let self = self else { return }
-            MovieListNavigator().showMovieDetailsVC(with: movieId, type: type)
-        }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0 {
+            return (self.view.frame.height/2) + 150
+        }
         return UITableView.automaticDimension
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //updateHeaderLayout()
+        /*
         let yPos: CGFloat = -scrollView.contentOffset.y
         
         if yPos > 0 {
@@ -116,5 +132,6 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             self.tableVw.sectionHeaderHeight = (imgRect?.size.height)!
             
         }
+ */
     }
 }

@@ -14,7 +14,7 @@ class HomeVwModel {
     var movieList = [HomeModel]()
     var refreshUI: (() -> ())?
     
-    private let services = FetchMovieServices()
+    private var services = FetchMovieServices()
     
     func loadMovieList() {
         firstly {
@@ -34,6 +34,10 @@ class HomeVwModel {
         }).catch({ error in
             print("error==========\(error.localizedDescription)")
         })
+    }
+    
+    deinit {
+        print("deinited")
     }
     
 }

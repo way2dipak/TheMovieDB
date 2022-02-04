@@ -73,4 +73,9 @@ class FetchMovieServices: BaseService, MovieListUseCase {
         data(FetchMovieRequest.fetchNowPlayingMovieList(pageNo))
     }
     
+    func fetchStreamURL(with params: [String: Any]) -> Promise<ResponseModel<VideoResponse>> {
+        data(FetchMovieRequest.fetchStreamingURL, parameters: params, baseUrl: "https://www.youtube.com/")
+    }
+    
 }
+

@@ -11,11 +11,14 @@ import PromiseKit
 class MovieDetailsVwModel {
     
     var movieDetails: MovieDetailsResponse?
+    var streamDetails: VideoResponse?
     
     var movieList = [HomeModel]()
     private let service = FetchMovieServices()
     
     var refreshUI: (() -> ())?
+    var playVideo: ((String) -> ())?
+    var videoError: ((String) -> ())?
     
     func getMovieDetails(by id: Int, and type: MediaType = .movie) {
         firstly {
@@ -63,5 +66,66 @@ class MovieDetailsVwModel {
         return trailerList.first?.trailersContent.randomElement()?.key ?? ""
     }
     
+    func getStreamURL(for videoID: String) {
+        firstly {
+            service.fetchStreamURL(with: getVideoParams(id: videoID))
+        }.done ({ response in
+            if let result = response.result {
+                self.streamDetails = result
+                if result.streamingData != nil {
+                    self.playVideo?(result.streamingData?.formats.last?.url ?? "")
+                } else {
+                    self.videoError?(result.playabilityStatus?.reason ?? "")
+                }
+            }
+        }).catch ({ [weak self] error in
+            guard let self = self else { return }
+            self.videoError?("Video unavailable")
+            print("error==========\(error.localizedDescription)")
+        })
+    }
+    
+    private func getVideoParams(id: String) -> [String: Any] {
+        return [
+                "context": [
+                    "client": [
+                        "hl": "en",
+                        "clientName": "WEB",
+                        "clientVersion": "2.20210721.00.00",
+                        "clientFormFactor": "UNKNOWN_FORM_FACTOR",
+                        "clientScreen": "WATCH",
+                        "mainAppWebInfo": [
+                            "graftUrl": "/watch?v=\(id)"
+                        ]
+                    ],
+                    "user": [
+                        "lockedSafetyMode": false
+                    ],
+                    "request": [
+                        "useSsl": true,
+                        "internalExperimentFlags": [],
+                        "consistencyTokenJars": []
+                    ]
+                ],
+                "videoId": "\(id)",
+                "playbackContext": [
+                    "contentPlaybackContext": [
+                        "vis": 0,
+                        "splay": false,
+                        "autoCaptionsDefaultOn": false,
+                        "autonavState": "STATE_NONE",
+                        "html5Preference": "HTML5_PREF_WANTS",
+                        "lactMilliseconds": "-1"
+                    ]
+                ],
+                "racyCheckOk": false,
+                "contentCheckOk": false
+            ]
+    }
+    
+//    deinit {
+//        movieDetails = nil
+//        print("------MovieDetailsViewModel deinited-----")
+//    }
     
 }

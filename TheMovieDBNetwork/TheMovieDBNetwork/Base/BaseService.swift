@@ -41,11 +41,12 @@ open class BaseService: RequestClient {
         return attempt()
     }
     
-    public func data<Element: Codable>( _ baseResource: BaseRequest,
+    public func data<Element: Codable>(_ baseResource: BaseRequest,
                                         parameters: [String: Any]? = nil,
-                                        headers: HTTPHeaders = ["Content-Type": "application/json"])-> Promise<ResponseModel<Element>> {
+                                        headers: HTTPHeaders = ["Content-Type": "application/json"],
+                                        baseUrl: String = "")-> Promise<ResponseModel<Element>> {
         // url
-        let mappedURL = self.buildURL(baseResource.route.path)
+        let mappedURL = self.buildURL(baseResource.route.path, baseUrl)
         let encodedURL = self.encodeURL(url: mappedURL)
         
         var mutableHeaders = headers
@@ -86,8 +87,12 @@ extension BaseService {
         
     }
     
-    private func buildURL( _ from: String ) -> String {
-        return self.baseURL + from
+    private func buildURL( _ from: String, _ baseUrl: String = "" ) -> String {
+        if baseUrl == "" {
+            return self.baseURL + from
+        } else {
+            return baseUrl + from
+        }
     }
     
     private func encodeURL(url: String) -> URL {

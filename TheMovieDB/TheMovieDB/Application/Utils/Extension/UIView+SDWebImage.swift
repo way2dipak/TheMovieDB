@@ -16,15 +16,21 @@ extension UIImageView {
         case normal
     }
     
+    enum ImageQuality {
+        case hd
+        case standard
+    }
+    
     func loadImageWithUrl(with: String?,
                           placeholderImage: UIImage?,
                           type: ImageType = .normal,
+                          quality: ImageQuality = .standard,
                           completed: SDExternalCompletionBlock?) {
         var url: URL?
         if type == .normal {
-            url =  URL(string: "\(APIBase.currentEnv.imgUrl)\(with ?? "")")
+            url =  URL(string: "\(APIBase.currentEnv.imgUrl)\(quality == .standard ? "w780/" : "original/")\(with ?? "")")
         } else {
-            url = URL(string: "https://img.youtube.com/vi/\(with ?? "")/0.jpg")
+            url = URL(string: "https://img.youtube.com/vi/\(with ?? "")/maxresdefault.jpg")
         }
         self.sd_imageIndicator = SDWebImageActivityIndicator.gray
         self.sd_setImage(with: url, placeholderImage: placeholderImage, options: [], completed: completed)

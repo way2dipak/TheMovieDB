@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +28,7 @@
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells/>
                                 <connections>
@@ -106,14 +106,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVl-1F-ggv">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="QVl-1F-ggv" secondAttribute="height" multiplier="16:9" id="FxZ-MP-DcW"/>
-                                </constraints>
-                            </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LC2-Gx-Lhg">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="LC2-Gx-Lhg">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -159,23 +152,19 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="5bJ-C7-SJ4" firstAttribute="leading" secondItem="X3a-8S-wAz" secondAttribute="leading" constant="12" id="2Tb-nn-0hA"/>
-                            <constraint firstItem="QVl-1F-ggv" firstAttribute="top" secondItem="K5u-0M-Nek" secondAttribute="top" id="HT5-rU-jnU"/>
                             <constraint firstItem="5bJ-C7-SJ4" firstAttribute="top" secondItem="X3a-8S-wAz" secondAttribute="top" constant="10" id="Lfg-nO-3qA"/>
                             <constraint firstAttribute="bottom" secondItem="LC2-Gx-Lhg" secondAttribute="bottom" id="Phc-rf-G5A"/>
                             <constraint firstItem="LC2-Gx-Lhg" firstAttribute="top" secondItem="K5u-0M-Nek" secondAttribute="top" id="W0x-ag-FXn"/>
-                            <constraint firstItem="QVl-1F-ggv" firstAttribute="leading" secondItem="X3a-8S-wAz" secondAttribute="leading" id="XRM-Tu-dMj"/>
                             <constraint firstItem="Qxz-dH-7HC" firstAttribute="leading" secondItem="X3a-8S-wAz" secondAttribute="leading" id="Z2F-9P-gX4"/>
                             <constraint firstItem="X3a-8S-wAz" firstAttribute="trailing" secondItem="LC2-Gx-Lhg" secondAttribute="trailing" id="a2L-Ew-1ct"/>
                             <constraint firstItem="Qxz-dH-7HC" firstAttribute="trailing" secondItem="X3a-8S-wAz" secondAttribute="trailing" id="f8T-Th-dW5"/>
                             <constraint firstAttribute="bottom" secondItem="Qxz-dH-7HC" secondAttribute="bottom" id="tcu-6U-Vng"/>
                             <constraint firstItem="LC2-Gx-Lhg" firstAttribute="leading" secondItem="X3a-8S-wAz" secondAttribute="leading" id="xE5-Gb-pTR"/>
-                            <constraint firstItem="X3a-8S-wAz" firstAttribute="trailing" secondItem="QVl-1F-ggv" secondAttribute="trailing" id="z6z-KC-vz0"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Yu1-mi-2Mh"/>
                     <connections>
                         <outlet property="tableVw" destination="LC2-Gx-Lhg" id="Udh-K5-3ZN"/>
-                        <outlet property="vwPlayer" destination="QVl-1F-ggv" id="czs-vA-LQJ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MsE-6e-3hX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

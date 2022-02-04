@@ -11,18 +11,28 @@ public struct APIBase {
 
 public enum Env {
     case dev
+    case prod
     
     public var url: String {
         switch self {
         case .dev:
             return  "https://api.themoviedb.org/3/"
+        case .prod:
+            return "http://35.173.249.132:8000"
         }
     }
     
     public var imgUrl: String {
         switch self {
-        case .dev:
-            return "http://image.tmdb.org/t/p/w780/"
+        case .dev, .prod:
+            return "http://image.tmdb.org/t/p/"
+        }
+    }
+    
+    public var videoUrl: String {
+        switch self {
+        case .dev, .prod:
+            return "https://www.youtube.com/"
         }
     }
     

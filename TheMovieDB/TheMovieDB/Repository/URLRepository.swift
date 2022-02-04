@@ -28,7 +28,7 @@ enum URLRepository {
     case movieRecommendation(Int)
     case movieSimilar(Int)
     case nowPlaying(Int)
-    
+    case streamUrl
     
     func getURLRequest() -> (HTTPMethod, String) {
         switch self {
@@ -66,6 +66,8 @@ enum URLRepository {
             return(.get, "movie/\(movieId)/similar?api_key=\(APIKEY)&language=en-US")
         case .nowPlaying(let pageNo):
             return(.get, "movie/now_playing?api_key=\(APIKEY)&language=en-US&page=\(pageNo)")
+        case .streamUrl:
+            return(.post, "youtubei/v1/player?key=AIzaSyAO_FJ2SlqU8Q4STEHLGCilw_Y9_11qcW8")
         }
     }
     

@@ -25,6 +25,7 @@ enum FetchMovieRequest: BaseRequest {
     case fetchRecommendationMovieList(Int)
     case fetchSimilarMovieList(Int)
     case fetchNowPlayingMovieList(Int)
+    case fetchStreamingURL
     
 }
 
@@ -61,6 +62,8 @@ extension FetchMovieRequest {
             return URLRepository.movieSimilar(movieId).getURLRequest()
         case .fetchNowPlayingMovieList(let pageNo):
             return URLRepository.nowPlaying(pageNo).getURLRequest()
+        case .fetchStreamingURL:
+            return URLRepository.streamUrl.getURLRequest()
         }
     }
 }

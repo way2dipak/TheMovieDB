@@ -10,7 +10,7 @@ import UIKit
 class MovieTrailersCell: UICollectionViewCell {
     
     @IBOutlet weak var imgVw: UIImageView!
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

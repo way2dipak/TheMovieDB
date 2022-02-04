@@ -73,12 +73,12 @@ extension MovieListVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
+        //if indexPath.section == 0 {
+            let width = (collectionView.bounds.width - 10)/3.0
+            return CGSize(width: width, height: width * 2);
             
-            return CGSize(width: collectionView.frame.width/3, height: 200)
-            //return CGSize(width: 138 * 0.7, height: 213 * 0.7)
-        } else {
-            return CGSize(width: collectionView.frame.width, height: 80)
-        }
+//        } else {
+//            return CGSize(width: collectionView.frame.width, height: 80)
+//        }
     }
 }

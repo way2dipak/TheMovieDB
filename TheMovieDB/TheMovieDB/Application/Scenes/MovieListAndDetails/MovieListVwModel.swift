@@ -97,4 +97,8 @@ class MovieListVwModel {
         }
     }
     
+    deinit {
+        print("deinited")
+    }
+    
 }
