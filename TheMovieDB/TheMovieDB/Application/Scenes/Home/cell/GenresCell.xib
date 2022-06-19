@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GenresCell" customModule="TheMovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="180" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="180" height="80"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trendingBG1" translatesAutoresizingMaskIntoConstraints="NO" id="Ct3-QJ-GWW">
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="80"/>
+                    </imageView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FZT-fb-Dzb">
+                        <rect key="frame" x="0.0" y="0.0" width="180" height="80"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.32631415562913907" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.029999999999999999" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e2A-Mi-V0f">
+                        <rect key="frame" x="10" y="10" width="160" height="60"/>
+                        <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="16"/>
+                        <color key="textColor" red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="FZT-fb-Dzb" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5U5-wA-gKt"/>
+                <constraint firstItem="Ct3-QJ-GWW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="72J-Zm-QZd"/>
+                <constraint firstItem="e2A-Mi-V0f" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="8ZK-bI-Ghj"/>
+                <constraint firstItem="e2A-Mi-V0f" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="9XR-aL-bxF"/>
+                <constraint firstAttribute="trailing" secondItem="FZT-fb-Dzb" secondAttribute="trailing" id="EMt-J8-M4y"/>
+                <constraint firstAttribute="bottom" secondItem="Ct3-QJ-GWW" secondAttribute="bottom" id="HMC-bW-xVx"/>
+                <constraint firstItem="Ct3-QJ-GWW" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Kdf-Yy-CDa"/>
+                <constraint firstAttribute="bottom" secondItem="e2A-Mi-V0f" secondAttribute="bottom" constant="10" id="LYD-QB-5Ff"/>
+                <constraint firstAttribute="trailing" secondItem="Ct3-QJ-GWW" secondAttribute="trailing" id="eEM-T5-uCV"/>
+                <constraint firstItem="FZT-fb-Dzb" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sgA-cZ-foZ"/>
+                <constraint firstAttribute="trailing" secondItem="e2A-Mi-V0f" secondAttribute="trailing" constant="10" id="smu-h7-30m"/>
+                <constraint firstAttribute="bottom" secondItem="FZT-fb-Dzb" secondAttribute="bottom" id="yZy-wh-SlD"/>
+            </constraints>
+            <size key="customSize" width="268" height="82"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <real key="value" value="12"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="imgVwBackdrop" destination="Ct3-QJ-GWW" id="XYy-Im-8O7"/>
+                <outlet property="lblGenres" destination="e2A-Mi-V0f" id="0Ev-Yp-XjQ"/>
+            </connections>
+            <point key="canvasLocation" x="295.6521739130435" y="76.339285714285708"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="trendingBG1" width="1280" height="720"/>
+    </resources>
+</document>

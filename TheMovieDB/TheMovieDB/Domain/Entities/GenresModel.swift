@@ -8,10 +8,14 @@
 import Foundation
 
 struct GenresModel: Codable {
-    let genres: [GenresList]?
+    let status: Int?
+    let message: Bool?
+    var genres: [GenresList]?
     
     enum CodingKeys: String, CodingKey {
-        case genres
+        case status
+        case message
+        case genres = "results"
     }
     
     func getlistOfName(ids: [Int]) -> String {
@@ -25,11 +29,14 @@ struct GenresModel: Codable {
     }
 }
 
+// MARK: - Result
 struct GenresList: Codable {
     let id: Int?
     let name: String?
+    let backdropPath: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name
+        case backdropPath = "backdrop_path"
     }
 }

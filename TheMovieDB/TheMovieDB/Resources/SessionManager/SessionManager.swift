@@ -12,6 +12,6 @@ class SessionManager {
     static let shared = SessionManager()
     private init(){}
     
-    var geners: GenresModel!
+    var geners: GenresModel?
     
 }

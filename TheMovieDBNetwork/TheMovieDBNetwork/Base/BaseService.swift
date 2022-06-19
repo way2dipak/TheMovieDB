@@ -43,7 +43,7 @@ open class BaseService: RequestClient {
     
     public func data<Element: Codable>(_ baseResource: BaseRequest,
                                         parameters: [String: Any]? = nil,
-                                        headers: HTTPHeaders = ["Content-Type": "application/json"],
+                                       headers: HTTPHeaders = ["Content-Type": "application/json", "token": APIBase.currentEnv.token],
                                         baseUrl: String = "")-> Promise<ResponseModel<Element>> {
         // url
         let mappedURL = self.buildURL(baseResource.route.path, baseUrl)

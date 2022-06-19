@@ -16,7 +16,7 @@ public enum Env {
     public var url: String {
         switch self {
         case .dev:
-            return  "https://api.themoviedb.org/3/"
+            return "http://moviedbnodejs.herokuapp.com/v1/"
         case .prod:
             return "http://35.173.249.132:8000"
         }
@@ -33,6 +33,13 @@ public enum Env {
         switch self {
         case .dev, .prod:
             return "https://www.youtube.com/"
+        }
+    }
+    
+    public var token: String {
+        switch self {
+        case .dev, .prod:
+            return APIKEY
         }
     }
     

@@ -2,14 +2,15 @@
 //  GenresCell.swift
 //  TheMovieDB
 //
-//  Created by DS on 16/05/21.
+//  Created by Dipak Singh on 15/06/22.
 //
 
 import UIKit
 
 class GenresCell: UICollectionViewCell {
     
-    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var lblGenres: UILabel!
+    @IBOutlet weak var imgVwBackdrop: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

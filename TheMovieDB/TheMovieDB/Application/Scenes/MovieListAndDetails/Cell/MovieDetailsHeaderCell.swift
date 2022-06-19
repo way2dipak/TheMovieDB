@@ -9,8 +9,10 @@ import UIKit
 
 class MovieDetailsHeaderCell: UITableViewCell {
     
+    @IBOutlet weak var imgVwBackdrop: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblTagLine: UILabel!
+    @IBOutlet weak var lblOverview: UILabel!
     @IBOutlet weak var lblRatings: UILabel!
     @IBOutlet weak var lblVotes: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
@@ -21,11 +23,14 @@ class MovieDetailsHeaderCell: UITableViewCell {
         }
     }
     
-    var details: MovieDetailsResponse? {
+    var details: MovieResultList? {
         didSet {
+            imgVwBackdrop.loadImageWithUrl(with: details?.backdropPath ?? "", placeholderImage: nil, quality: .hd, completed: nil)
             lblTitle.text = details?.title ?? ""
             lblTagLine.text = details?.tagline ?? ""
+            lblOverview.text = details?.overview ?? ""
             lblTagLine.setLineHeight(lineHeight: 5)
+            lblOverview.setLineHeight(lineHeight: 5)
             let ratings = ((details?.voteAverage ?? 0.0) / 2)
             lblRatings.text = String(format: "%.1f", ratings)
             lblVotes.text = "\(details?.voteCount ?? 0) Votes"

@@ -15,13 +15,7 @@ class MainContainerVC: UIViewController {
     }
     
     @IBAction func onTapMenuBtn(_ sender: UIButton) {
-        if sender.tag == 0 {
-            MovieListNavigator().showMovieListVC(with: [], type: .discover)
-        } else if sender.tag == 1 {
-            MovieListNavigator().showMovieListVC(with: [], type: .upcoming)
-        } else {
-            MovieListNavigator().showMovieListVC(with: [], type: .nowPlaying)
-        }
+        
     }
 
 }
