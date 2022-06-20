@@ -35,9 +35,8 @@ class MovieDetailsVwModel {
     }
     
     func getVideoForHeader() -> String {
-//        let trailerList = movieList.filter({ $0.sectionName.lowercased() == "trailers" })
-//        return trailerList.first?.trailersContent.randomElement()?.key ?? ""
-        return ""
+        let trailerList = movieList.filter({ $0.sectionTitle?.lowercased() == "trailers" })
+        return trailerList.first?.sectionData?.randomElement()?.key ?? ""
     }
     
     func getStreamURL(for videoID: String) {
@@ -47,7 +46,7 @@ class MovieDetailsVwModel {
             if let result = response.result {
                 self.streamDetails = result
                 if result.streamingData != nil {
-                    self.playVideo?(result.streamingData?.formats.last?.url ?? "")
+                    self.playVideo?(result.streamingData?.formats.first?.url ?? "")
                 } else {
                     self.videoError?(result.playabilityStatus?.reason ?? "")
                 }

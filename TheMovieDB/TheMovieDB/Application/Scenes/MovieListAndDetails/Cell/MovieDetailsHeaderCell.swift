@@ -22,6 +22,9 @@ class MovieDetailsHeaderCell: UITableViewCell {
             //vwStar.transform = CGAffineTransform.init(scaleX: 5.3, y: 5.3)
         }
     }
+    @IBOutlet weak var btnPlay: LoadingButton!
+    
+    var playhandler: (() -> ())?
     
     var details: MovieResultList? {
         didSet {
@@ -46,10 +49,7 @@ class MovieDetailsHeaderCell: UITableViewCell {
         // Initialization code
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBAction func onTapPlayBtn(_ sender: UIButton) {
+        playhandler?()
     }
-    
 }

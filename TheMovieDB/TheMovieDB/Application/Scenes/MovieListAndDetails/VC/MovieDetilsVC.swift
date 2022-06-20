@@ -25,6 +25,8 @@ class MovieDetilsVC: BaseVC {
     private var player: PlayerHandler?
     
     var playPauseHandler: ((Bool) -> ())?
+    
+    var headerCell: MovieDetailsHeaderCell?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,15 +38,15 @@ class MovieDetilsVC: BaseVC {
         vwModel.getMovieDetails(by: movieId, and: type)
         vwModel.refreshUI = { [weak self] in
             guard let self = self else { return }
-//            self.vwModel.getStreamURL(for: self.vwModel.getVideoForHeader())
-            self.vwModel.playVideo = { [weak self] url in
-                guard let self = self else { return }
-                DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
-               // self.player = PlayerHandler(videoId: url, parentView: self.headerView.imgVwCover, playerDelegate: self, showContentFill: true)
-                }
-            }
             self.tableVw.reloadData()
             self.tableVw.toggleDisplayWithAnimation(true)
+        }
+        self.vwModel.playVideo = { [weak self] url in
+            guard let self = self else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                if self.headerCell == nil { return }
+                self.player = PlayerHandler(videoId: url, parentView: self.headerCell!.imgVwBackdrop, playerDelegate: self, showContentFill: true)
+            }
         }
     }
     
@@ -78,7 +80,13 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
         switch details.contentType {
         case .header:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderCell.identifier) as! MovieDetailsHeaderCell
+            self.headerCell = cell
             cell.details = vwModel.movieDetails
+            cell.playhandler = { [weak self] in
+                guard let self = self else { return }
+                cell.btnPlay.showLoading()
+                self.vwModel.getStreamURL(for: self.vwModel.getVideoForHeader())
+            }
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
@@ -109,11 +117,23 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yPos: CGFloat = -scrollView.contentOffset.y
+        if yPos < -202 {
+            player?.pauseVideo()
+        } else {
+            player?.playVideo()
+        }
+    }
 }
 
 extension MovieDetilsVC: VideoPlayerDelegate {
     func playerDidBecomeReady(playerType: VideoPlayer) {
         player?.playVideo()
+        headerCell?.btnPlay.hideLoading()
+        headerCell?.btnPlay.isHidden = true
+        headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
     }
     
     func player(playerType: VideoPlayer, didUpdateTime playTime: TimeInterval) {
@@ -125,13 +145,18 @@ extension MovieDetilsVC: VideoPlayerDelegate {
         case .unknown:
             print("Unknown")
         case .playing :
+            print("playing")
             break
         case .paused :
+            print("paused")
             break
         case .buffering :
+            print("buffering")
             break
         case .ended :
-            //self.headerView.imgVwCover.isHidden = false
+            print("ended")
+            headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            headerCell?.btnPlay.isHidden = false
             switch playerType {
             case .youtube(let ytPlayer):
                 ytPlayer.removeFromSuperview()

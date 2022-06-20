@@ -54,12 +54,13 @@ extension MovieListVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MoviePosterCell.identifier, for: indexPath) as! MoviePosterCell
             let details = vwModel.movieList[indexPath.row]
+            cell.imgVw.contentMode = .scaleToFill
             cell.imgVw.loadImageWithUrl(with: details.posterPath, placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), completed: nil)
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoaderCell.identifier, for: indexPath) as! LoaderCell
             cell.displaySpinner(true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                 self.vwModel.fetchMoviesFor(type: self.sectionName.lowercased())
             }
             return cell
