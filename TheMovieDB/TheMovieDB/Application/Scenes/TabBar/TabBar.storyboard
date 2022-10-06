@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I0F-mc-OGP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="I0F-mc-OGP">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Roboto-Medium.ttf">
-            <string>Roboto-Medium</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Main ContainerVC-->
         <scene sceneID="uQl-eS-P7S">
@@ -24,68 +20,33 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Vp-i5-aAZ">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <connections>
-                                    <segue destination="OSy-aY-xh5" kind="embed" id="cPJ-aU-dyn"/>
+                                    <segue destination="OSy-aY-xh5" kind="embed" id="Bko-KX-AQn"/>
                                 </connections>
                             </containerView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topGradient" translatesAutoresizingMaskIntoConstraints="NO" id="d4E-8a-n81">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="150"/>
+                                <color key="tintColor" name="Appbackground"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="WlX-z8-V5D"/>
+                                    <constraint firstAttribute="height" constant="150" id="WlX-z8-V5D"/>
                                 </constraints>
                             </imageView>
-                            <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" distribution="equalCentering" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="hbl-Uw-JWN">
-                                <rect key="frame" x="30" y="44" width="354" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H3b-ls-IoJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="63" height="50"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                                        <state key="normal" title="Discover">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onTapMenuBtn:" destination="q3T-Al-Rkx" eventType="touchUpInside" id="JbH-oN-tmW"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vqa-tI-2JY">
-                                        <rect key="frame" x="133" y="0.0" width="75" height="50"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                                        <state key="normal" title="UpComing">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onTapMenuBtn:" destination="q3T-Al-Rkx" eventType="touchUpInside" id="LKy-2K-Ope"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zLM-yF-AHg">
-                                        <rect key="frame" x="264" y="0.0" width="90" height="50"/>
-                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
-                                        <state key="normal" title="Now Playing">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="onTapMenuBtn:" destination="q3T-Al-Rkx" eventType="touchUpInside" id="H9p-Ba-7Nx"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="NSQ-3m-jyY"/>
-                                </constraints>
-                            </stackView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="OII-Or-pCw">
+                                <rect key="frame" x="0.0" y="762.5" width="414" height="133.5"/>
+                                <color key="tintColor" name="Appbackground"/>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="YB8-tY-jQW"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Appbackground"/>
                         <constraints>
                             <constraint firstItem="2Vp-i5-aAZ" firstAttribute="top" secondItem="Z1i-qt-f5j" secondAttribute="top" id="4oo-Zg-GFI"/>
                             <constraint firstAttribute="bottom" secondItem="2Vp-i5-aAZ" secondAttribute="bottom" id="56b-uL-htQ"/>
-                            <constraint firstItem="YB8-tY-jQW" firstAttribute="trailing" secondItem="hbl-Uw-JWN" secondAttribute="trailing" constant="30" id="6ID-vf-3Ih"/>
-                            <constraint firstItem="hbl-Uw-JWN" firstAttribute="centerX" secondItem="Z1i-qt-f5j" secondAttribute="centerX" id="7YL-Xt-VQC"/>
-                            <constraint firstItem="hbl-Uw-JWN" firstAttribute="leading" secondItem="YB8-tY-jQW" secondAttribute="leading" constant="30" id="KKR-fn-egU"/>
+                            <constraint firstItem="OII-Or-pCw" firstAttribute="leading" secondItem="YB8-tY-jQW" secondAttribute="leading" id="CBe-XQ-bps"/>
+                            <constraint firstAttribute="bottom" secondItem="OII-Or-pCw" secondAttribute="bottom" id="Ht1-wx-0Tm"/>
                             <constraint firstItem="d4E-8a-n81" firstAttribute="leading" secondItem="YB8-tY-jQW" secondAttribute="leading" id="Oyc-As-71x"/>
                             <constraint firstItem="2Vp-i5-aAZ" firstAttribute="trailing" secondItem="YB8-tY-jQW" secondAttribute="trailing" id="Pxr-ws-TWm"/>
                             <constraint firstItem="2Vp-i5-aAZ" firstAttribute="leading" secondItem="YB8-tY-jQW" secondAttribute="leading" id="ZuX-gt-cE5"/>
-                            <constraint firstItem="hbl-Uw-JWN" firstAttribute="top" secondItem="YB8-tY-jQW" secondAttribute="top" id="aae-Un-UPk"/>
                             <constraint firstItem="d4E-8a-n81" firstAttribute="top" secondItem="Z1i-qt-f5j" secondAttribute="top" id="kKC-1u-4Ij"/>
+                            <constraint firstItem="OII-Or-pCw" firstAttribute="trailing" secondItem="YB8-tY-jQW" secondAttribute="trailing" id="mpc-mK-Rh4"/>
                             <constraint firstItem="YB8-tY-jQW" firstAttribute="trailing" secondItem="d4E-8a-n81" secondAttribute="trailing" id="unH-Jp-RIX"/>
                         </constraints>
                     </view>
@@ -109,7 +70,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ahA-Tz-wZc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5696" y="321"/>
+            <point key="canvasLocation" x="6605.7971014492759" y="320.75892857142856"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rba-oZ-Qdr">
@@ -128,7 +89,7 @@
             </objects>
             <point key="canvasLocation" x="1929" y="-489"/>
         </scene>
-        <!--Home-->
+        <!--HomeVC-->
         <scene sceneID="kHb-Yj-eUh">
             <objects>
                 <viewController storyboardIdentifier="HomeVC" id="OSy-aY-xh5" customClass="HomeVC" customModule="TheMovieDB" customModuleProvider="target" sceneMemberID="viewController">
@@ -146,7 +107,7 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tD9-UN-REJ"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="Appbackground"/>
                         <constraints>
                             <constraint firstItem="UbI-CL-qDn" firstAttribute="top" secondItem="Kr9-k7-ID6" secondAttribute="top" id="NgD-ym-cVx"/>
                             <constraint firstItem="UbI-CL-qDn" firstAttribute="leading" secondItem="tD9-UN-REJ" secondAttribute="leading" id="bnl-WJ-jWE"/>
@@ -154,14 +115,14 @@
                             <constraint firstItem="tD9-UN-REJ" firstAttribute="trailing" secondItem="UbI-CL-qDn" secondAttribute="trailing" id="xty-pS-aHp"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="home" selectedImage="home" id="3xc-3c-HDz"/>
+                    <navigationItem key="navigationItem" id="D6n-03-O5g"/>
                     <connections>
                         <outlet property="tableVw" destination="UbI-CL-qDn" id="MVK-7E-Ccf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9hR-1u-nqX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3711.594202898551" y="320.75892857142856"/>
+            <point key="canvasLocation" x="4621.739130434783" y="320.75892857142856"/>
         </scene>
         <!--Search-->
         <scene sceneID="4UA-IV-Z2t">
@@ -177,7 +138,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iON-Nt-FZS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4690" y="321"/>
+            <point key="canvasLocation" x="5600" y="320.75892857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="LWi-4t-hRz">
@@ -207,7 +168,6 @@
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
-                        <segue destination="OSy-aY-xh5" kind="relationship" relationship="viewControllers" id="pga-4E-FeR"/>
                         <segue destination="eKJ-Mv-P84" kind="relationship" relationship="viewControllers" id="pRK-HY-2hW"/>
                         <segue destination="aIv-9f-AMO" kind="relationship" relationship="viewControllers" id="Rov-4R-zl3"/>
                     </connections>
@@ -217,13 +177,13 @@
             <point key="canvasLocation" x="4691" y="-583"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="cPJ-aU-dyn"/>
-    </inferredMetricsTieBreakers>
     <resources>
-        <image name="home" width="25" height="25"/>
+        <image name="bottomGradient" width="250.33332824707031" height="133.66667175292969"/>
         <image name="more" width="25" height="25"/>
         <image name="search" width="25" height="25"/>
-        <image name="topGradient" width="629.66668701171875" height="594"/>
+        <image name="topGradient" width="250.33332824707031" height="133.66667175292969"/>
+        <namedColor name="Appbackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

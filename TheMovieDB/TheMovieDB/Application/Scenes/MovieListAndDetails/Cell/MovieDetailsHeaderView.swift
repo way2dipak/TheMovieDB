@@ -12,7 +12,7 @@ class MovieDetailsHeaderView: UIView {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var imgVwCover: UIImageView!
     
-    var details: MovieDetailsResponse? {
+    var details: MovieResultList? {
         didSet {
             imgVwCover.loadImageWithUrl(with: details?.backdropPath ?? details?.posterPath ?? "", placeholderImage: nil, quality: .standard, completed: nil)
         }

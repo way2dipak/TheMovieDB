@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CKl-yb-tTi">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="CKl-yb-tTi">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,7 +20,7 @@
                                 <rect key="frame" x="119" y="379.5" width="176" height="137"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="gyV-Pn-CD1">
-                                <rect key="frame" x="197" y="842" width="20" height="20"/>
+                                <rect key="frame" x="197" y="822" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.72019129989999997" blue="0.85864114759999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
@@ -30,7 +30,7 @@
                             <constraint firstItem="Fvg-k7-HXL" firstAttribute="centerY" secondItem="Z1f-Vv-NgY" secondAttribute="centerY" id="C64-Is-26S"/>
                             <constraint firstItem="gyV-Pn-CD1" firstAttribute="centerX" secondItem="sVM-co-SBE" secondAttribute="centerX" id="Je4-Cj-onQ"/>
                             <constraint firstItem="Fvg-k7-HXL" firstAttribute="centerX" secondItem="Z1f-Vv-NgY" secondAttribute="centerX" id="hoX-QX-zdO"/>
-                            <constraint firstItem="gyV-Pn-CD1" firstAttribute="bottom" secondItem="sVM-co-SBE" secondAttribute="bottom" id="m1h-yl-DVx"/>
+                            <constraint firstItem="gyV-Pn-CD1" firstAttribute="bottom" secondItem="sVM-co-SBE" secondAttribute="bottom" constant="-20" id="m1h-yl-DVx"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="woI-Jj-s84"/>

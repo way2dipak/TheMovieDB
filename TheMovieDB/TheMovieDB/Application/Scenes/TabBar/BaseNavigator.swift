@@ -10,10 +10,15 @@ import UIKit
 
 class BaseNavigator {
     
-    private let stroyboard = UIStoryboard(name: "TabBar", bundle: nil)
+    private let storyboard = UIStoryboard(name: "TabBar", bundle: nil)
     
     func showTabBarVC() {
-        let vc = stroyboard.instantiateViewController(withIdentifier: MainContainerVC.identifier) as! MainContainerVC
+        let vc = storyboard.instantiateViewController(withIdentifier: MainContainerVC.identifier) as! MainContainerVC
+        AppDelegate.shared.push(to: vc, animated: false)
+    }
+    
+    func showHomeVC() {
+        let vc = storyboard.instantiateViewController(withIdentifier: HomeVC.identifier) as! HomeVC
         AppDelegate.shared.push(to: vc, animated: false)
     }
     

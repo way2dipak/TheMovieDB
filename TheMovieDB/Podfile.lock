@@ -1,20 +1,24 @@
 PODS:
   - netfox (1.19.0)
+  - SkeletonView (1.29.2)
   - youtube-ios-player-helper-swift (1.1)
 
 DEPENDENCIES:
   - netfox
+  - SkeletonView
   - youtube-ios-player-helper-swift
 
 SPEC REPOS:
   trunk:
     - netfox
+    - SkeletonView
     - youtube-ios-player-helper-swift
 
 SPEC CHECKSUMS:
   netfox: efeec1d23406df6cd605212f09a40957bb5654eb
+  SkeletonView: 915a80ecc2b6421ab7ac0f0212321c0cc1406472
   youtube-ios-player-helper-swift: 51a3c5325317c8271d0c7985c1bbe5a252ffb2fd
 
-PODFILE CHECKSUM: dc8e749a21779a5df7bab200a8ccc60c876c04c9
+PODFILE CHECKSUM: 5e42e2aab0df534642afefabcdc4823518a81f47
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

@@ -25,8 +25,8 @@ class MovieHeaderView: UIView {
     var details: MovieResultList? {
         didSet {
             imgVwPoster.loadImageWithUrl(with: details?.posterPath, placeholderImage: nil, completed: nil)
-            lblMovieName.text = details?.getMovieName() ?? ""
-            lblGenres.text = SessionManager.shared.geners.getlistOfName(ids: details?.genreIDS ?? [])
+            //lblMovieName.text = details?.getMovieName() ?? ""
+            lblGenres.text = SessionManager.shared.geners?.getlistOfName(ids: details?.genreIDS ?? []) ?? ""
         }
     }
     

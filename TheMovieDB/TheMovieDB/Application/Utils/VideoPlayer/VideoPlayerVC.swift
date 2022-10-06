@@ -30,10 +30,11 @@ class VideoPlayerVC: BaseVC {
     @IBOutlet weak var colvw: UICollectionView!
     @IBOutlet weak var colvwBottomConstraint: NSLayoutConstraint!
     
-    var details: MovieDetailsResponse?
+    var details: MovieResultList?
     var duration: TimeInterval {
         return playerHandler?.getDuration() ?? 0
     }
+    var videoURL: String = ""
     
     var movieList = [TrailersList]()
     
@@ -44,9 +45,9 @@ class VideoPlayerVC: BaseVC {
             } else {
                 //lblDuration.text = zeroTime + "/" + duration
             }
-            slider.setValue(Float(Double(currentTime) / Double(playerHandler?.getDuration() ?? 0)), animated: true)
-            //slider.value = Float(Double(currentTime) / Double(playerHandler?.getDuration() ?? 0))
-           
+            UIView.animate(withDuration: 2) {
+                self.slider.setValue(Float(Double(self.currentTime) / Double(self.playerHandler?.getDuration() ?? 0)), animated: true)
+            }
         }
     }
     
@@ -87,6 +88,17 @@ class VideoPlayerVC: BaseVC {
     var swipeUp = UISwipeGestureRecognizer()
     var swipeDown = UISwipeGestureRecognizer()
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .landscape
+    }
+    
+    override var preferredInterfaceOrientationForPresentation: UIInterfaceOrientation {
+        return .landscapeRight
+    }
+    
+    override var shouldAutorotate: Bool {
+        return false
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +115,7 @@ class VideoPlayerVC: BaseVC {
         vwModel.getStreamURL(for: videoId)
         self.vwModel.playVideo = { [weak self] url in
             guard let self = self else { return }
+            self.videoURL = url
             DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
             self.playerHandler = PlayerHandler(videoId: url, parentView: self.vwPlayer, playerDelegate: self, showContentFill: true)
             }

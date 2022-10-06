@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,7 +25,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="138" height="213"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qa9-JU-Foe">
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qa9-JU-Foe">
                         <rect key="frame" x="0.0" y="0.0" width="138" height="213"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderPoster" translatesAutoresizingMaskIntoConstraints="NO" id="e7x-vl-wvn">
@@ -38,6 +38,7 @@
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="jJ5-yv-0Cw">
                                 <rect key="frame" x="0.0" y="0.0" width="138" height="213"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="jJ5-yv-0Cw" secondAttribute="height" multiplier="138:213" id="n3L-I1-Gmo"/>
                                 </constraints>
@@ -75,6 +76,11 @@
                             <constraint firstItem="e7x-vl-wvn" firstAttribute="leading" secondItem="Qa9-JU-Foe" secondAttribute="leading" id="l1P-zp-ZjV"/>
                             <constraint firstItem="jJ5-yv-0Cw" firstAttribute="top" secondItem="Qa9-JU-Foe" secondAttribute="top" id="tnX-YA-aja"/>
                         </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="12"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -96,6 +102,6 @@
     </objects>
     <resources>
         <image name="HeaderPoster" width="260" height="390"/>
-        <image name="bottomGradient" width="629.66668701171875" height="594"/>
+        <image name="bottomGradient" width="250.33332824707031" height="133.66667175292969"/>
     </resources>
 </document>

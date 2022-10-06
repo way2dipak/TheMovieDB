@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="ipad9_7" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="420" id="KGk-i7-Jjw" customClass="MovieDetailsHeaderIPadCell" customModule="TheMovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="686" height="320"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="686" height="320"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7lO-rT-GqC">
+                        <rect key="frame" x="0.0" y="0.0" width="686" height="320"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backdrop" translatesAutoresizingMaskIntoConstraints="NO" id="Ymr-EJ-MvU">
+                                <rect key="frame" x="116" y="0.0" width="570" height="320"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="Ymr-EJ-MvU" secondAttribute="height" multiplier="57:32" id="Yso-Cr-rom"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="PPQ-Cn-piO">
+                                <rect key="frame" x="0.0" y="0.0" width="686" height="320"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DKJ-NJ-p7O">
+                                <rect key="frame" x="22" y="104" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="PPQ-Cn-piO" firstAttribute="top" secondItem="7lO-rT-GqC" secondAttribute="top" id="2m5-3I-otz"/>
+                            <constraint firstAttribute="bottom" secondItem="Ymr-EJ-MvU" secondAttribute="bottom" id="5Fq-zX-pHD"/>
+                            <constraint firstAttribute="trailing" secondItem="Ymr-EJ-MvU" secondAttribute="trailing" id="AUV-6V-HY7"/>
+                            <constraint firstItem="Ymr-EJ-MvU" firstAttribute="top" secondItem="7lO-rT-GqC" secondAttribute="top" id="R4b-we-YaN"/>
+                            <constraint firstItem="PPQ-Cn-piO" firstAttribute="leading" secondItem="7lO-rT-GqC" secondAttribute="leading" id="S8h-5e-THx"/>
+                            <constraint firstAttribute="bottom" secondItem="PPQ-Cn-piO" secondAttribute="bottom" id="nXF-C6-Ehh"/>
+                            <constraint firstAttribute="trailing" secondItem="PPQ-Cn-piO" secondAttribute="trailing" id="qt0-4V-9HX"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="7lO-rT-GqC" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="LHj-2s-0XD"/>
+                    <constraint firstAttribute="trailing" secondItem="7lO-rT-GqC" secondAttribute="trailing" id="RQh-s6-DIF"/>
+                    <constraint firstAttribute="bottom" secondItem="7lO-rT-GqC" secondAttribute="bottom" id="kkr-e4-2sd"/>
+                    <constraint firstItem="7lO-rT-GqC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="qIA-dN-ZOi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <point key="canvasLocation" x="281.25" y="101.953125"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="backdrop" width="260" height="146.33332824707031"/>
+        <image name="banner" width="820.66668701171875" height="512"/>
+    </resources>
+</document>

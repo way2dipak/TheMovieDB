@@ -17,12 +17,13 @@ class MovieListVC: BaseVC {
         }
     }
     
-    var type: MovieListType = .trending
+    var type: SectionType = .exploreByGenres
+    var sectionName = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNIB()
-        lblTitle.text = type.rawValue
+        lblTitle.text = sectionName
         vwModel.refreshUI = { [weak self] in
             guard let self = self else { return }
             self.colVw.reloadData()
@@ -50,18 +51,20 @@ extension MovieListVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {//vwModel.movieList.count {
+        if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MoviePosterCell.identifier, for: indexPath) as! MoviePosterCell
-            let details = vwModel.movieList[indexPath.row]
-            cell.imgVw.clipsToBounds = false
-            cell.imgVw.contentMode = .scaleToFill
-            cell.imgVw.loadImageWithUrl(with: details.posterPath, placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), completed: nil)
+            if vwModel.movieList.count != 0 {
+                cell.hideSkeleton()
+                let details = vwModel.movieList[indexPath.row]
+                cell.imgVw.contentMode = .scaleAspectFill
+                cell.imgVw.loadImageWithUrl(with: details.posterPath, placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), completed: nil)
+            }
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LoaderCell.identifier, for: indexPath) as! LoaderCell
             cell.displaySpinner(true)
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.vwModel.fetchMoviesFor(type: self.type)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.vwModel.fetchMoviesFor(type: self.sectionName.lowercased())
             }
             return cell
         }
@@ -73,12 +76,19 @@ extension MovieListVC: UICollectionViewDelegate, UICollectionViewDataSource, UIC
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        //if indexPath.section == 0 {
-            let width = (collectionView.bounds.width - 10)/3.0
-            return CGSize(width: width, height: width * 2);
+        if indexPath.section == 0 {
+            let aspectRatio: CGFloat = 3/2  // A movie poster has 3:2 dimension, so aspect ratio is 1.5
+            let numberOfItemsInRow: CGFloat = 3
             
-//        } else {
-//            return CGSize(width: collectionView.frame.width, height: 80)
-//        }
+            let collectionViewCellSizeWidth: CGFloat = ((collectionView.frame.size.width - 20) / numberOfItemsInRow)
+            let collectionViewCellSizeHeight: CGFloat = collectionViewCellSizeWidth * aspectRatio
+            
+            return CGSize(
+                width: collectionViewCellSizeWidth,
+                height: collectionViewCellSizeHeight
+            )
+        } else {
+            return CGSize(width: collectionView.frame.width, height: 80)
+        }
     }
 }

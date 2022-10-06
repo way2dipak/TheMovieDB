@@ -12,70 +12,124 @@ import Alamofire
 
 
 class FetchMovieServices: BaseService, MovieListUseCase {
-    
-    func fetchDiscoverMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchDiscoverMovieList(pageNo))
+    func fetchHomeFeeds() -> Promise<ResponseModel<HomeModel>> {
+        data(FetchMovieRequest.homeFeeds)
     }
     
-    func fetchTrendingMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchTrendingMovieList(pageNo))
+    func fetchMovieList(basedOn sectrionName: String, and pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.movieListBasedOn(sectrionName, pageNo))
     }
     
-    func fetchPopularMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchPopularMovieList(pageNo))
+    func fetchPopularMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchPopularMovie(pageNo))
     }
     
-    func fetchTopRatedMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchTopRatedMovieList(pageNo))
+    func fetchTrendingMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchTrendingMovie(pageNo))
     }
     
-    func fetchUpcomingMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchUpComingMovieList(pageNo))
+    func fetchTopRatedMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchTopRatedMovie(pageNo))
     }
     
-    func fetchMovieDetails(by movieId: Int, type: MediaType) -> Promise<ResponseModel<MovieDetailsResponse>> {
-        data(FetchMovieRequest.fetchMovieDetailsByID(movieId, type.rawValue))
+    func fetchUpcomingMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchUpcomingMovie(pageNo))
     }
     
-    func fetchKidSpecialMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchKidSpecialMovieList(pageNo))
+    func fetchBollywoodMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchBollywoodMovie(pageNo))
     }
     
-    func fetchPopularInActionMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchActionMovieList(pageNo))
+    func fetchComedyMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchComedyMovie(pageNo))
     }
     
-    func fetchPopularInThrillerMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchThrillerMovieList(pageNo))
+    func fetchDramaMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchDramaMovie(pageNo))
     }
     
-    func fetchBestOfHorrorMovieList(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchHorrorMovieList(pageNo))
+    func fetchDocumentryMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchDocumentryMovie(pageNo))
     }
     
-    func fetchCastAndCrewList(by movieId: Int) -> Promise<ResponseModel<CaseAndCrewResponseModel>> {
-        data(FetchMovieRequest.fetchCastAndCrewList(movieId))
+    func fetchFamilyMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchFamilyMovie(pageNo))
     }
     
-    func fetchTrailerAndVideoList(by movieId: Int) -> Promise<ResponseModel<TrailersAndVideoResponseModel>> {
-        data(FetchMovieRequest.fetchTrailersList(movieId))
+    func fetchCrimeMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchCrimeMovie(pageNo))
     }
     
-    func fetchRecommendedMovieList(by movieId: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchRecommendationMovieList(movieId))
+    func fetchRomanceMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchRomanceMovie(pageNo))
     }
     
-    func fetchSimilarMovieList(by movieId: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchSimilarMovieList(movieId))
+    func fetchHistoryMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchHistoryMovie(pageNo))
     }
     
-    func fetchNowPlayingMovieList(by pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
-        data(FetchMovieRequest.fetchNowPlayingMovieList(pageNo))
+    func fetchFantasyMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchFantasyMovie(pageNo))
     }
     
-    func fetchStreamURL(with params: [String: Any]) -> Promise<ResponseModel<VideoResponse>> {
+    func fetchMysteryMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchMysteryMovie(pageNo))
+    }
+    
+    func fetchScifiMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchScifiMovie(pageNo))
+    }
+    
+    func fetchTVMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchTVMovie(pageNo))
+    }
+    
+    func fetchWarMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchWarMovie(pageNo))
+    }
+    
+    func fetchWesternMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchWesternMovie(pageNo))
+    }
+    
+    func fetchKidsMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchKidsMovie(pageNo))
+    }
+    
+    func fetchActionMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchActionMovie(pageNo))
+    }
+    
+    func fetchHorrorMovie(for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchHorrorMovie(pageNo))
+    }
+    
+    func fetchRecommendedMovie(for movieId: Int, andPageNo pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchRecommendedMovieByID(movieId, pageNo))
+    }
+    
+    func fetchSimilarMovie(for movieId: Int, andPageNo pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchSimilarMoveByID(movieId, pageNo))
+    }
+    
+    func searchMovie(by query: String, for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.searchMovieByName(query, pageNo))
+    }
+    
+    func searchTv(by query: String, for pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.searchTVShowsByName(query, pageNo))
+    }
+    
+    func fetchMovieDetails(by movieId: Int) -> Promise<ResponseModel<HomeModel>> {
+        data(FetchMovieRequest.fetchMovieDetailsByID(movieId))
+    }
+    
+    func filterMovie(by genresId: Int, andPageNo pageNo: Int) -> Promise<ResponseModel<MovieListResponse>> {
+        data(FetchMovieRequest.fetchFilterMovieByGenresID(genresId, pageNo))
+    }
+    
+    func fetchStreamURL(with params: [String : Any]) -> Promise<ResponseModel<VideoResponse>> {
         data(FetchMovieRequest.fetchStreamingURL, parameters: params, baseUrl: "https://www.youtube.com/")
     }
-    
 }
 
