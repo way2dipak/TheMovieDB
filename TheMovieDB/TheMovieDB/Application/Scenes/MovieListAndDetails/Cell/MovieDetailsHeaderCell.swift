@@ -17,18 +17,21 @@ class MovieDetailsHeaderCell: UITableViewCell {
     @IBOutlet weak var lblVotes: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblDate: UILabel!
-    @IBOutlet weak var vwStar: StarRatingView! {
+    @IBOutlet weak var vwStar: UIView!
+    @IBOutlet weak var btnPlay: LoadingButton!
+    @IBOutlet weak var imgVwClock: UIImageView!
+    @IBOutlet weak var vwVotes: UIView! {
         didSet {
-            //vwStar.transform = CGAffineTransform.init(scaleX: 5.3, y: 5.3)
+            vwVotes.isHidden = true
         }
     }
-    @IBOutlet weak var btnPlay: LoadingButton!
+    @IBOutlet weak var vwYear: UIView!
     
     var playhandler: (() -> ())?
     
     var details: MovieResultList? {
         didSet {
-            imgVwBackdrop.loadImageWithUrl(with: details?.backdropPath ?? "", placeholderImage: nil, quality: .hd, completed: nil)
+            imgVwBackdrop.loadImageWithUrl(with: details?.backdropPath ?? "" != "" ? details?.backdropPath ?? "" : details?.posterPath ?? "", placeholderImage: nil, quality: .hd, completed: nil)
             lblTitle.text = details?.title ?? ""
             lblTagLine.text = details?.tagline ?? ""
             lblOverview.text = details?.overview ?? ""
@@ -38,15 +41,26 @@ class MovieDetailsHeaderCell: UITableViewCell {
             lblRatings.text = String(format: "%.1f", ratings)
             lblVotes.text = "\(details?.voteCount ?? 0) Votes"
             lblDuration.text = (details?.runtime ?? 0).minutesToHoursAndMinutes()
-            vwStar.rating = Float((details?.voteAverage ?? 0.0) / 2)
+            let starView = StarRatingView(frame: vwStar.bounds,totalStarCount: 5, currentStarCount: CGFloat((details?.voteAverage ?? 0.0) / 2), starSpace: 10)
+            vwStar.addSubview(starView)
             lblDate.text = details?.releaseDate?.formattedDate ?? ""
-            
+            vwVotes.isHidden = false
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        startAnimation(true)
+    }
+    
+    func startAnimation(_ toggle: Bool) {
+        if toggle {
+            [lblTitle, lblTagLine, lblOverview, lblRatings, lblVotes, lblDuration].forEach({ $0?.showAnimatedSkeleton() })
+            [imgVwBackdrop, imgVwClock, vwVotes, vwYear].forEach({ $0?.showAnimatedSkeleton() })
+        } else {
+            [lblTitle, lblTagLine, lblOverview, lblRatings, lblVotes, lblDuration].forEach({ $0?.hideSkeleton() })
+            [imgVwBackdrop, imgVwClock, vwVotes, vwYear].forEach({ $0?.hideSkeleton() })
+        }
     }
 
     @IBAction func onTapPlayBtn(_ sender: UIButton) {

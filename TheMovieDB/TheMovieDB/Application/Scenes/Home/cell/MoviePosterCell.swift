@@ -13,7 +13,15 @@ class MoviePosterCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        startAnimation(true)
     }
 
+    func startAnimation(_ toggle: Bool) {
+        if toggle {
+            imgVw.showAnimatedSkeleton()
+        } else {
+            imgVw.hideSkeleton()
+        }
+    }
+    
 }

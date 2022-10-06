@@ -39,7 +39,11 @@ extension UIViewController {
     }
     
     func dismissVC() {
-        navigationController?.popViewController(animated: true)
+        if navigationController != nil {
+            navigationController?.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true)
+        }
     }
 
 }

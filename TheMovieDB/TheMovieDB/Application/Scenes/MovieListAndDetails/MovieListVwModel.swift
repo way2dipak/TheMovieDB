@@ -36,6 +36,9 @@ class MovieListVwModel {
     
     func getNumberOfItemsInSection(section: Int) -> Int {
         if section == 0 {
+            if movieList.count == 0 {
+                return 10
+            }
             return movieList.count
         } else {
             return 1

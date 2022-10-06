@@ -16,5 +16,15 @@ class GenresCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    func startAnimation(_ toggle: Bool) {
+        if toggle {
+            lblGenres.showAnimatedSkeleton()
+            imgVwBackdrop.showAnimatedSkeleton()
+        } else {
+            lblGenres.hideSkeleton()
+            imgVwBackdrop.hideSkeleton()
+        }
+    }
 
 }

@@ -29,7 +29,7 @@ extension UIImageView {
                           completed: SDExternalCompletionBlock?) {
         var url: URL?
         if type == .normal {
-            url =  URL(string: "\(APIBase.currentEnv.imgUrl)\(quality == .standard ? "w780/" : "original/")\(with ?? "")")
+            url =  URL(string: "\(APIBase.currentEnv.imgUrl)\(quality == .standard ? "w200" : "original")\(with ?? "")")
         } else if type == .youtube {
             url = URL(string: "https://img.youtube.com/vi/\(with ?? "")/maxresdefault.jpg")
         } else {

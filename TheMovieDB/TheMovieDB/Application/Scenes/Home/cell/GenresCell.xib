@@ -24,6 +24,9 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trendingBG1" translatesAutoresizingMaskIntoConstraints="NO" id="Ct3-QJ-GWW">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="80"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                        </userDefinedRuntimeAttributes>
                     </imageView>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FZT-fb-Dzb">
                         <rect key="frame" x="0.0" y="0.0" width="180" height="80"/>
@@ -58,6 +61,7 @@
                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                     <real key="value" value="12"/>
                 </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="imgVwBackdrop" destination="Ct3-QJ-GWW" id="XYy-Im-8O7"/>

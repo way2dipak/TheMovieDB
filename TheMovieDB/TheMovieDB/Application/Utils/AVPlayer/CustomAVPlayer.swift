@@ -44,6 +44,7 @@ extension AVMediaSelectionOption: TextTrackMetadata {
     /// - Parameter asset: The AVAsset
     @objc open func set(_ asset: AVAsset) {
         let playerItem = AVPlayerItem(asset: asset)
+        setupForwardBuffer(playerItem: playerItem)
         self.set(playerItem: playerItem)
     }
 
@@ -56,6 +57,11 @@ extension AVMediaSelectionOption: TextTrackMetadata {
         // Replace it with the new item
         self.addPlayerItemObservers(toPlayerItem: playerItem)
         self.player.replaceCurrentItem(with: playerItem)
+    }
+    
+    private func setupForwardBuffer(playerItem: AVPlayerItem) {
+        playerItem.preferredForwardBufferDuration = 60
+        playerItem.canUseNetworkResourcesForLiveStreamingWhilePaused = true
     }
     
     // MARK: - ProvidesView
@@ -145,7 +151,7 @@ extension AVMediaSelectionOption: TextTrackMetadata {
         self.player.isMuted = mute
     }
     
-    open func setTheRate(rate: Float) {
+    open func setTheRate(rate: Float = 0) {
 //        self.player.currentItem?.audioTimePitchAlgorithm = .timeDomain
         self.player.playImmediately(atRate: rate)
 
@@ -172,6 +178,7 @@ extension AVMediaSelectionOption: TextTrackMetadata {
         }
         
         super.init()
+        setTheRate()
         self.addPlayerObservers()
         self.regularPlayerView.configureForPlayer(player: self.player)
         //self.setupAirplay()

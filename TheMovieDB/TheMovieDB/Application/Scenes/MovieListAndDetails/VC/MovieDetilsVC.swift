@@ -11,7 +11,7 @@ class MovieDetilsVC: BaseVC {
     
     @IBOutlet weak var tableVw: UITableView! {
         didSet {
-            tableVw.toggleDisplayWithAnimation(false)
+            tableVw.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 30, right: 0)
         }
     }
     
@@ -71,16 +71,43 @@ class MovieDetilsVC: BaseVC {
 
 extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
     
+    func getThumbImage() -> String {
+        let index = vwModel.movieList.firstIndex(where: { items in
+            return items.sectionTitle?.lowercased() ?? "" == "trailers"
+        })
+        if !vwModel.movieList.isEmpty {
+            return vwModel.movieList[index ?? 0].sectionData?.randomElement()?.key ?? ""
+        } else {
+            return ""
+        }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if vwModel.movieList.count == 0 { return 10 }
         return vwModel.movieList.count
     }
     
+    func tableVw(_ tableView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderCell.identifier) as! MovieDetailsHeaderCell
+            return cell
+        default:
+            let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
+            return cell
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if vwModel.movieList.count == 0 {
+            return tableVw(tableView, skeletonCellForRowAt: indexPath)
+        }
         let details = vwModel.movieList[indexPath.row]
         switch details.contentType {
         case .header:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderCell.identifier) as! MovieDetailsHeaderCell
             self.headerCell = cell
+            cell.startAnimation(false)
             cell.details = vwModel.movieDetails
             cell.playhandler = { [weak self] in
                 guard let self = self else { return }
@@ -90,8 +117,8 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
+            cell.startAnimation(false)
             cell.details = vwModel.movieList[indexPath.row]
-            
             cell.arrowHandler = { [weak self] in
                 guard let self = self else { return }
                 self.player = nil
@@ -104,11 +131,11 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
                 MovieListNavigator().showMovieDetailsVC(with: movieId, type: type)
             }
             
-//            cell.trailerContentHandler = { [weak self] videoId in
-//                guard let self = self else { return }
-//                self.player = nil
-//                MovieListNavigator().showVideoPlayerVC(with: self.vwModel.movieDetails, videoID: videoId, videoList: self.vwModel.movieList[indexPath.row].trailersContent)
-//            }
+            cell.trailerContentHandler = { [weak self] videoId in
+                guard let self = self else { return }
+                self.player = nil
+                MovieListNavigator().showVideoPlayerVC(with: self.vwModel.movieDetails, videoID: videoId, videoList: [])
+            }
             
             return cell
         }
@@ -120,7 +147,8 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yPos: CGFloat = -scrollView.contentOffset.y
-        if yPos < -202 {
+        print(yPos)
+        if yPos < -110 {
             player?.pauseVideo()
         } else {
             player?.playVideo()
@@ -130,7 +158,10 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
 
 extension MovieDetilsVC: VideoPlayerDelegate {
     func playerDidBecomeReady(playerType: VideoPlayer) {
-        player?.playVideo()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.player?.playVideo()
+        }
+        
         headerCell?.btnPlay.hideLoading()
         headerCell?.btnPlay.isHidden = true
         headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
@@ -153,9 +184,10 @@ extension MovieDetilsVC: VideoPlayerDelegate {
         case .buffering :
             print("buffering")
             break
-        case .ended :
+        case .ended, .failed(_) :
             print("ended")
             headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+            headerCell?.btnPlay.hideLoading()
             headerCell?.btnPlay.isHidden = false
             switch playerType {
             case .youtube(let ytPlayer):
@@ -167,8 +199,6 @@ extension MovieDetilsVC: VideoPlayerDelegate {
             default:
                 break
             }
-        case .failed(_):
-            print("failed")
         default :
             break
         }

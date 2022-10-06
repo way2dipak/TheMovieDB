@@ -11,7 +11,7 @@ class HomeVC: BaseVC {
     
     @IBOutlet weak var tableVw: UITableView! {
         didSet {
-            tableVw.toggleDisplayWithAnimation(false)
+            //tableVw.toggleDisplayWithAnimation(false)
         }
     }
     lazy var headerHeight: CGFloat = {
@@ -26,10 +26,10 @@ class HomeVC: BaseVC {
     override func viewDidLoad() {
         super.viewDidLoad()
         registerNIB()
-        self.vwModel.loadMovieList()
+        vwModel.loadMovieList()
         vwModel.refreshUI = { [weak self] in
             self?.tableVw.reloadData()
-            self?.tableVw.toggleDisplayWithAnimation(true)
+            //self?.tableVw.toggleDisplayWithAnimation(true)
         }
     }
     
@@ -42,14 +42,21 @@ class HomeVC: BaseVC {
 
 extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return vwModel.movieList.count + 1
+        if vwModel.movieList.count != 0 {
+            return vwModel.movieList.count + 1
+        } else {
+            return 20
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieHeaderCell.identifier) as! MovieHeaderCell
-            cell.details = vwModel.getRandomMovie()
+            if vwModel.movieList.count != 0 {
+                cell.startAnimation(false)
+                cell.details = vwModel.getRandomMovie()
+            }
             cell.infoHandler = { [weak self] (movieID, type)in
                 guard let _ = self else { return }
                 MovieListNavigator().showMovieDetailsVC(with: movieID, type: type)
@@ -57,7 +64,14 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
-            cell.details = vwModel.movieList[indexPath.row - 1]
+            if vwModel.movieList.count != 0 {
+                cell.details = vwModel.movieList[indexPath.row - 1]
+                cell.startAnimation(false)
+            } else {
+                if indexPath.row == 1 {
+                    cell.colVwHeightConstraint.constant = 80
+                }
+            }
             cell.arrowHandler = { [weak self] in
                 guard let self = self else { return }
                 MovieListNavigator().showMovieListVC(with: self.vwModel.movieList[indexPath.row - 1].sectionData ?? [], type: self.vwModel.movieList[indexPath.row - 1].contentType, sectionName: self.vwModel.movieList[indexPath.row - 1].sectionTitle ?? "")

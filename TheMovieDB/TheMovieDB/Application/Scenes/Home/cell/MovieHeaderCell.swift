@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 class MovieHeaderCell: UITableViewCell {
     
@@ -23,6 +24,7 @@ class MovieHeaderCell: UITableViewCell {
             infoBtnBottom.setTitle("More", for: .normal)
         }
     }
+    @IBOutlet weak var stackVw: UIStackView!
     
     var infoHandler: ((Int, MediaType) -> ())?
     
@@ -40,9 +42,25 @@ class MovieHeaderCell: UITableViewCell {
         }
     }
     
+    func startAnimation(_ toggle: Bool) {
+        if toggle {
+            imgVwPoster.showAnimatedSkeleton()
+            lblMovieName.showAnimatedSkeleton()
+            lblDescription.showAnimatedSkeleton()
+            lblGenres.showAnimatedSkeleton()
+            infoBtnBottom.showAnimatedSkeleton()
+        } else {
+            imgVwPoster.hideSkeleton()
+            lblMovieName.hideSkeleton()
+            lblDescription.hideSkeleton()
+            lblGenres.hideSkeleton()
+            infoBtnBottom.hideSkeleton()
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        startAnimation(true)
     }
     
     @IBAction func onTapInfoBtn(_ sender: UIButton) {
