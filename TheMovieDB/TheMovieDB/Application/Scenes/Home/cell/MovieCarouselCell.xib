@@ -40,7 +40,7 @@
                                 <rect key="frame" x="0.0" y="55" width="410" height="198"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="198" id="H8f-T1-jA1" customClass="AdaptedConstraint" customModule="TheMovieDB" customModuleProvider="target"/>
+                                    <constraint firstAttribute="height" constant="198" id="H8f-T1-jA1"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="12" id="VSm-V4-YTp">
                                     <size key="itemSize" width="128" height="128"/>

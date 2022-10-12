@@ -11,9 +11,21 @@ import SkeletonView
 class MovieHeaderCell: UITableViewCell {
     
     @IBOutlet weak var imgVwPoster: UIImageView!
-    @IBOutlet weak var lblMovieName: UILabel!
-    @IBOutlet weak var lblDescription: UILabel!
-    @IBOutlet weak var lblGenres: UILabel!
+    @IBOutlet weak var lblMovieName: UILabel! {
+        didSet {
+            lblMovieName.font = AppFonts.black(size: 19)
+        }
+    }
+    @IBOutlet weak var lblDescription: UILabel! {
+        didSet {
+            lblDescription.font = AppFonts.light(size: 12)
+        }
+    }
+    @IBOutlet weak var lblGenres: UILabel! {
+        didSet {
+            lblGenres.font = AppFonts.regular(size: 12)
+        }
+    }
     
     @IBOutlet weak var containerVwHeight: NSLayoutConstraint!
     @IBOutlet weak var imgVwHeight: NSLayoutConstraint!
@@ -22,6 +34,7 @@ class MovieHeaderCell: UITableViewCell {
     @IBOutlet weak var infoBtnBottom: UIButton! {
         didSet {
             infoBtnBottom.setTitle("More", for: .normal)
+            infoBtnBottom.titleLabel?.font = AppFonts.medium(size: 12)
         }
     }
     @IBOutlet weak var stackVw: UIStackView!

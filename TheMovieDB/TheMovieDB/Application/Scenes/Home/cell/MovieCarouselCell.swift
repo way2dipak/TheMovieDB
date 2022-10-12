@@ -22,21 +22,40 @@ class MovieCarouselCell: UITableViewCell {
     var details: HomeList? {
         didSet {
             lblTitle.text = details?.sectionTitle ?? ""
+            lblTitle.font = AppFonts.bold(size: 16)
             btnArrow.isHidden = false
             switch details?.contentType {
             case .exploreByGenres:
                 btnArrow.isHidden = true
-                colVwHeightConstraint.constant = 80
+                //colVwHeightConstraint.constant = adapted(dimensionSize: 50, to: .height)//80
             case .castAndCrew:
-                colVwHeightConstraint.constant = 213
+                colVwHeightConstraint.constant = adapted(dimensionSize: 213, to: .height)//213
             case .trailers:
-                colVwHeightConstraint.constant = 121
+                colVwHeightConstraint.constant = adapted(dimensionSize: 121, to: .height)//121
             default:
-                colVwHeightConstraint.constant = 198
+                //colVwHeightConstraint.constant = resized(size: CGSize(width: 100, height: 150), basedOn: .height).height
+                print("")
             }
-            colVw.layoutIfNeeded()
-            colVw.reloadData()
+            setupSkeleton()
+            self.colVw.reloadData()
         }
+    }
+    
+    func setupSkeleton() {
+        if details == nil {
+            colVwHeightConstraint.constant = resized(size: CGSize(width: 100, height: 150), basedOn: .height).height
+        } else {
+            if details?.sectionTitle ?? "" == "Explore By Genres" {
+                colVwHeightConstraint.constant = resized(size: CGSize(width: 130, height: 50), basedOn: .height).height
+            } else {
+                colVwHeightConstraint.constant = resized(size: CGSize(width: 100, height: 150), basedOn: .height).height
+            }
+        }
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        //colVw.layoutIfNeeded()
     }
     
     override func awakeFromNib() {
@@ -73,7 +92,6 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if details?.contentType == .castAndCrew {
             btnArrow.isHidden = true
             let cell = colVw.dequeueReusableCell(withReuseIdentifier: CastAndCrewCell.identifier, for: indexPath) as! CastAndCrewCell
@@ -126,17 +144,21 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if details == nil {
-            return CGSize(width: 132, height: 198)
+            //return CGSize(width: 132, height: 198)
+            return resized(size: CGSize(width: 132, height: 198), basedOn: .height)
         }
         if details!.contentType == .castAndCrew {
-            //return CGSize(width: 188, height: 188)
-            return CGSize(width: 138, height: 213)
+            //return CGSize(width: 138, height: 213)
+            return resized(size: CGSize(width: 138, height: 213), basedOn: .height)
         } else if details!.contentType == .trailers {
-            return CGSize(width: 232, height: 121)//378.5, 213
+            //return CGSize(width: 232, height: 121)//378.5, 213
+            return resized(size: CGSize(width: 232, height: 121), basedOn: .height)
         } else if details!.contentType == .exploreByGenres {
-            return CGSize(width: 180, height: 80)
+            //return CGSize(width: 180, height: 80)
+            return resized(size: CGSize(width: 130, height: 50), basedOn: .height)
         } else {
-           return CGSize(width: 132, height: 198)//CGSize(width: 120, height: 181)
+           //return CGSize(width: 132, height: 198)//CGSize(width: 120, height: 181)
+            return resized(size: CGSize(width: 100, height: 150), basedOn: .height)
         }
     }
 }

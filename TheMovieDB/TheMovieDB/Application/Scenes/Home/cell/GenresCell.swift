@@ -9,7 +9,11 @@ import UIKit
 
 class GenresCell: UICollectionViewCell {
     
-    @IBOutlet weak var lblGenres: UILabel!
+    @IBOutlet weak var lblGenres: UILabel! {
+        didSet {
+            lblGenres.font = AppFonts.bold(size: 12)
+        }
+    }
     @IBOutlet weak var imgVwBackdrop: UIImageView!
 
     override func awakeFromNib() {

@@ -8,12 +8,25 @@
 
 import UIKit
 
-enum HelveticaNeue {
+enum AppFonts {
+    
+    static func light(size: CGFloat) -> UIFont {
+        UIFont(name: "Roboto-Light", size: size.adaptedFontSize)!
+    }
+    
     static func regular(size: CGFloat) -> UIFont {
-        UIFont(name: "HelveticaNeue", size: size.adaptedFontSize)!
+        UIFont(name: "Roboto-Regular", size: size.adaptedFontSize)!
+    }
+    
+    static func medium(size: CGFloat) -> UIFont {
+        UIFont(name: "Roboto-Medium", size: size.adaptedFontSize)!
     }
     
     static func bold(size: CGFloat) -> UIFont {
-        UIFont(name: "HelveticaNeue-Bold", size: size.adaptedFontSize)!
+        UIFont(name: "Roboto-Bold", size: size.adaptedFontSize)!
+    }
+    
+    static func black(size: CGFloat) -> UIFont {
+        UIFont(name: "Roboto-Black", size: size.adaptedFontSize)!
     }
 }
