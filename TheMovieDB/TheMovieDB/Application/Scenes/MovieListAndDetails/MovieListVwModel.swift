@@ -51,16 +51,40 @@ class MovieListVwModel {
         firstly {
             services.fetchMovieList(basedOn: type, and: currentPage)
         }.done ({ response in
-            self.totalPage = response.result?.totalPages ?? 0
-            self.currentPage += 1
-            //self.isLoading = false
-
             if let movies = response.result?.results, movies.count != 0 {
+                self.totalPage = response.result?.totalPages ?? 0
+                self.currentPage += 1
                 self.movieList.append(contentsOf: movies.map({ $0 }).filter({ $0.mediaType != .tv}))
+                self.refreshUI?()
+            } else {
+                self.isLoading = false
                 self.refreshUI?()
             }
         }).catch ({ error in
             self.isLoading = false
+            self.refreshUI?()
+            print("error==========\(error.localizedDescription)")
+        })
+    }
+    
+    func fetchMoviesBasedOn(genres: Int) {
+        if !isPaginationNeeded { return }
+        self.isLoading = true
+        firstly {
+            services.filterMovie(by: genres, andPageNo: currentPage)
+        }.done ({ response in
+            if let movies = response.result?.results, movies.count != 0 {
+                self.totalPage = response.result?.totalPages ?? 0
+                self.currentPage += 1
+                self.movieList.append(contentsOf: movies.map({ $0 }).filter({ $0.mediaType != .tv}))
+                self.refreshUI?()
+            } else {
+                self.isLoading = false
+                self.refreshUI?()
+            }
+        }).catch ({ error in
+            self.isLoading = false
+            self.refreshUI?()
             print("error==========\(error.localizedDescription)")
         })
     }

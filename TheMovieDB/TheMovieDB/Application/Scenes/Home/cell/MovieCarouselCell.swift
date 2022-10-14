@@ -18,44 +18,47 @@ class MovieCarouselCell: UITableViewCell {
     var arrowHandler: (() -> ())?
     var selectedContentHandler: ((Int, MediaType) -> ())?
     var trailerContentHandler: ((String) -> ())?
+    var genresHandler: ((Int, String) -> ())?
     
     var details: HomeList? {
         didSet {
+            setupSkeleton()
             lblTitle.text = details?.sectionTitle ?? ""
             lblTitle.font = AppFonts.bold(size: 16)
-            btnArrow.isHidden = false
             switch details?.contentType {
             case .exploreByGenres:
                 btnArrow.isHidden = true
-                //colVwHeightConstraint.constant = adapted(dimensionSize: 50, to: .height)//80
-            case .castAndCrew:
-                colVwHeightConstraint.constant = adapted(dimensionSize: 213, to: .height)//213
-            case .trailers:
-                colVwHeightConstraint.constant = adapted(dimensionSize: 121, to: .height)//121
             default:
-                //colVwHeightConstraint.constant = resized(size: CGSize(width: 100, height: 150), basedOn: .height).height
-                print("")
+                btnArrow.isHidden = false
             }
-            setupSkeleton()
             self.colVw.reloadData()
         }
     }
     
     func setupSkeleton() {
-        if details == nil {
-            colVwHeightConstraint.constant = resized(size: CGSize(width: 100, height: 150), basedOn: .height).height
-        } else {
-            if details?.sectionTitle ?? "" == "Explore By Genres" {
-                colVwHeightConstraint.constant = resized(size: CGSize(width: 130, height: 50), basedOn: .height).height
-            } else {
-                colVwHeightConstraint.constant = resized(size: CGSize(width: 100, height: 150), basedOn: .height).height
+        //        if details?.sectionTitle ?? "" == "Explore By Genres" {
+        //            colVwHeightConstraint.constant = 50//resized(size: CGSize(width: 130, height: 50), basedOn: .height).height
+        //        } else {
+        //            colVwHeightConstraint.constant = resized(size: CGSize(width: 100, height: 150), basedOn: .height).height
+        //        }
+        if details != nil {
+            switch details!.contentType {
+            case .exploreByGenres:
+                colVwHeightConstraint.constant = 50
+            case .castAndCrew:
+                colVwHeightConstraint.constant = resized(size: CGSize(width: 100,
+                                                                      height: 150),
+                                                         basedOn: .height).height
+            case .trailers:
+                colVwHeightConstraint.constant = resized(size: CGSize(width: 200,
+                                                                      height: 113),
+                                                         basedOn: .height).height
+            default:
+                colVwHeightConstraint.constant = resized(size: CGSize(width: 100,
+                                                                      height: 150),
+                                                         basedOn: .height).height
             }
         }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        //colVw.layoutIfNeeded()
     }
     
     override func awakeFromNib() {
@@ -91,74 +94,88 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
         return details!.sectionData?.count ?? 0
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if details?.contentType == .castAndCrew {
-            btnArrow.isHidden = true
-            let cell = colVw.dequeueReusableCell(withReuseIdentifier: CastAndCrewCell.identifier, for: indexPath) as! CastAndCrewCell
-            let itemDetails = details?.sectionData?[indexPath.row]
-            cell.lblActorName.text = itemDetails?.name ?? ""
-            cell.lblCharacterName.text = itemDetails?.character ?? ""
-            cell.imgVw.loadImageWithUrl(with: itemDetails?.profilePath ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), completed: nil)
-            return cell
-        } else if details?.contentType == .trailers {
-            btnArrow.isHidden = true
-            self.colVwHeightConstraint.constant = 131
-            let cell = colVw.dequeueReusableCell(withReuseIdentifier: MovieTrailersCell.identifier, for: indexPath) as! MovieTrailersCell
-            let itemDetails = details?.sectionData?[indexPath.row]
-            cell.imgVw.loadImageWithUrl(with: itemDetails?.key ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder") , type: .youtube, completed: nil)
-            return cell
-        } else if details?.contentType == .exploreByGenres {
-            let cell = colVw.dequeueReusableCell(withReuseIdentifier: GenresCell.identifier, for: indexPath) as! GenresCell
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        switch details?.contentType {
+        case .exploreByGenres:
+            let cell = colVw.dequeueReusableCell(withReuseIdentifier: GenresCell.identifier,
+                                                 for: indexPath) as! GenresCell
             if details != nil {
                 let itemDetails = details?.sectionData?[indexPath.row]
                 cell.lblGenres.text = itemDetails?.name ?? ""
-                cell.imgVwBackdrop.loadImageWithUrl(with: itemDetails?.backdropPath ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), type: .genres, completed: nil)
+                //cell.imgVwBackdrop.loadImageWithUrl(with: itemDetails?.backdropPath ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), type: .genres, completed: nil)
+                cell.imgVwBackdrop.backgroundColor = AppColors.getColorFor(genres: itemDetails?.name ?? "")
                 cell.startAnimation(false)
             } else {
                 cell.startAnimation(true)
             }
             return cell
-        } else {
+        case .castAndCrew:
+            btnArrow.isHidden = true
+            let cell = colVw.dequeueReusableCell(withReuseIdentifier: CastAndCrewCell.identifier,
+                                                 for: indexPath) as! CastAndCrewCell
+            let itemDetails = details?.sectionData?[indexPath.row]
+            cell.lblActorName.text = itemDetails?.name ?? ""
+            cell.lblCharacterName.text = itemDetails?.character ?? ""
+            cell.imgVw.loadImageWithUrl(with: itemDetails?.profilePath ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), completed: nil)
+            return cell
+        case .trailers:
+            btnArrow.isHidden = true
+            let cell = colVw.dequeueReusableCell(withReuseIdentifier: MovieTrailersCell.identifier,
+                                                 for: indexPath) as! MovieTrailersCell
+            let itemDetails = details?.sectionData?[indexPath.row]
+            cell.imgVw.loadImageWithUrl(with: itemDetails?.key ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder") , type: .youtube, completed: nil)
+            return cell
+        default:
             btnArrow.isHidden = false
-            let cell = colVw.dequeueReusableCell(withReuseIdentifier: MoviePosterCell.identifier, for: indexPath) as! MoviePosterCell
+            let cell = colVw.dequeueReusableCell(withReuseIdentifier: MoviePosterCell.identifier,
+                                                 for: indexPath) as! MoviePosterCell
             if details != nil {
                 let itemDetails = details?.sectionData?[indexPath.row]
-                cell.imgVw.loadImageWithUrl(with: itemDetails?.posterPath ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), quality: .standard, completed: nil)
+                cell.imgVw.loadImageWithUrl(with: itemDetails?.posterPath ?? "",
+                                            placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"),
+                                            quality: .standard,
+                                            completed: nil)
                 cell.startAnimation(false)
             }
             return cell
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         if let item = details {
-            if item.contentType == .castAndCrew {
+            switch item.contentType {
+            case .exploreByGenres:
+                genresHandler?(details?.sectionData?[indexPath.row].id ?? 0, details?.sectionData?[indexPath.row].name ?? "")
+            case .castAndCrew:
                 return
-            } else if item.contentType == .trailers {
+            case .trailers:
                 trailerContentHandler?(details?.sectionData?[indexPath.row].key ?? "")
-            } else {
-                selectedContentHandler?(details?.sectionData?[indexPath.row].id ?? 0, details?.sectionData?[indexPath.row].mediaType ?? .movie)
+            default:
+                selectedContentHandler?(details?.sectionData?[indexPath.row].id ?? 0,
+                                        details?.sectionData?[indexPath.row].mediaType ?? .movie)
             }
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         if details == nil {
-            //return CGSize(width: 132, height: 198)
-            return resized(size: CGSize(width: 132, height: 198), basedOn: .height)
-        }
-        if details!.contentType == .castAndCrew {
-            //return CGSize(width: 138, height: 213)
-            return resized(size: CGSize(width: 138, height: 213), basedOn: .height)
-        } else if details!.contentType == .trailers {
-            //return CGSize(width: 232, height: 121)//378.5, 213
-            return resized(size: CGSize(width: 232, height: 121), basedOn: .height)
-        } else if details!.contentType == .exploreByGenres {
-            //return CGSize(width: 180, height: 80)
-            return resized(size: CGSize(width: 130, height: 50), basedOn: .height)
-        } else {
-           //return CGSize(width: 132, height: 198)//CGSize(width: 120, height: 181)
             return resized(size: CGSize(width: 100, height: 150), basedOn: .height)
+        } else {
+            switch details!.contentType {
+            case .exploreByGenres:
+                return CGSize(width: 120, height: 50)
+            case .castAndCrew:
+                return resized(size: CGSize(width: 100, height: 150), basedOn: .height)
+            case .trailers:
+                return resized(size: CGSize(width: 200, height: 113), basedOn: .height)
+            default:
+                return resized(size: CGSize(width: 100, height: 150), basedOn: .height)
+            }
         }
     }
 }

@@ -69,7 +69,9 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
                 cell.startAnimation(false)
             } else {
                 if indexPath.row == 1 {
-                    cell.colVwHeightConstraint.constant = 80
+                    cell.colVwHeightConstraint.constant = 50
+                } else {
+                    cell.colVwHeightConstraint.constant = 198
                 }
             }
             cell.arrowHandler = { [weak self] in
@@ -79,6 +81,11 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
             cell.selectedContentHandler = { [weak self] movieId, type in
                 guard let _ = self else { return }
                 MovieListNavigator().showMovieDetailsVC(with: movieId, type: type)
+            }
+            
+            cell.genresHandler = { [weak self] genresId, sectionName in
+                guard let _ = self else { return }
+                MovieListNavigator().showMovieListVC(with: [], type: .exploreByGenres, sectionName: sectionName, genreId: genresId)
             }
             return cell
         }

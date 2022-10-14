@@ -14,11 +14,12 @@ class MovieListNavigator {
     private let storyboard = UIStoryboard(name: "MovieDetails", bundle: nil)
     private let player = UIStoryboard(name: "VideoPlayer", bundle: nil)
     
-    func showMovieListVC(with movieList: [MovieResultList], type: SectionType, sectionName: String = "") {
+    func showMovieListVC(with movieList: [MovieResultList], type: SectionType, sectionName: String = "", genreId: Int = 0) {
         let vc = storyboard.instantiateViewController(withIdentifier: MovieListVC.identifier) as! MovieListVC
         vc.vwModel.movieList = movieList
         vc.type = type
         vc.sectionName = sectionName
+        vc.genresId = genreId
         AppDelegate.shared.push(to: vc, animated: true)
     }
     

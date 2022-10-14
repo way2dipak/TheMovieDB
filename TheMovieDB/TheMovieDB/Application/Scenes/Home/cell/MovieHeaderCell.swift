@@ -43,7 +43,7 @@ class MovieHeaderCell: UITableViewCell {
     
     var details: MovieResultList? {
         didSet {
-            imgVwPoster.loadImageWithUrl(with: details?.posterPath,
+            imgVwPoster.loadImageWithUrl(with: isIphone ? details?.posterPath : details?.backdropPath,
                                          placeholderImage: nil,
                                          quality: .hd,
                                          completed: nil)

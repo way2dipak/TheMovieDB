@@ -10,13 +10,41 @@ import UIKit
 class MovieDetailsHeaderCell: UITableViewCell {
     
     @IBOutlet weak var imgVwBackdrop: UIImageView!
-    @IBOutlet weak var lblTitle: UILabel!
-    @IBOutlet weak var lblTagLine: UILabel!
-    @IBOutlet weak var lblOverview: UILabel!
-    @IBOutlet weak var lblRatings: UILabel!
-    @IBOutlet weak var lblVotes: UILabel!
-    @IBOutlet weak var lblDuration: UILabel!
-    @IBOutlet weak var lblDate: UILabel!
+    @IBOutlet weak var lblTitle: UILabel! {
+        didSet {
+            lblTitle.font = AppFonts.bold(size: 24)
+        }
+    }
+    @IBOutlet weak var lblTagLine: UILabel! {
+        didSet {
+            lblTagLine.font = AppFonts.light(size: 13)
+        }
+    }
+    @IBOutlet weak var lblOverview: UILabel! {
+        didSet {
+            lblOverview.font = AppFonts.light(size: 13)
+        }
+    }
+    @IBOutlet weak var lblRatings: UILabel! {
+        didSet {
+            lblRatings.font = AppFonts.medium(size: 44)
+        }
+    }
+    @IBOutlet weak var lblVotes: UILabel! {
+        didSet {
+            lblVotes.font = AppFonts.medium(size: 15)
+        }
+    }
+    @IBOutlet weak var lblDuration: UILabel! {
+        didSet {
+            lblDuration.font = AppFonts.regular(size: 14)
+        }
+    }
+    @IBOutlet weak var lblDate: UILabel! {
+        didSet {
+            lblDate.font = AppFonts.bold(size: 14)
+        }
+    }
     @IBOutlet weak var vwStar: UIView!
     @IBOutlet weak var btnPlay: LoadingButton!
     @IBOutlet weak var imgVwClock: UIImageView!

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -55,9 +55,12 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="OqE-3q-uvw">
-                                <rect key="frame" x="0.0" y="119" width="414" height="134"/>
+                                <rect key="frame" x="0.0" y="163" width="414" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="RS4-uU-UjG"/>
+                                </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nb4-Le-1rB" customClass="LoadingButton" customModule="TheMovieDB" customModuleProvider="target">
                                 <rect key="frame" x="189.5" y="99" width="35" height="35"/>
@@ -91,7 +94,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="8xl-jB-kEp">
-                                <rect key="frame" x="20" y="319" width="374" height="85"/>
+                                <rect key="frame" x="20" y="304" width="374" height="85"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bad Boys for Life" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJc-1Y-5kM">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="33"/>
@@ -124,7 +127,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="clock" translatesAutoresizingMaskIntoConstraints="NO" id="Len-80-eCr">
-                                <rect key="frame" x="20" y="424" width="20" height="20"/>
+                                <rect key="frame" x="20" y="409" width="20" height="20"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="Bes-fW-Zq7"/>
@@ -135,7 +138,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2h 14mins" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cbw-09-igi">
-                                <rect key="frame" x="50" y="424.5" width="75" height="19"/>
+                                <rect key="frame" x="50" y="409.5" width="75" height="19"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -234,7 +237,7 @@
                             <constraint firstItem="Len-80-eCr" firstAttribute="top" secondItem="8xl-jB-kEp" secondAttribute="bottom" constant="20" id="003-AP-JX0"/>
                             <constraint firstItem="0eG-Nm-2wV" firstAttribute="centerY" secondItem="3Mo-w0-EsN" secondAttribute="centerY" id="0lz-qn-vUE"/>
                             <constraint firstItem="0eG-Nm-2wV" firstAttribute="centerY" secondItem="9uv-eb-K1G" secondAttribute="centerY" id="4FL-9C-fxV"/>
-                            <constraint firstItem="bnv-QC-Ga4" firstAttribute="bottom" secondItem="OqE-3q-uvw" secondAttribute="bottom" constant="-20" id="5dr-vl-yzj"/>
+                            <constraint firstItem="bnv-QC-Ga4" firstAttribute="bottom" secondItem="OqE-3q-uvw" secondAttribute="bottom" constant="-10" id="5dr-vl-yzj"/>
                             <constraint firstItem="0eG-Nm-2wV" firstAttribute="leading" secondItem="Hmf-sC-ci2" secondAttribute="leading" constant="20" id="6QH-m2-DBr"/>
                             <constraint firstAttribute="trailing" secondItem="8xl-jB-kEp" secondAttribute="trailing" constant="20" id="82L-6T-h7B"/>
                             <constraint firstItem="bnv-QC-Ga4" firstAttribute="leading" secondItem="OqE-3q-uvw" secondAttribute="leading" id="8hh-gH-fyr"/>
@@ -243,7 +246,7 @@
                             <constraint firstAttribute="trailing" secondItem="9uv-eb-K1G" secondAttribute="trailing" constant="20" id="FfI-5W-XyV"/>
                             <constraint firstItem="w98-Ee-16B" firstAttribute="top" secondItem="Hmf-sC-ci2" secondAttribute="top" constant="-5" id="HpF-v1-feI"/>
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="Len-80-eCr" secondAttribute="bottom" constant="10" id="JEb-EZ-CV9"/>
-                            <constraint firstItem="8xl-jB-kEp" firstAttribute="top" secondItem="9uv-eb-K1G" secondAttribute="bottom" constant="20" id="JH9-pj-1vq"/>
+                            <constraint firstItem="8xl-jB-kEp" firstAttribute="top" secondItem="9uv-eb-K1G" secondAttribute="bottom" constant="5" id="JH9-pj-1vq"/>
                             <constraint firstItem="nb4-Le-1rB" firstAttribute="centerX" secondItem="bnv-QC-Ga4" secondAttribute="centerX" id="Q2a-i4-Slb"/>
                             <constraint firstItem="bnv-QC-Ga4" firstAttribute="trailing" secondItem="OqE-3q-uvw" secondAttribute="trailing" id="RPy-wb-67G"/>
                             <constraint firstAttribute="trailing" secondItem="bnv-QC-Ga4" secondAttribute="trailing" id="Sob-mS-l4r"/>

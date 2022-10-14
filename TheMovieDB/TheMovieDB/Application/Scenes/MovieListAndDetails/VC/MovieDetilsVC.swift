@@ -122,7 +122,9 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
             cell.arrowHandler = { [weak self] in
                 guard let self = self else { return }
                 self.player = nil
-              //  MovieListNavigator().showMovieListVC(with: self.vwModel.movieList[indexPath.row].content, type: self.vwModel.movieList[indexPath.row].contentType)
+                MovieListNavigator().showMovieListVC(with: self.vwModel.movieList[indexPath.row].sectionData ?? [],
+                                                     type: self.vwModel.movieList[indexPath.row].contentType,
+                                                     sectionName: self.vwModel.movieList[indexPath.row].sectionTitle ?? "")
             }
             
             cell.selectedContentHandler = { [weak self] movieId, type in
@@ -147,7 +149,7 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yPos: CGFloat = -scrollView.contentOffset.y
-        print(yPos)
+        //print(yPos)
         if yPos < -110 {
             player?.pauseVideo()
         } else {
