@@ -14,9 +14,6 @@ class HomeVC: BaseVC {
             //tableVw.toggleDisplayWithAnimation(false)
         }
     }
-    lazy var headerHeight: CGFloat = {
-        return view.frame.height + 200
-    }()
     private let vwModel = HomeVwModel()
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,7 +31,11 @@ class HomeVC: BaseVC {
     }
     
     func registerNIB() {
-        tableVw.register(MovieHeaderCell.nib, forCellReuseIdentifier: MovieHeaderCell.identifier)
+        if isIphone {
+            tableVw.register(MovieHeaderCell.nib, forCellReuseIdentifier: MovieHeaderCell.identifier)
+        } else {
+            tableVw.register(MovieHeaderIpadCell.nib, forCellReuseIdentifier: MovieHeaderIpadCell.identifier)
+        }
         tableVw.register(MovieCarouselCell.nib, forCellReuseIdentifier: MovieCarouselCell.identifier)
     }
     
@@ -52,16 +53,29 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: MovieHeaderCell.identifier) as! MovieHeaderCell
-            if vwModel.movieList.count != 0 {
-                cell.startAnimation(false)
-                cell.details = vwModel.getRandomMovie()
+            if isIphone {
+                let cell = tableView.dequeueReusableCell(withIdentifier: MovieHeaderCell.identifier) as! MovieHeaderCell
+                if vwModel.movieList.count != 0 {
+                    cell.startAnimation(false)
+                    cell.details = vwModel.getRandomMovie()
+                }
+                cell.infoHandler = { [weak self] (movieID, type)in
+                    guard let _ = self else { return }
+                    MovieListNavigator().showMovieDetailsVC(with: movieID, type: type)
+                }
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: MovieHeaderIpadCell.identifier) as! MovieHeaderIpadCell
+                if vwModel.movieList.count != 0 {
+                    cell.startAnimation(false)
+                    cell.details = vwModel.getRandomMovie()
+                }
+                cell.infoHandler = { [weak self] (movieID, type)in
+                    guard let _ = self else { return }
+                    MovieListNavigator().showMovieDetailsVC(with: movieID, type: type)
+                }
+                return cell
             }
-            cell.infoHandler = { [weak self] (movieID, type)in
-                guard let _ = self else { return }
-                MovieListNavigator().showMovieDetailsVC(with: movieID, type: type)
-            }
-            return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
             if vwModel.movieList.count != 0 {
@@ -71,7 +85,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
                 if indexPath.row == 1 {
                     cell.colVwHeightConstraint.constant = 50
                 } else {
-                    cell.colVwHeightConstraint.constant = 198
+                    //cell.colVwHeightConstraint.constant = 198
                 }
             }
             cell.arrowHandler = { [weak self] in

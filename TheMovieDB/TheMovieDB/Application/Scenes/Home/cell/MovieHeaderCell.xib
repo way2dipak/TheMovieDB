@@ -37,7 +37,7 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YWP-b4-3dr">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
@@ -49,12 +49,9 @@
                                     <constraint firstAttribute="height" constant="25" id="xFz-Wn-7od"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="DQ2-pv-qcI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="DQ2-pv-qcI">
+                                <rect key="frame" x="0.0" y="144" width="414" height="456"/>
                                 <color key="tintColor" name="Appbackground"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="xzV-k8-zU8"/>
-                                </constraints>
                             </imageView>
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gzg-0b-5qJ">
                                 <rect key="frame" x="20" y="444" width="374" height="106"/>
@@ -141,6 +138,7 @@
                             <constraint firstItem="EI9-E3-HZ1" firstAttribute="top" secondItem="Gzg-0b-5qJ" secondAttribute="bottom" constant="20" id="nT8-Om-VbR"/>
                             <constraint firstAttribute="trailing" secondItem="DQ2-pv-qcI" secondAttribute="trailing" id="pXS-6j-9dZ"/>
                             <constraint firstItem="Gzg-0b-5qJ" firstAttribute="leading" secondItem="nOD-Jy-nzL" secondAttribute="leading" constant="20" id="tFZ-8P-okm"/>
+                            <constraint firstItem="DQ2-pv-qcI" firstAttribute="top" secondItem="Gzg-0b-5qJ" secondAttribute="top" constant="-300" id="tym-x7-lWj"/>
                             <constraint firstItem="EI9-E3-HZ1" firstAttribute="leading" secondItem="nOD-Jy-nzL" secondAttribute="leading" constant="20" id="wqz-av-tJo"/>
                         </constraints>
                     </view>
@@ -169,10 +167,10 @@
         <image name="bottomGradient" width="250.33332824707031" height="133.66667175292969"/>
         <image name="topGradient" width="250.33332824707031" height="133.66667175292969"/>
         <namedColor name="Appbackground">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.043137259779999999" green="0.12549020350000001" blue="0.21960783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="HeaderMovieName">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="132" height="198"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HeaderPoster" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-hd-fNA">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0ej-hd-fNA">
                         <rect key="frame" x="0.0" y="0.0" width="132" height="198"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
@@ -48,7 +48,4 @@
             <point key="canvasLocation" x="191.30434782608697" y="123.88392857142857"/>
         </collectionViewCell>
     </objects>
-    <resources>
-        <image name="HeaderPoster" width="260" height="390"/>
-    </resources>
 </document>

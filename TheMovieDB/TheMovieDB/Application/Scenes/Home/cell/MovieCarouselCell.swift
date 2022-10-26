@@ -105,7 +105,7 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
                 let itemDetails = details?.sectionData?[indexPath.row]
                 cell.lblGenres.text = itemDetails?.name ?? ""
                 //cell.imgVwBackdrop.loadImageWithUrl(with: itemDetails?.backdropPath ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), type: .genres, completed: nil)
-                cell.imgVwBackdrop.backgroundColor = AppColors.getColorFor(genres: itemDetails?.name ?? "")
+                cell.imgVwBackdrop.backgroundColor = itemDetails?.background?.colorCode
                 cell.startAnimation(false)
             } else {
                 cell.startAnimation(true)

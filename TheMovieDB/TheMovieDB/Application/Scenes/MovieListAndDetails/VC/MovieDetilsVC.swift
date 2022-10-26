@@ -27,6 +27,7 @@ class MovieDetilsVC: BaseVC {
     var playPauseHandler: ((Bool) -> ())?
     
     var headerCell: MovieDetailsHeaderCell?
+    var headerIpadCell: MovieDetailsHeaderIPadCell?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,15 +45,24 @@ class MovieDetilsVC: BaseVC {
         self.vwModel.playVideo = { [weak self] url in
             guard let self = self else { return }
             DispatchQueue.main.asyncAfter(deadline: .now()) {
-                if self.headerCell == nil { return }
-                self.player = PlayerHandler(videoId: url, parentView: self.headerCell!.imgVwBackdrop, playerDelegate: self, showContentFill: true)
+                if isIphone {
+                    if self.headerCell == nil { return }
+                    self.player = PlayerHandler(videoId: url, parentView: self.headerCell!.imgVwBackdrop, playerDelegate: self, showContentFill: true)
+                } else {
+                    if self.headerIpadCell == nil { return }
+                    self.player = PlayerHandler(videoId: url, parentView: self.headerIpadCell!.imgVwBackdrop, playerDelegate: self, showContentFill: true)
+                }
             }
         }
     }
     
     func registerNIB() {
         tableVw.register(MovieCarouselCell.nib, forCellReuseIdentifier: MovieCarouselCell.identifier)
-        tableVw.register(MovieDetailsHeaderCell.nib, forCellReuseIdentifier: MovieDetailsHeaderCell.identifier)
+        if isIphone {
+            tableVw.register(MovieDetailsHeaderCell.nib, forCellReuseIdentifier: MovieDetailsHeaderCell.identifier)
+        } else {
+            tableVw.register(MovieDetailsHeaderIPadCell.nib, forCellReuseIdentifier: MovieDetailsHeaderIPadCell.identifier)
+        }
     }
     
     @IBAction func onTapBackBtn(_ sender: UIButton) {
@@ -90,8 +100,13 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
     func tableVw(_ tableView: UITableView, skeletonCellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.row {
         case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderCell.identifier) as! MovieDetailsHeaderCell
-            return cell
+            if isIphone {
+                let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderCell.identifier) as! MovieDetailsHeaderCell
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderIPadCell.identifier) as! MovieDetailsHeaderIPadCell
+                return cell
+            }
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
             return cell
@@ -105,16 +120,43 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
         let details = vwModel.movieList[indexPath.row]
         switch details.contentType {
         case .header:
-            let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderCell.identifier) as! MovieDetailsHeaderCell
-            self.headerCell = cell
-            cell.startAnimation(false)
-            cell.details = vwModel.movieDetails
-            cell.playhandler = { [weak self] in
-                guard let self = self else { return }
-                cell.btnPlay.showLoading()
-                self.vwModel.getStreamURL(for: self.vwModel.getVideoForHeader())
+            if isIphone {
+                let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderCell.identifier) as! MovieDetailsHeaderCell
+                self.headerCell = cell
+                cell.startAnimation(false)
+                cell.details = vwModel.movieDetails
+                /*
+                if let imgUrl = vwModel.movieList.filter({ $0.sectionTitle ?? "" == "Trailers" }).first?.sectionData?.randomElement()?.key {
+                    cell.imgVwBackdrop.loadImageWithUrl(with: imgUrl,
+                                                        placeholderImage: nil,
+                                                        type: .youtube,
+                                                        completed: nil)
+                } else {
+                    cell.imgVwBackdrop.loadImageWithUrl(with: vwModel.movieDetails?.backdropPath,
+                                                        placeholderImage: nil,
+                                                        type: .normal,
+                                                        quality: .hd,
+                                                        completed: nil)
+                }
+                 */
+                cell.playhandler = { [weak self] in
+                    guard let self = self else { return }
+                    cell.btnPlay.showLoading()
+                    self.vwModel.getStreamURL(for: self.vwModel.getVideoForHeader())
+                }
+                return cell
+            } else {
+                let cell = tableView.dequeueReusableCell(withIdentifier: MovieDetailsHeaderIPadCell.identifier) as! MovieDetailsHeaderIPadCell
+                self.headerIpadCell = cell
+                cell.startAnimation(false)
+                cell.details = vwModel.movieDetails
+                cell.playhandler = { [weak self] in
+                    guard let self = self else { return }
+                    cell.btnPlay.showLoading()
+                    self.vwModel.getStreamURL(for: self.vwModel.getVideoForHeader())
+                }
+                return cell
             }
-            return cell
         default:
             let cell = tableView.dequeueReusableCell(withIdentifier: MovieCarouselCell.identifier) as! MovieCarouselCell
             cell.startAnimation(false)
@@ -163,10 +205,15 @@ extension MovieDetilsVC: VideoPlayerDelegate {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             self.player?.playVideo()
         }
-        
-        headerCell?.btnPlay.hideLoading()
-        headerCell?.btnPlay.isHidden = true
-        headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+        if isIphone {
+            headerCell?.btnPlay.hideLoading()
+            headerCell?.btnPlay.isHidden = true
+            headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1.1, y: 1.1)
+        } else {
+            headerIpadCell?.btnPlay.hideLoading()
+            headerIpadCell?.btnPlay.isHidden = true
+            headerIpadCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1.2, y: 1.2)
+        }
     }
     
     func player(playerType: VideoPlayer, didUpdateTime playTime: TimeInterval) {
@@ -188,9 +235,15 @@ extension MovieDetilsVC: VideoPlayerDelegate {
             break
         case .ended, .failed(_) :
             print("ended")
-            headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1, y: 1)
-            headerCell?.btnPlay.hideLoading()
-            headerCell?.btnPlay.isHidden = false
+            if isIphone {
+                headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+                headerCell?.btnPlay.hideLoading()
+                headerCell?.btnPlay.isHidden = false
+            } else {
+                headerCell?.imgVwBackdrop.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+                headerIpadCell?.btnPlay.hideLoading()
+                headerIpadCell?.btnPlay.isHidden = false
+            }
             switch playerType {
             case .youtube(let ytPlayer):
                 ytPlayer.removeFromSuperview()

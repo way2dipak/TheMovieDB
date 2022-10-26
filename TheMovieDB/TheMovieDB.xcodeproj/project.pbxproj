@@ -19,6 +19,8 @@
 		3672E4EF285A3B5800553499 /* GenresCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3672E4ED285A3B5800553499 /* GenresCell.xib */; };
 		368F44F3FE45486A04632256 /* Pods_TheMovieDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F71F755687CA9F02BBB7DFC1 /* Pods_TheMovieDB.framework */; };
 		36976AF6285F7AC50026435C /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36976AF5285F7AC50026435C /* LoadingButton.swift */; };
+		36B7C59D28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7C59B28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.swift */; };
+		36B7C59E28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B7C59C28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.xib */; };
 		36CB9EC928BDE48B00B9FF2D /* MovieDetailsHeaderIPadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB9EC728BDE48B00B9FF2D /* MovieDetailsHeaderIPadCell.swift */; };
 		36CB9ECA28BDE48B00B9FF2D /* MovieDetailsHeaderIPadCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36CB9EC828BDE48B00B9FF2D /* MovieDetailsHeaderIPadCell.xib */; };
 		9D0C402E26F26317001A393D /* CMTime+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0C402926F26317001A393D /* CMTime+Utilities.swift */; };
@@ -139,6 +141,8 @@
 		3672E4EC285A3B5800553499 /* GenresCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenresCell.swift; sourceTree = "<group>"; };
 		3672E4ED285A3B5800553499 /* GenresCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GenresCell.xib; sourceTree = "<group>"; };
 		36976AF5285F7AC50026435C /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
+		36B7C59B28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieHeaderIpadCell.swift; sourceTree = "<group>"; };
+		36B7C59C28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieHeaderIpadCell.xib; sourceTree = "<group>"; };
 		36CB9EC728BDE48B00B9FF2D /* MovieDetailsHeaderIPadCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailsHeaderIPadCell.swift; sourceTree = "<group>"; };
 		36CB9EC828BDE48B00B9FF2D /* MovieDetailsHeaderIPadCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsHeaderIPadCell.xib; sourceTree = "<group>"; };
 		5B5B8062E2F74AB52E83B70C /* Pods-TheMovieDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TheMovieDB.debug.xcconfig"; path = "Target Support Files/Pods-TheMovieDB/Pods-TheMovieDB.debug.xcconfig"; sourceTree = "<group>"; };
@@ -437,6 +441,8 @@
 				9D5A678A26A9B04C006EBB73 /* MovieHeaderCell.xib */,
 				3672E4EC285A3B5800553499 /* GenresCell.swift */,
 				3672E4ED285A3B5800553499 /* GenresCell.xib */,
+				36B7C59B28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.swift */,
+				36B7C59C28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.xib */,
 			);
 			path = cell;
 			sourceTree = "<group>";
@@ -755,6 +761,7 @@
 				9D6789E026419B7600436134 /* Roboto-Medium.ttf in Resources */,
 				9D8E9EB3263E74C7002A6C11 /* LaunchScreen.storyboard in Resources */,
 				9D6789E226419B7600436134 /* Roboto-Bold.ttf in Resources */,
+				36B7C59E28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.xib in Resources */,
 				9D6789DF26419B7600436134 /* Roboto-Italic.ttf in Resources */,
 				9D8254F8264A3DCB009DC983 /* MoviePosterCell.xib in Resources */,
 				9D6789E4264250A500436134 /* TabBar.storyboard in Resources */,
@@ -894,6 +901,7 @@
 				9D8254FC264AE207009DC983 /* HomeModel.swift in Sources */,
 				9D8254F7264A3DCB009DC983 /* MoviePosterCell.swift in Sources */,
 				9D8254ED2649799E009DC983 /* BaseVC.swift in Sources */,
+				36B7C59D28FEE8FB00CA9AA7 /* MovieHeaderIpadCell.swift in Sources */,
 				9DB412622651064900B4F77F /* AlignedCollectionViewFlowLayout.swift in Sources */,
 				9D24376C265151DF005DD744 /* StarRatingStackView.swift in Sources */,
 				9D8E9EAE263E74C7002A6C11 /* TheMovieDB.xcdatamodeld in Sources */,
