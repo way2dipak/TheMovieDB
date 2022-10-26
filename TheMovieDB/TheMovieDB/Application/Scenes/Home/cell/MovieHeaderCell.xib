@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -37,27 +37,24 @@
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YWP-b4-3dr">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topGradient" translatesAutoresizingMaskIntoConstraints="NO" id="VcT-5k-dx6">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="40"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="25"/>
                                 <color key="tintColor" name="Appbackground"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="xFz-Wn-7od"/>
+                                    <constraint firstAttribute="height" constant="25" id="xFz-Wn-7od"/>
                                 </constraints>
                             </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="DQ2-pv-qcI">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="DQ2-pv-qcI">
+                                <rect key="frame" x="0.0" y="144" width="414" height="456"/>
                                 <color key="tintColor" name="Appbackground"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="600" id="xzV-k8-zU8"/>
-                                </constraints>
                             </imageView>
                             <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Gzg-0b-5qJ">
-                                <rect key="frame" x="20" y="434" width="374" height="106"/>
+                                <rect key="frame" x="20" y="444" width="374" height="106"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action - Drama - History" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8z-iQ-Co7">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="29.5"/>
@@ -102,11 +99,11 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EI9-E3-HZ1">
-                                <rect key="frame" x="20" y="560" width="100" height="40"/>
+                                <rect key="frame" x="20" y="570" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.86078917980194092" green="0.37129769230879511" blue="0.23410768282138472" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="FJs-UP-ZKS"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="wlB-DY-12U"/>
+                                    <constraint firstAttribute="height" constant="30" id="FJs-UP-ZKS" customClass="AdaptedConstraint" customModule="TheMovieDB" customModuleProvider="target"/>
+                                    <constraint firstAttribute="width" constant="100" id="wlB-DY-12U"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
                                 <state key="normal" title="info">
@@ -117,6 +114,7 @@
                                         <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenWhenSkeletonIsActive" value="YES"/>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="onTapInfoBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cvk-zH-MgQ"/>
@@ -140,6 +138,7 @@
                             <constraint firstItem="EI9-E3-HZ1" firstAttribute="top" secondItem="Gzg-0b-5qJ" secondAttribute="bottom" constant="20" id="nT8-Om-VbR"/>
                             <constraint firstAttribute="trailing" secondItem="DQ2-pv-qcI" secondAttribute="trailing" id="pXS-6j-9dZ"/>
                             <constraint firstItem="Gzg-0b-5qJ" firstAttribute="leading" secondItem="nOD-Jy-nzL" secondAttribute="leading" constant="20" id="tFZ-8P-okm"/>
+                            <constraint firstItem="DQ2-pv-qcI" firstAttribute="top" secondItem="Gzg-0b-5qJ" secondAttribute="top" constant="-300" id="tym-x7-lWj"/>
                             <constraint firstItem="EI9-E3-HZ1" firstAttribute="leading" secondItem="nOD-Jy-nzL" secondAttribute="leading" constant="20" id="wqz-av-tJo"/>
                         </constraints>
                     </view>
@@ -168,10 +167,10 @@
         <image name="bottomGradient" width="250.33332824707031" height="133.66667175292969"/>
         <image name="topGradient" width="250.33332824707031" height="133.66667175292969"/>
         <namedColor name="Appbackground">
-            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.043137259779999999" green="0.12549020350000001" blue="0.21960783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="HeaderMovieName">
-            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

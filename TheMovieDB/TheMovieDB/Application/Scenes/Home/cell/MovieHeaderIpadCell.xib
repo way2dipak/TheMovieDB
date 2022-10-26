@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Black.ttf">
+            <string>Roboto-Black</string>
+        </array>
+        <array key="Roboto-Light.ttf">
+            <string>Roboto-Light</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="235" id="KGk-i7-Jjw" customClass="MovieHeaderIpadCell" customModule="TheMovieDB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Skz-li-XRX">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OCj-ON-FIF">
+                                <rect key="frame" x="0.0" y="0.0" width="910.33333333333337" height="512"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="OCj-ON-FIF" secondAttribute="height" multiplier="16:9" id="QLn-bG-3MY"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="fbK-Vj-8h6">
+                                <rect key="frame" x="0.0" y="0.0" width="800" height="512"/>
+                                <color key="tintColor" name="Appbackground"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4E-l4-Vlk">
+                                <rect key="frame" x="20" y="374.66666666666669" width="480" height="137.33333333333331"/>
+                                <subviews>
+                                    <stackView opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tME-XK-mya">
+                                        <rect key="frame" x="0.0" y="0.0" width="480" height="87.333333333333329"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action - Drama - History" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Yc-fF-Sx3">
+                                                <rect key="frame" x="0.0" y="0.0" width="480" height="29.333333333333332"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Black" family="Roboto" pointSize="25"/>
+                                                <color key="textColor" name="HeaderMovieName"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useFontLineHeight" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Action - Drama - History" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTD-KW-Re4">
+                                                <rect key="frame" x="0.0" y="39.333333333333314" width="480" height="19"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="16"/>
+                                                <color key="textColor" name="HeaderMovieName"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useFontLineHeight" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenWhenSkeletonIsActive" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Set in the Mayan civilization, when a man's idyllic presence " lineBreakMode="clip" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeU-8q-Mpa">
+                                                <rect key="frame" x="0.0" y="68.333333333333314" width="480" height="19"/>
+                                                <fontDescription key="fontDescription" name="Roboto-Light" family="Roboto" pointSize="16"/>
+                                                <color key="textColor" name="HeaderMovieName"/>
+                                                <nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="linesCornerRadius">
+                                                        <integer key="value" value="2"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="useFontLineHeight" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GrC-qW-WxO">
+                                        <rect key="frame" x="0.0" y="107.33333333333331" width="100" height="30"/>
+                                        <color key="backgroundColor" red="0.86078917980000003" green="0.37129769229999998" blue="0.23410768279999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="jHm-lA-VhU"/>
+                                            <constraint firstAttribute="height" constant="30" id="uid-5h-vTr" customClass="AdaptedConstraint" customModule="TheMovieDB" customModuleProvider="target">
+                                                <variation key="heightClass=regular-widthClass=regular" constant="40"/>
+                                            </constraint>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="16"/>
+                                        <state key="normal" title="info">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isHiddenWhenSkeletonIsActive" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="onTapInfoBtn:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="3a4-57-Yzn"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="tME-XK-mya" secondAttribute="trailing" id="8An-1T-kQB"/>
+                                    <constraint firstItem="tME-XK-mya" firstAttribute="top" secondItem="M4E-l4-Vlk" secondAttribute="top" id="GOD-HF-clw"/>
+                                    <constraint firstItem="GrC-qW-WxO" firstAttribute="top" secondItem="tME-XK-mya" secondAttribute="bottom" constant="20" id="RQH-uh-2ut"/>
+                                    <constraint firstItem="tME-XK-mya" firstAttribute="centerX" secondItem="M4E-l4-Vlk" secondAttribute="centerX" id="Tez-zp-Pom"/>
+                                    <constraint firstItem="tME-XK-mya" firstAttribute="leading" secondItem="M4E-l4-Vlk" secondAttribute="leading" id="bmI-bn-53q"/>
+                                    <constraint firstItem="GrC-qW-WxO" firstAttribute="leading" secondItem="M4E-l4-Vlk" secondAttribute="leading" id="cn6-ph-DiR"/>
+                                    <constraint firstAttribute="bottom" secondItem="GrC-qW-WxO" secondAttribute="bottom" id="ioJ-tG-KjS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="M4E-l4-Vlk" firstAttribute="width" secondItem="Skz-li-XRX" secondAttribute="width" multiplier="0.6" id="5XU-Ou-nbb"/>
+                            <constraint firstAttribute="trailing" secondItem="OCj-ON-FIF" secondAttribute="trailing" id="8aJ-YU-ztL"/>
+                            <constraint firstItem="fbK-Vj-8h6" firstAttribute="leading" secondItem="Skz-li-XRX" secondAttribute="leading" id="IRI-Df-Yj7"/>
+                            <constraint firstAttribute="trailing" secondItem="fbK-Vj-8h6" secondAttribute="trailing" id="IUq-zG-bQe"/>
+                            <constraint firstAttribute="bottom" secondItem="M4E-l4-Vlk" secondAttribute="bottom" id="VwR-Ci-4hI"/>
+                            <constraint firstItem="fbK-Vj-8h6" firstAttribute="top" secondItem="Skz-li-XRX" secondAttribute="top" id="acf-mK-35U"/>
+                            <constraint firstItem="OCj-ON-FIF" firstAttribute="top" secondItem="Skz-li-XRX" secondAttribute="top" id="bKv-l0-acc"/>
+                            <constraint firstItem="OCj-ON-FIF" firstAttribute="leading" secondItem="Skz-li-XRX" secondAttribute="leading" id="fZt-Pt-ygX"/>
+                            <constraint firstAttribute="bottom" secondItem="OCj-ON-FIF" secondAttribute="bottom" id="jsL-kj-fQO"/>
+                            <constraint firstItem="M4E-l4-Vlk" firstAttribute="leading" secondItem="Skz-li-XRX" secondAttribute="leading" constant="20" id="vBB-qm-IlB"/>
+                            <constraint firstAttribute="bottom" secondItem="fbK-Vj-8h6" secondAttribute="bottom" id="zxm-y5-MTt"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="Skz-li-XRX" secondAttribute="trailing" id="GAl-AW-Bg7"/>
+                    <constraint firstItem="Skz-li-XRX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Ngw-zT-amg"/>
+                    <constraint firstAttribute="bottom" secondItem="Skz-li-XRX" secondAttribute="bottom" id="amV-An-y8o"/>
+                    <constraint firstItem="Skz-li-XRX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="pOd-D4-mHC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="imgVwBackdrop" destination="OCj-ON-FIF" id="1Z4-BV-MNh"/>
+                <outlet property="infoBtnBottom" destination="GrC-qW-WxO" id="dlL-2I-dtj"/>
+                <outlet property="lblDescription" destination="eeU-8q-Mpa" id="5a6-V8-GKs"/>
+                <outlet property="lblGenres" destination="zTD-KW-Re4" id="3JM-st-O7J"/>
+                <outlet property="lblMovieName" destination="4Yc-fF-Sx3" id="zP1-j4-Sf7"/>
+            </connections>
+            <point key="canvasLocation" x="352.30769230769232" y="88.151658767772503"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="banner" width="820.66668701171875" height="512"/>
+        <namedColor name="Appbackground">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="HeaderMovieName">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -311,7 +311,7 @@ extension StarRatingView {
         for _ in 0..<Int(totalStarCount) {
             let bundle = Bundle(for: StarRatingView.self)
             let image = UIImage(named: imageName, in: bundle, compatibleWith: nil)
-            let imageView = UIImageView(image: image?.sd_tintedImage(with: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)))
+            let imageView = UIImageView(image: image?.sd_tintedImage(with: #colorLiteral(red: 1, green: 0.2705882353, blue: 0.2274509804, alpha: 1)))
             stackView.addArrangedSubview(imageView)
             
         }

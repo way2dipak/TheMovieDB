@@ -15,7 +15,7 @@ import netfox
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var myOrientation: UIInterfaceOrientationMask = .portrait
+    var myOrientation: UIInterfaceOrientationMask = isIphone ? .portrait : .landscape
 
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

@@ -1,49 +1,45 @@
 //
-//  MovieHeaderCell.swift
+//  MovieHeaderIpadCell.swift
 //  TheMovieDB
 //
-//  Created by DS on 22/07/21.
+//  Created by Dipak Singh on 18/10/22.
 //
 
 import UIKit
-import SkeletonView
 
-class MovieHeaderCell: UITableViewCell {
+class MovieHeaderIpadCell: UITableViewCell {
     
-    @IBOutlet weak var imgVwPoster: UIImageView!
+    @IBOutlet weak var imgVwBackdrop: UIImageView!
     @IBOutlet weak var lblMovieName: UILabel! {
         didSet {
-            lblMovieName.font = AppFonts.black(size: 19)
+            lblMovieName.font = AppFonts.black(size: 25)
         }
     }
     @IBOutlet weak var lblDescription: UILabel! {
         didSet {
-            lblDescription.font = AppFonts.light(size: 12)
+            lblDescription.font = AppFonts.light(size: 15)
         }
     }
     @IBOutlet weak var lblGenres: UILabel! {
         didSet {
-            lblGenres.font = AppFonts.regular(size: 12)
+            lblGenres.font = AppFonts.regular(size: 15)
         }
     }
     
-    @IBOutlet weak var containerVwHeight: NSLayoutConstraint!
-    @IBOutlet weak var imgVwHeight: NSLayoutConstraint!
-    @IBOutlet weak var imgVwBottom: NSLayoutConstraint!
-    @IBOutlet weak var imgVwTop: NSLayoutConstraint!
     @IBOutlet weak var infoBtnBottom: UIButton! {
         didSet {
             infoBtnBottom.setTitle("More", for: .normal)
             infoBtnBottom.titleLabel?.font = AppFonts.medium(size: 12)
         }
     }
+    
     @IBOutlet weak var stackVw: UIStackView!
     
     var infoHandler: ((Int, MediaType) -> ())?
     
     var details: MovieResultList? {
         didSet {
-            imgVwPoster.loadImageWithUrl(with: isIphone ? details?.posterPath : details?.backdropPath,
+            imgVwBackdrop.loadImageWithUrl(with: details?.posterPath,
                                          placeholderImage: nil,
                                          quality: .hd,
                                          completed: nil)
@@ -57,13 +53,11 @@ class MovieHeaderCell: UITableViewCell {
     
     func startAnimation(_ toggle: Bool) {
         if toggle {
-            imgVwPoster.showAnimatedSkeleton()
             lblMovieName.showAnimatedSkeleton()
             lblDescription.showAnimatedSkeleton()
             lblGenres.showAnimatedSkeleton()
             infoBtnBottom.showAnimatedSkeleton()
         } else {
-            imgVwPoster.hideSkeleton()
             lblMovieName.hideSkeleton()
             lblDescription.hideSkeleton()
             lblGenres.hideSkeleton()

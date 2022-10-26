@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -52,26 +53,26 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Trending" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wMi-WJ-UhD">
                                 <rect key="frame" x="50" y="63" width="314" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="18"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="textColor" name="HeaderMovieName"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topGradient" translatesAutoresizingMaskIntoConstraints="NO" id="PIr-qy-kDs">
                                 <rect key="frame" x="0.0" y="84.5" width="414" height="50"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="Appbackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="pH0-u9-HaL"/>
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="NxY-Nb-kid">
                                 <rect key="frame" x="0.0" y="796" width="414" height="100"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="Appbackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="lGE-I2-uBL"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ckV-f2-tHD"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Appbackground"/>
                         <constraints>
                             <constraint firstItem="PIr-qy-kDs" firstAttribute="leading" secondItem="ckV-f2-tHD" secondAttribute="leading" id="1ZX-V8-sFj"/>
                             <constraint firstItem="wMi-WJ-UhD" firstAttribute="leading" secondItem="ZkW-Rc-Jrs" secondAttribute="leading" constant="50" id="1wi-9X-Zp7"/>
@@ -116,9 +117,16 @@
                                     <outlet property="delegate" destination="fnx-li-FXp" id="Lxu-qG-ijX"/>
                                 </connections>
                             </tableView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="topGradient" translatesAutoresizingMaskIntoConstraints="NO" id="RqP-zh-tsz">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+                                <color key="tintColor" name="Appbackground"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Oie-Cg-Bnv"/>
+                                </constraints>
+                            </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomGradient" translatesAutoresizingMaskIntoConstraints="NO" id="Qxz-dH-7HC">
                                 <rect key="frame" x="0.0" y="796" width="414" height="100"/>
-                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="Appbackground"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="qqa-fv-y1i"/>
                                 </constraints>
@@ -152,14 +160,17 @@
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="X3a-8S-wAz"/>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="Appbackground"/>
                         <constraints>
                             <constraint firstItem="5bJ-C7-SJ4" firstAttribute="leading" secondItem="X3a-8S-wAz" secondAttribute="leading" constant="12" id="2Tb-nn-0hA"/>
                             <constraint firstItem="5bJ-C7-SJ4" firstAttribute="top" secondItem="X3a-8S-wAz" secondAttribute="top" constant="10" id="Lfg-nO-3qA"/>
+                            <constraint firstItem="RqP-zh-tsz" firstAttribute="leading" secondItem="X3a-8S-wAz" secondAttribute="leading" id="NgZ-gD-clC"/>
                             <constraint firstAttribute="bottom" secondItem="LC2-Gx-Lhg" secondAttribute="bottom" id="Phc-rf-G5A"/>
                             <constraint firstItem="LC2-Gx-Lhg" firstAttribute="top" secondItem="K5u-0M-Nek" secondAttribute="top" id="W0x-ag-FXn"/>
+                            <constraint firstItem="RqP-zh-tsz" firstAttribute="top" secondItem="K5u-0M-Nek" secondAttribute="top" id="YzX-iA-t80"/>
                             <constraint firstItem="Qxz-dH-7HC" firstAttribute="leading" secondItem="X3a-8S-wAz" secondAttribute="leading" id="Z2F-9P-gX4"/>
                             <constraint firstItem="X3a-8S-wAz" firstAttribute="trailing" secondItem="LC2-Gx-Lhg" secondAttribute="trailing" id="a2L-Ew-1ct"/>
+                            <constraint firstItem="X3a-8S-wAz" firstAttribute="trailing" secondItem="RqP-zh-tsz" secondAttribute="trailing" id="eho-KY-kJv"/>
                             <constraint firstItem="Qxz-dH-7HC" firstAttribute="trailing" secondItem="X3a-8S-wAz" secondAttribute="trailing" id="f8T-Th-dW5"/>
                             <constraint firstAttribute="bottom" secondItem="Qxz-dH-7HC" secondAttribute="bottom" id="tcu-6U-Vng"/>
                             <constraint firstItem="LC2-Gx-Lhg" firstAttribute="leading" secondItem="X3a-8S-wAz" secondAttribute="leading" id="xE5-Gb-pTR"/>
@@ -213,5 +224,11 @@
         <image name="bottomGradient" width="250.33332824707031" height="133.66667175292969"/>
         <image name="leftArrow" width="42.666667938232422" height="42.666667938232422"/>
         <image name="topGradient" width="250.33332824707031" height="133.66667175292969"/>
+        <namedColor name="Appbackground">
+            <color red="0.043137259779999999" green="0.12549020350000001" blue="0.21960783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+        <namedColor name="HeaderMovieName">
+            <color red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

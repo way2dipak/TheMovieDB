@@ -53,6 +53,7 @@ struct MovieResultList: Codable {
     let publishedAt: String?
     let genreIDS: [Int]?
     let mediaType: MediaType?
+    let background: String?
     
     enum CodingKeys: String, CodingKey {
         case adult
@@ -81,6 +82,7 @@ struct MovieResultList: Codable {
         case publishedAt = "published_at"
         case genreIDS = "genre_ids"
         case mediaType = "media_type"
+        case background
     }
     
     init(from decoder: Decoder) throws {
@@ -124,6 +126,7 @@ struct MovieResultList: Codable {
         self.publishedAt = try container.decodeIfPresent(String.self, forKey: .publishedAt) ?? ""
         self.genreIDS = try container.decodeIfPresent([Int].self, forKey: .genreIDS) ?? []
         self.mediaType = try container.decodeIfPresent(MediaType.self, forKey: .mediaType) ?? .movie
+        self.background = try container.decodeIfPresent(String.self, forKey: .background) ?? ""
     }
     
     func getMovieName() -> String {
