@@ -9,7 +9,7 @@
 import UIKit
 
 var dimension: Dimension {
-    UIDevice.current.orientation.isPortrait ? .width : .height
+    UIDevice.current.orientation.isPortrait ? .height : .width
 }
 
 func resized(size: CGSize, basedOn dimension: Dimension) -> CGSize {
@@ -35,8 +35,8 @@ func resized(size: CGSize, basedOn dimension: Dimension) -> CGSize {
 }
 
 func adapted(dimensionSize: CGFloat, to dimension: Dimension) -> CGFloat {
-    let screenWidth  = UIScreen.main.bounds.size.width
-    let screenHeight = UIScreen.main.bounds.size.height
+    let screenWidth  = UIScreen.main.bounds.width
+    let screenHeight = UIScreen.main.bounds.height
     
     var ratio: CGFloat = 0.0
     var resultDimensionSize: CGFloat = 0.0
