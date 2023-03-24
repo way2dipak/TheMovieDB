@@ -34,7 +34,7 @@ class MovieCarouselCell: UITableViewCell {
             default:
                 colVwHeightConstraint.constant = 198
             }
-            colVw.layoutIfNeeded()
+            //colVw.layoutIfNeeded()
             colVw.reloadData()
         }
     }

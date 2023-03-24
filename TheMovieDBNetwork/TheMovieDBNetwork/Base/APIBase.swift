@@ -16,7 +16,7 @@ public enum Env {
     public var url: String {
         switch self {
         case .dev:
-            return "http://moviedbnodejs.herokuapp.com/v1/"
+            return "https://petalite-pacific-ankylosaurus.glitch.me/v1/"//"http://moviedbnodejs.herokuapp.com/v1/"
         case .prod:
             return "http://35.173.249.132:8000"
         }
