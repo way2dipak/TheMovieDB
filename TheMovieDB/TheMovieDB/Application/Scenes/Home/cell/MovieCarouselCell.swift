@@ -44,7 +44,7 @@ class MovieCarouselCell: UITableViewCell {
         if details != nil {
             switch details!.contentType {
             case .exploreByGenres:
-                colVwHeightConstraint.constant = 50
+                colVwHeightConstraint.constant = isIphone ? 80 : 80
             case .castAndCrew:
                 colVwHeightConstraint.constant = resized(size: CGSize(width: 100,
                                                                       height: 150),
@@ -104,8 +104,8 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
             if details != nil {
                 let itemDetails = details?.sectionData?[indexPath.row]
                 cell.lblGenres.text = itemDetails?.name ?? ""
-                //cell.imgVwBackdrop.loadImageWithUrl(with: itemDetails?.backdropPath ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), type: .genres, completed: nil)
-                cell.imgVwBackdrop.backgroundColor = itemDetails?.background?.colorCode
+                cell.imgVwBackdrop.loadImageWithUrl(with: itemDetails?.backdropPath ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder"), type: .genres, completed: nil)
+                //cell.imgVwBackdrop.backgroundColor = itemDetails?.background?.colorCode
                 cell.startAnimation(false)
             } else {
                 cell.startAnimation(true)
@@ -168,7 +168,7 @@ extension MovieCarouselCell: UICollectionViewDelegate, UICollectionViewDataSourc
         } else {
             switch details!.contentType {
             case .exploreByGenres:
-                return CGSize(width: 120, height: 50)
+                return CGSize(width: isIphone ? 150 : 200, height: isIphone ? 80 : 80)
             case .castAndCrew:
                 return resized(size: CGSize(width: 100, height: 150), basedOn: .height)
             case .trailers:

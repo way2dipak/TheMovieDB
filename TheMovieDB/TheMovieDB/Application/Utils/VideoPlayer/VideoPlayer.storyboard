@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_5" orientation="landscape" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,6 +36,9 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trailers" translatesAutoresizingMaskIntoConstraints="NO" id="JFB-kT-Dtx">
+                                <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z6E-hZ-lwt">
                                 <rect key="frame" x="0.0" y="0.0" width="736" height="414"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -235,6 +238,7 @@
                         <constraints>
                             <constraint firstItem="Z6E-hZ-lwt" firstAttribute="trailing" secondItem="eCt-qV-i4h" secondAttribute="trailing" id="0Gk-z7-SW1"/>
                             <constraint firstItem="Z6E-hZ-lwt" firstAttribute="leading" secondItem="eCt-qV-i4h" secondAttribute="leading" id="4B0-25-n6p"/>
+                            <constraint firstItem="JFB-kT-Dtx" firstAttribute="bottom" secondItem="eCt-qV-i4h" secondAttribute="bottom" id="7wc-qS-o5R"/>
                             <constraint firstItem="Bnt-yL-N7i" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G2E-Ly-ULZ" secondAttribute="trailing" constant="30" id="9AJ-GW-96Y"/>
                             <constraint firstItem="G2E-Ly-ULZ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Bnt-yL-N7i" secondAttribute="leading" constant="30" id="9EI-mp-qzb"/>
                             <constraint firstItem="Z6E-hZ-lwt" firstAttribute="top" secondItem="eCt-qV-i4h" secondAttribute="top" id="9rB-O9-L0X"/>
@@ -250,7 +254,10 @@
                             <constraint firstItem="eCt-qV-i4h" firstAttribute="top" secondItem="gAV-xj-hbh" secondAttribute="top" id="Zhc-lj-B57"/>
                             <constraint firstAttribute="bottom" secondItem="K5g-5K-9k6" secondAttribute="bottom" id="d7K-9c-dhL"/>
                             <constraint firstItem="K5g-5K-9k6" firstAttribute="leading" secondItem="gAV-xj-hbh" secondAttribute="leading" id="dA0-OA-0t1"/>
+                            <constraint firstItem="JFB-kT-Dtx" firstAttribute="top" secondItem="eCt-qV-i4h" secondAttribute="top" id="ejw-eg-2yH"/>
+                            <constraint firstItem="JFB-kT-Dtx" firstAttribute="trailing" secondItem="eCt-qV-i4h" secondAttribute="trailing" id="ggZ-k4-Oqp"/>
                             <constraint firstItem="oOr-ob-JDn" firstAttribute="leading" secondItem="gAV-xj-hbh" secondAttribute="leading" id="gzY-Xm-HsR"/>
+                            <constraint firstItem="JFB-kT-Dtx" firstAttribute="leading" secondItem="eCt-qV-i4h" secondAttribute="leading" id="i8H-hj-hw9"/>
                             <constraint firstItem="G2E-Ly-ULZ" firstAttribute="centerY" secondItem="gAV-xj-hbh" secondAttribute="centerY" id="mOp-kK-ehj"/>
                             <constraint firstAttribute="bottom" secondItem="oOr-ob-JDn" secondAttribute="bottom" constant="-150" id="qzH-rm-fMp"/>
                             <constraint firstItem="Z6E-hZ-lwt" firstAttribute="bottom" secondItem="eCt-qV-i4h" secondAttribute="bottom" id="xpx-8A-pJb"/>
@@ -263,6 +270,7 @@
                         <outlet property="btnRewind" destination="J3t-fE-U1r" id="bgp-gd-BBE"/>
                         <outlet property="colvw" destination="wRd-pr-Dss" id="ZnF-Qz-kFo"/>
                         <outlet property="colvwBottomConstraint" destination="qzH-rm-fMp" id="i67-q6-uYW"/>
+                        <outlet property="imgVwThumb" destination="JFB-kT-Dtx" id="6sa-1j-Fy7"/>
                         <outlet property="lblDescription" destination="eoI-eX-eLH" id="AKR-EA-egb"/>
                         <outlet property="lblTitle" destination="z41-gA-hmd" id="Zca-id-Dbn"/>
                         <outlet property="slider" destination="zHr-1t-fQC" id="eSo-2V-Ggv"/>
@@ -286,5 +294,6 @@
         <image name="btnRewind" width="170.66667175292969" height="170.66667175292969"/>
         <image name="error" width="21.333333969116211" height="21.333333969116211"/>
         <image name="leftArrow" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="trailers" width="426.66665649414062" height="240"/>
     </resources>
 </document>

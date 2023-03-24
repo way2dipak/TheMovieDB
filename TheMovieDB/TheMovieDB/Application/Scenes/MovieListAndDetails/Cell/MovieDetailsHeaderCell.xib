@@ -42,7 +42,7 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bnv-QC-Ga4">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="233"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="233" id="Ime-Ot-ydM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="Ime-Ot-ydM"/>
                                     <constraint firstAttribute="width" secondItem="bnv-QC-Ga4" secondAttribute="height" multiplier="16:9" id="xw4-qs-d3V"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -309,10 +309,10 @@
         <image name="playBtn" width="170.66667175292969" height="170.66667175292969"/>
         <image name="topGradient" width="250.33332824707031" height="133.66667175292969"/>
         <namedColor name="Appbackground">
-            <color red="0.043137259779999999" green="0.12549020350000001" blue="0.21960783" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.043000001460313797" green="0.125" blue="0.2199999988079071" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="HeaderMovieName">
-            <color red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemRedColor">
             <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

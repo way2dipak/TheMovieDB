@@ -83,7 +83,7 @@ extension HomeVC: UITableViewDelegate, UITableViewDataSource {
                 cell.startAnimation(false)
             } else {
                 if indexPath.row == 1 {
-                    cell.colVwHeightConstraint.constant = 50
+                    cell.colVwHeightConstraint.constant = isIphone ? 80 : 80
                 } else {
                     //cell.colVwHeightConstraint.constant = 198
                 }

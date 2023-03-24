@@ -29,14 +29,14 @@ extension UIImageView {
                           completed: SDExternalCompletionBlock?) {
         var url: URL?
         if type == .normal {
-            url =  URL(string: "\(APIBase.currentEnv.imgUrl)\(quality == .standard ? "w300" : "original")\(with ?? "")")
+            url =  URL(string: "\(APIBase.currentEnv.imgUrl)\(quality == .standard ? "w200" : "original")\(with ?? "")")
         } else if type == .youtube {
             url = URL(string: "https://img.youtube.com/vi/\(with ?? "")/maxresdefault.jpg")
         } else {
             url = URL(string: with ?? "")
         }
         self.sd_imageIndicator = SDWebImageActivityIndicator.gray
-        self.sd_setImage(with: url, placeholderImage: placeholderImage, options: [.scaleDownLargeImages], completed: completed)
+        self.sd_setImage(with: url, placeholderImage: placeholderImage, options: [.waitStoreCache], completed: completed)
     }
 }
 

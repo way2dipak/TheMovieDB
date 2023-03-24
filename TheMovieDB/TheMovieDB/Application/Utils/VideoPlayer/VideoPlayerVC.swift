@@ -29,6 +29,7 @@ class VideoPlayerVC: BaseVC {
     @IBOutlet weak var btnForward: UIButton!
     @IBOutlet weak var colvw: UICollectionView!
     @IBOutlet weak var colvwBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imgVwThumb: UIImageView?
     
     var details: MovieResultList?
     var duration: TimeInterval {
@@ -68,6 +69,7 @@ class VideoPlayerVC: BaseVC {
                 spinner.startAnimating()
             case .playing:
                 resetTimer()
+                imgVwThumb?.isHidden = true
                 spinner.stopAnimating()
                 spinner.isHidden = true
                 vwControllerBtn.alpha = 1
@@ -102,6 +104,7 @@ class VideoPlayerVC: BaseVC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.imgVwThumb?.loadImageWithUrl(with: videoId, placeholderImage: #imageLiteral(resourceName: "posterPlaceholder") , type: .youtube, completed: nil)
         colvw.register(MovieTrailersCell.nib, forCellWithReuseIdentifier: MovieTrailersCell.identifier)
         rotateToLandScapeDevice()
         addGesture()
@@ -135,6 +138,7 @@ class VideoPlayerVC: BaseVC {
         timer = nil
         playerHandler?.stopVideo()
         playerHandler = nil
+        self.rotateToPotraitDevice()
         dismissVC()
     }
     
@@ -306,21 +310,20 @@ extension VideoPlayerVC {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-            super.viewWillDisappear(animated)
-            self.rotateToPotraitDevice()
-        }
-
-        func rotateToLandScapeDevice() {
-            AppDelegate.shared.myOrientation = .landscapeLeft
-            UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
-            UIView.setAnimationsEnabled(true)
-        }
-
-        func rotateToPotraitDevice() {
-            AppDelegate.shared.myOrientation = .portrait
-            UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-            UIView.setAnimationsEnabled(true)
-        }
+        super.viewWillDisappear(animated)
+    }
+    
+    func rotateToLandScapeDevice() {
+        AppDelegate.shared.myOrientation = .landscapeLeft
+        UIDevice.current.setValue(UIInterfaceOrientation.landscapeLeft.rawValue, forKey: "orientation")
+        UIView.setAnimationsEnabled(true)
+    }
+    
+    func rotateToPotraitDevice() {
+        AppDelegate.shared.myOrientation = .portrait
+        UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
+        UIView.setAnimationsEnabled(true)
+    }
     
     func addGesture() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleControllerView))

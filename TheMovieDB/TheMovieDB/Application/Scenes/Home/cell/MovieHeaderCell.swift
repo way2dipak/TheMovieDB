@@ -13,7 +13,7 @@ class MovieHeaderCell: UITableViewCell {
     @IBOutlet weak var imgVwPoster: UIImageView!
     @IBOutlet weak var lblMovieName: UILabel! {
         didSet {
-            lblMovieName.font = AppFonts.black(size: 19)
+            lblMovieName.font = AppFonts.black(size: 29)
         }
     }
     @IBOutlet weak var lblDescription: UILabel! {
