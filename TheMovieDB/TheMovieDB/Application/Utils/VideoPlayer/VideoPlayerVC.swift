@@ -19,7 +19,7 @@ class VideoPlayerVC: BaseVC {
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblDescription: UILabel! {
         didSet {
-            lblDescription.setLineHeight(lineHeight: 4)
+            //lblDescription.setLineHeight(lineHeight: 4)
         }
     }
     
@@ -30,6 +30,7 @@ class VideoPlayerVC: BaseVC {
     @IBOutlet weak var colvw: UICollectionView!
     @IBOutlet weak var colvwBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var imgVwThumb: UIImageView?
+    @IBOutlet weak var vwVideoList: UIView!
     
     var details: MovieResultList?
     var duration: TimeInterval {
@@ -37,7 +38,7 @@ class VideoPlayerVC: BaseVC {
     }
     var videoURL: String = ""
     
-    var movieList = [TrailersList]()
+    var movieList = [MovieResultList]()
     
     private var currentTime: TimeInterval = 0 {
         didSet {
@@ -64,11 +65,14 @@ class VideoPlayerVC: BaseVC {
         didSet {
             switch configuration {
             case .loading:
-                vwControllerBtn.alpha = 0
+                vwError.isHidden = true
+                vwController.alpha = 0
+                imgVwThumb?.isHidden = false
                 spinner.isHidden = false
                 spinner.startAnimating()
             case .playing:
                 resetTimer()
+                vwError.isHidden = true
                 imgVwThumb?.isHidden = true
                 spinner.stopAnimating()
                 spinner.isHidden = true
@@ -76,12 +80,14 @@ class VideoPlayerVC: BaseVC {
             case .completed:
                 spinner.stopAnimating()
                 spinner.isHidden = true
-                vwControllerBtn.alpha = 1
+                vwController.alpha = 1
             case .failed(let error):
                 vwError.isHidden = false
                 spinner.stopAnimating()
                 spinner.isHidden = true
+                vwController.alpha = 1
                 vwControllerBtn.alpha = 0
+                slider.alpha = 0
                 // display error
             }
         }
@@ -109,7 +115,7 @@ class VideoPlayerVC: BaseVC {
         rotateToLandScapeDevice()
         addGesture()
         lblTitle.text = details?.originalTitle ?? ""
-        lblDescription.text = details?.overview ?? ""
+        //lblDescription.text = details?.overview ?? ""
         checkVideo(videoId: videoId)
     }
     
@@ -180,15 +186,18 @@ class VideoPlayerVC: BaseVC {
         seek(toSeconds: seekTime)
     }
     
-    func resetTimer() {
+    func resetTimer(kill: Bool = false) {
         timer?.invalidate()
-        timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(hideControllerVw), userInfo: nil, repeats: false)
+        if !kill {
+            timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(hideControllerVw), userInfo: nil, repeats: false)
+        }
     }
     
     @objc func toggleControllerView() {
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self = self else { return }
             self.vwController.alpha = self.isControllerActive ? 0 : 1
+            self.vwVideoList.alpha = self.isControllerActive ? 0 : 1
             self.isControllerActive.toggle()
         }
         resetTimer()
@@ -198,51 +207,73 @@ class VideoPlayerVC: BaseVC {
         UIView.animate(withDuration: 0.3) { [weak self] in
             guard let self = self else { return }
             self.vwController.alpha = 0
+            self.vwVideoList.alpha = 0
             self.isControllerActive = false
         }
     }
     
     @objc func togglePlayList(toggle: UISwipeGestureRecognizer) {
         if toggle.direction == .up {
-            colvwBottomConstraint.constant = 20
+            colvwBottomConstraint.constant = 0
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
+            resetTimer(kill: true)
         } else {
-            colvwBottomConstraint.constant = -150
+            colvwBottomConstraint.constant = -80
             UIView.animate(withDuration: 0.3) {
                 self.view.layoutIfNeeded()
             }
+            resetTimer(kill: false)
         }
+        
     }
 }
 
 extension VideoPlayerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,
+                        numberOfItemsInSection section: Int) -> Int {
         return movieList.count
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieTrailersCell.identifier, for: indexPath) as! MovieTrailersCell
         cell.imgVw.loadImageWithUrl(with: movieList[indexPath.row].key ?? "", placeholderImage: #imageLiteral(resourceName: "posterPlaceholder") , type: .youtube, completed: nil)
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView,
+                        didSelectItemAt indexPath: IndexPath) {
         playerHandler?.stopVideo()
-        playerHandler = nil
-        playerHandler = PlayerHandler(videoId: movieList[indexPath.row].key ?? "", parentView: vwPlayer, playerDelegate: self, showContentFill: true)
-        playerHandler?.playVideo()
+        imgVwThumb?.loadImageWithUrl(with: movieList[indexPath.row].key ?? "", placeholderImage: nil, type: .youtube, completed: nil)
+        checkVideo(videoId: movieList[indexPath.row].key ?? "")
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: 232, height: 121)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 140, height: 78)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        for cell in colvw.visibleCells {
+//            let indexPath = colvw.indexPath(for: cell)!
+//            let cellFrame = colvw.layoutAttributesForItem(at: indexPath)!.frame
+//            let cellFrameInSuperview = colvw.convert(cellFrame, to: colvw.superview)
+//            let distanceFromCenter = colvw.frame.height / 2 - cellFrameInSuperview.midY
+//            let maxDistance = colvw.frame.height / 2 + cellFrame.height
+//            let alpha = max(0, min(1, (maxDistance - abs(distanceFromCenter)) / maxDistance))
+//            cell.alpha = alpha
+//        }
     }
 }
 
 extension VideoPlayerVC: VideoPlayerDelegate {
     func playerDidBecomeReady(playerType: VideoPlayer) {
         playerHandler?.playVideo()
+        vwControllerBtn.alpha = 1
+        slider.alpha = 1
         isPlaying = true
     }
     
@@ -278,9 +309,23 @@ extension VideoPlayerVC: VideoPlayerDelegate {
             case .youtube(let ytPlayer):
                 ytPlayer.removeFromSuperview()
                 self.playerHandler = nil
-            case .custom(_):
-//                avPlayer.view.removeFromSuperview()
-//                player = nil
+            case .custom(let avPlayer):
+                avPlayer.view.removeFromSuperview()
+                self.playerHandler = nil
+                configuration = .completed
+            default:
+                break
+            }
+        case .stoppped:
+            slider.setValue(0, animated: false)
+            configuration = .loading
+            switch playerType {
+            case .youtube(let ytPlayer):
+                ytPlayer.removeFromSuperview()
+                self.playerHandler = nil
+            case .custom(let avPlayer):
+                avPlayer.view.removeFromSuperview()
+                self.playerHandler = nil
                 configuration = .completed
             default:
                 break
@@ -326,27 +371,40 @@ extension VideoPlayerVC {
     }
     
     func addGesture() {
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleControllerView))
-        tapGesture.numberOfTouchesRequired = 1
+        let tapGesture1 = UITapGestureRecognizer(target: self, action: #selector(toggleControllerView))
+        tapGesture1.numberOfTouchesRequired = 1
         vwLayer.isUserInteractionEnabled = true
-        vwLayer.addGestureRecognizer(tapGesture)
+        vwLayer.addGestureRecognizer(tapGesture1)
+        
+        let tapGesture2 = UITapGestureRecognizer(target: self, action: #selector(toggleControllerView))
+        tapGesture2.numberOfTouchesRequired = 1
+        vwController.isUserInteractionEnabled = true
+        vwController.addGestureRecognizer(tapGesture2)
         
         swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(togglePlayList(toggle:)))
         swipeUp.direction = .up
-        vwLayer.isUserInteractionEnabled = true
-        vwLayer.addGestureRecognizer(swipeUp)
+        vwController.isUserInteractionEnabled = true
+        vwController.addGestureRecognizer(swipeUp)
         
         swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(togglePlayList(toggle:)))
         swipeDown.direction = .down
-        vwLayer.isUserInteractionEnabled = true
-        vwLayer.addGestureRecognizer(swipeDown)
+        vwController.isUserInteractionEnabled = true
+        vwController.addGestureRecognizer(swipeDown)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        hideControllerVw()
-    }
-    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        if let firstTouch = touches.first {
+//            let hitView = self.view.hitTest(firstTouch.location(in: self.view), with: event)
+//            if hitView === vwController || hitView === vwControllerBtn {
+//                resetTimer()
+//                return
+//            } else {
+//                hideControllerVw()
+//            }
+//        }
+//
+//    }
 }
 
 extension VideoPlayerVC {

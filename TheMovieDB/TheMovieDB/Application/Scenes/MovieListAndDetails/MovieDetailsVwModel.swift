@@ -39,6 +39,10 @@ class MovieDetailsVwModel {
         return trailerList.first?.sectionData?.randomElement()?.key ?? ""
     }
     
+    func getVideoListAt(index: IndexPath) -> [MovieResultList] {
+        return movieList[index.row].sectionData ?? []
+    }
+    
     func getStreamURL(for videoID: String) {
         firstly {
             service.fetchStreamURL(with: getVideoParams(id: videoID))

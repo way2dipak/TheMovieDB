@@ -30,7 +30,7 @@ class MovieListNavigator {
         AppDelegate.shared.push(to: vc, animated: true)
     }
     
-    func showVideoPlayerVC(with details: MovieResultList?, videoID: String, videoList: [TrailersList]) {
+    func showVideoPlayerVC(with details: MovieResultList?, videoID: String, videoList: [MovieResultList]) {
         let vc = player.instantiateViewController(withIdentifier: VideoPlayerVC.identifier) as! VideoPlayerVC
         vc.details = details
         vc.videoId = videoID

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,11 +37,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="232" height="121"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="playBtn" translatesAutoresizingMaskIntoConstraints="NO" id="aoH-db-58V">
-                                <rect key="frame" x="99" y="43.5" width="34" height="34"/>
+                                <rect key="frame" x="102" y="46.5" width="28" height="28"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="34" id="7L5-mN-KPH"/>
-                                    <constraint firstAttribute="width" constant="34" id="dq8-D7-hGH"/>
+                                    <constraint firstAttribute="width" secondItem="aoH-db-58V" secondAttribute="height" multiplier="1:1" id="b4T-Bt-egp"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="shadowColor">
@@ -61,6 +60,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="aoH-db-58V" firstAttribute="width" secondItem="zjf-9V-rR1" secondAttribute="width" multiplier="0.12" id="4cE-vN-jFE"/>
                             <constraint firstItem="aoH-db-58V" firstAttribute="centerX" secondItem="zjf-9V-rR1" secondAttribute="centerX" id="7QY-jL-ovp"/>
                             <constraint firstItem="aoH-db-58V" firstAttribute="centerY" secondItem="zjf-9V-rR1" secondAttribute="centerY" id="o3B-Lk-eVj"/>
                         </constraints>

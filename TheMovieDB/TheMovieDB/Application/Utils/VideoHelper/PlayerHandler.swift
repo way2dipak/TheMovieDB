@@ -75,10 +75,15 @@ class PlayerHandler {
     var playerSuperView: UIView
     var playerStatus: VideoPlayerStatus = .unknown {
         didSet {
+            if isVideoStopped {
+                delegate?.player(playerType: playerType, didUpdateState: .stoppped)
+                return
+            }
             delegate?.player(playerType: playerType, didUpdateState: playerStatus)
         }
     }
     var isPlayerReady = false
+    var isVideoStopped = false
     
     static let youtubeErrorDomain = "com.youtube.embibe"
     
@@ -146,6 +151,7 @@ class PlayerHandler {
     }
     
     func playVideo() {
+        isVideoStopped = false
         switch playerType {
         case .youtube(let ytPlayer):
             ytPlayer.playVideo()
@@ -168,6 +174,7 @@ class PlayerHandler {
     }
     
     func stopVideo() {
+        isVideoStopped = true
         switch playerType {
         case .youtube(let ytPlayer):
             ytPlayer.stopVideo()
@@ -298,7 +305,7 @@ extension PlayerHandler: PlayerDelegate {
         case .playing:
             playerStatus = .playing
         case .paused:
-            playerStatus = .paused
+            playerStatus = isVideoStopped ? .stoppped : .paused
         case .ended:
             playerStatus = .ended
         case .failed:

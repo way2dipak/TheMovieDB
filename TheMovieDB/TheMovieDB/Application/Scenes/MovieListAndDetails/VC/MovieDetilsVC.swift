@@ -178,7 +178,7 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
             cell.trailerContentHandler = { [weak self] videoId in
                 guard let self = self else { return }
                 self.player = nil
-                MovieListNavigator().showVideoPlayerVC(with: self.vwModel.movieDetails, videoID: videoId, videoList: [])
+                MovieListNavigator().showVideoPlayerVC(with: self.vwModel.movieDetails, videoID: videoId, videoList: self.vwModel.movieList[indexPath.row].sectionData ?? [])
             }
             
             return cell
