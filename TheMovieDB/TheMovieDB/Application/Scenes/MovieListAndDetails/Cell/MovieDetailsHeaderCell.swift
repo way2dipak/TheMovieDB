@@ -17,12 +17,12 @@ class MovieDetailsHeaderCell: UITableViewCell {
     }
     @IBOutlet weak var lblTagLine: UILabel! {
         didSet {
-            lblTagLine.font = AppFonts.light(size: 13)
+            lblTagLine.font = AppFonts.light(size: 12)
         }
     }
     @IBOutlet weak var lblOverview: UILabel! {
         didSet {
-            lblOverview.font = AppFonts.light(size: 13)
+            lblOverview.font = AppFonts.light(size: 12)
         }
     }
     @IBOutlet weak var lblRatings: UILabel! {
@@ -32,17 +32,17 @@ class MovieDetailsHeaderCell: UITableViewCell {
     }
     @IBOutlet weak var lblVotes: UILabel! {
         didSet {
-            lblVotes.font = AppFonts.medium(size: 15)
+            lblVotes.font = AppFonts.medium(size: 12)
         }
     }
     @IBOutlet weak var lblDuration: UILabel! {
         didSet {
-            lblDuration.font = AppFonts.regular(size: 14)
+            lblDuration.font = AppFonts.regular(size: 12)
         }
     }
     @IBOutlet weak var lblDate: UILabel! {
         didSet {
-            lblDate.font = AppFonts.bold(size: 14)
+            lblDate.font = AppFonts.bold(size: 12)
         }
     }
     @IBOutlet weak var vwStar: UIView!

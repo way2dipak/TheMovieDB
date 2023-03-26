@@ -117,6 +117,7 @@ extension MovieDetilsVC: UITableViewDelegate, UITableViewDataSource {
         if vwModel.movieList.count == 0 {
             return tableVw(tableView, skeletonCellForRowAt: indexPath)
         }
+        
         let details = vwModel.movieList[indexPath.row]
         switch details.contentType {
         case .header:

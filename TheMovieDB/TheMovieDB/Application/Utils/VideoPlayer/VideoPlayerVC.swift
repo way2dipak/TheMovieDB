@@ -81,6 +81,7 @@ class VideoPlayerVC: BaseVC {
                 spinner.stopAnimating()
                 spinner.isHidden = true
                 vwController.alpha = 1
+                //toggleBtnControllerState(state: .completed)
             case .failed(let error):
                 vwError.isHidden = false
                 spinner.stopAnimating()
@@ -233,7 +234,7 @@ class VideoPlayerVC: BaseVC {
 extension VideoPlayerVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         numberOfItemsInSection section: Int) -> Int {
-        return movieList.count
+        return movieList.count == 1 ? 0 : movieList.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -299,7 +300,7 @@ extension VideoPlayerVC: VideoPlayerDelegate {
             break
         case .ended :
             configuration = .completed
-            btnPlayPause.isSelected = true
+            //btnPlayPause.isSelected = true
             if currentTime < duration {
                 slider.value = 1
             }
@@ -312,7 +313,6 @@ extension VideoPlayerVC: VideoPlayerDelegate {
             case .custom(let avPlayer):
                 avPlayer.view.removeFromSuperview()
                 self.playerHandler = nil
-                configuration = .completed
             default:
                 break
             }
@@ -392,19 +392,24 @@ extension VideoPlayerVC {
         vwController.addGestureRecognizer(swipeDown)
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        if let firstTouch = touches.first {
-//            let hitView = self.view.hitTest(firstTouch.location(in: self.view), with: event)
-//            if hitView === vwController || hitView === vwControllerBtn {
-//                resetTimer()
-//                return
-//            } else {
-//                hideControllerVw()
-//            }
-//        }
-//
-//    }
+    func toggleBtnControllerState(state: VideoPlayerConfiguration) {
+        switch state {
+        case .loading:
+            btnRewind.isEnabled = true
+            btnForward.isEnabled = true
+            btnPlayPause.setImage(#imageLiteral(resourceName: "btnPause"), for: .normal)
+        case .playing:
+            btnRewind.isEnabled = true
+            btnForward.isEnabled = true
+            btnPlayPause.setImage(#imageLiteral(resourceName: "BtnPause"), for: .normal)
+        case .completed:
+            btnRewind.isEnabled = false
+            btnForward.isEnabled = false
+            btnPlayPause.setImage(#imageLiteral(resourceName: "btnReplay"), for: .normal)
+        case .failed(_):
+            break
+        }
+    }
 }
 
 extension VideoPlayerVC {
